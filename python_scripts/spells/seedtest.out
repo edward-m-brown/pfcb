@@ -1,0 +1,835 @@
+Prerequisite<class 'str'>
+Desc:<class 'str'>
+desc: 'You can hold yourself as still as a statue, evading detection.',
+Benefit<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Stoic Pose',
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can plumb the depths of your mystery to use your revelations more often.',
+Prerequisite:<class 'str'>
+Benefit:<class 'str'>
+Special:<class 'str'>
+Name:<class 'str'>
+name: 'Abundant Revelations',
+Normal:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can make a second attempt at failed hexes.',
+Prerequisite:<class 'str'>
+Benefit:<class 'str'>
+Name:<class 'str'>
+name: 'Accursed Hex',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your ranger traps are especially difficult to notice and avoid.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Advanced Ranger Trap',
+Desc:<class 'str'>
+desc: 'Whether with biting remarks or hurtful words, you are adept at making creatures angry with you. Diplomacy : You fluster your enemy. For the next minute, the target takes a –2 penalty on all attacks rolls made against creatures other than you and has a 10% spell failure chance on all spells that do not target you or that have you within their area of effect. Intimidate : The creature flies into a rage. On its next turn, the target must attempt to make a melee attack against you, make a ranged attack against you, target you with a spell, or include you in the area of a spell. The effect ends if the creature is prevented from attacking you or attempting to do so would harm it (for example, if you are on the other side of a chasm or a wall of fire ). If it cannot attack you on its turn, you may make the check again as an immediate action to extend the effect for 1 round (but cannot extend it thereafter). The effect ends as soon as the creature attacks you. Once you have targeted a creature with this ability, you cannot target it again for 1 day.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Antagonize',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You control the type of spellblight your critical hits give your opponent.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Blighted Critical Mastery',
+Desc:<class 'str'>
+desc: 'You cause creatures to take extra damage when you affect them with a spell that has the acid or fire descriptor.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Burning Spell (Metamagic)',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You draw upon your channel energy to enhance the protective ability of your shield and those of allies while they are adjacent to you.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Channeled Shield Wall',
+Desc:<class 'str'>
+desc: 'You cause creatures to be disoriented when you affect them with a spell that has the sonic descriptor.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Concussive Spell (Metamagic)',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your magical creations are infused with divine power.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Create Reliquary Arms and Shields',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can condense a fraction of your bloodline's power into a powerful elixir. When a creature drinks a sanguine elixir, it can activate the bloodline power anytime before the end of its next turn, as if it had access to that bloodline power. A creature that drinks the elixir cannot gain the benefit if its character level does not equal or exceed the minimum level of the bloodline power. Any level-dependent effects use the character level of the creature that drinks the sanguine elixir, or your sorcerer level, whichever is lower. Drinking a sanguine elixir is just like drinking a potion. A sanguine elixir is treated as a magic item with your caster level. Sanguine elixirs are extremely unstable. They lose their potency 1 day after they are created.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Create Sanguine Elixir',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'You have trained your eidolon to protect you.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Defending Eidolon',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your ki is so strong that it can deny death.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Deny Death',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can detect the mystic specialty of a foe.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Detect Expertise',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your tumor familiar goes to any length to save your life. The familiar must be aware of the attack and able to react to it in order to use this ability, and it can only do this once per day—if it is denied its Dexterity bonus to AC, it can't use this ability. Since this effect would not normally allow the familiar to make a Reflex save for half damage, its improved evasion ability does not apply on this saving throw.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Die for Your Master',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can convert a spell to interfere with an enemy's attack.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Divine Interference',
+Normal:<class 'str'>
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'Those within your dragonbane aura gain the same protection that you do.',
+Name:<class 'str'>
+name: 'Dragonbane Aura',
+Benefit:<class 'str'>
+Desc:<class 'str'>
+desc: 'You have learned how to release most, but not all, of a spell's potential when you cast it.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Echoing Spell (Metamagic)',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You are descended from a long line of sorcerers, and some portion of their power flows in your veins.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Eldritch Heritage',
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can create an ensemble of skilled and amateur performers to aid you in your performance.',
+Name:<class 'str'>
+name: 'Ensemble (Teamwork)',
+Benefit:<class 'str'>
+Special:<class 'str'>
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your familiar is different from others of its kind. If you gain a new familiar, your old familiar loses all evolutions, and you can select a new 1-point evolution for the new familiar.',
+Name:<class 'str'>
+name: 'Evolved Familiar',
+Benefit:<class 'str'>
+Special:<class 'str'>
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can use your knowledge of a creature's weaknesses to deliver a driving and relentless assault against it.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Exploit Lore',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your dedication knows no limit. Your wrath dies hard.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Extended Bane',
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'You have unlocked the secret of a new magus arcana.',
+Prerequisite:<class 'str'>
+Benefit:<class 'str'>
+Special:<class 'str'>
+Name:<class 'str'>
+name: 'Extra Arcana',
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'You have learned how to draw more power from your arcane pool.',
+Prerequisite:<class 'str'>
+Benefit:<class 'str'>
+Special:<class 'str'>
+Name:<class 'str'>
+name: 'Extra Arcane Pool',
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'You are a master of minor spells.',
+Name:<class 'str'>
+name: 'Extra Cantrips or Orisons',
+Benefit:<class 'str'>
+Special:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your eidolon has more evolutions.',
+Prerequisite:<class 'str'>
+Benefit:<class 'str'>
+Special:<class 'str'>
+Name:<class 'str'>
+name: 'Extra Evolution',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can use ranger traps more often.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Extra Ranger Trap',
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can summon monsters more often each day.',
+Name:<class 'str'>
+name: 'Extra Summons',
+Benefit:<class 'str'>
+Special:<class 'str'>
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'The true motives of creatures cannot escape your discerning gaze.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Eyes of Judgment',
+Normal:<class 'str'>
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your empathic attunement to nature connects you swiftly with bestial minds.',
+Name:<class 'str'>
+name: 'Fast Empathy',
+Benefit:<class 'str'>
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your judgment against a particular type of creature is particularly harsh.',
+Name:<class 'str'>
+name: 'Favored Judgment',
+Benefit:<class 'str'>
+Special:<class 'str'>
+Normal:<class 'str'>
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your aura of courage becomes more potent, as your steadfast resolve is also manifested by your allies.',
+Name:<class 'str'>
+name: 'Fearless Aura',
+Benefit:<class 'str'>
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your ability to command fire and bardic music has created a strange blend of both magics. If you cast a summon monster spell as a bard spell,  you may choose to give the summoned creature a fiery appearance, which gives it fire resistance 5 and adds +1 fire damage to all of its natural attacks. The creature sheds dim light in a 5-foot radius. This aspect of the feat has no effect if the creature already has the fire subtype. When you use this feat, the affected spell gains the fire descriptor.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Fire Music',
+Desc:<class 'str'>
+desc: 'You dazzle creatures when you affect them with a spell that has the fire, light, or electricity descriptor.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Flaring Spell (Metamagic)',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your bond with your eidolon helps to focus your concentration.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Focused Eidolon',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You skate across the surface of the earth as if gliding on ice.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Gliding Steps',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'Not only are you a master at taking the initiative, but you can also grant it to someone else.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Grant Initiative',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your discovered bloodline power reaches its zenith.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Greater Eldritch Heritage',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your mercy has incredible recuperative properties.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Greater Mercy',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can sacrifice a prepared spell in order to spontaneously cast your specialized spell.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Greater Spell Specialization',
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your natural empathy stretches across the world of nature.',
+Name:<class 'str'>
+name: 'Greater Wild Empathy',
+Benefit:<class 'str'>
+Special:<class 'str'>
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can attach a bomb to a creature that explodes when the creature dies or after 24 hours. If you expend 150 gp worth of alchemical reagents per die of the bomb's damage (for example, 750 gp for a 5d6 bomb), the bomb does not automatically detonate after 24 hours, and only detonates if the creature dies or is destroyed (24 hours after implantation, this bomb no longer counts toward your daily total). Implanting a bomb is as invasive as using the Heal skill to treat deadly wounds and leaves surgical scars unless the creature is healed by magic or abilities such as regeneration or fast healing. Some creatures (such as oozes, elementals, and creatures with the incorporeal quality) cannot have bombs implanted in them. Removing an implanted bomb requires a Heal check to treat deadly wounds, followed by a dispel magic spell or Disable Device check to neutralize the bomb (DC = 11 + alchemist's caster level).',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Implant Bomb',
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'The power of your discovered bloodline continues to grow.',
+Name:<class 'str'>
+name: 'Improved Eldritch Heritage',
+Benefit:<class 'str'>
+Special:<class 'str'>
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'You are obsessed with the abilities and weaknesses of monsters.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Improved Monster Lore',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'In your personal interactions, you notice what others don't. It's hard to get anything past you.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Insightful Gaze',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'There is something in your eyes that scares people.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Intimidating Gaze',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'Once per day, the power of your faith surges, further empowering your judgments.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Judgment Surge',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'If an opponent knocks you down, you swiftly rebound with an attack. You may spend 1 point of your ki pool to stand up as a swift action without provoking attacks of opportunity.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Ki Stand',
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'You learn how to create one kind of ranger trap. If you are not a ranger, you can only set extraordinary traps with this feat; like all extraordinary ranger traps, this decreases the trap DC by 2.',
+Name:<class 'str'>
+name: 'Learn Ranger Trap',
+Benefit:<class 'str'>
+Special:<class 'str'>
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your channeled positive energy is irresistibly sweet to nearby undead.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Life Lure',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your summoned minions are infused with the power of the moon.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Moonlight Summons',
+Normal:<class 'str'>
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'Enchanted vegetation does not bar your path.',
+Name:<class 'str'>
+name: 'Mystic Stride',
+Benefit:<class 'str'>
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'You are highly sensitive to magic and changes in a person's demeanor.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Oracular Intuition',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'Evil outsiders take damage when they attempt to connect to other planes.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Painful Anchor',
+Desc:<class 'str'>
+desc: 'Your studies have helped you develop methods to overcome spell resistance.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Piercing Spell (Metamagic)',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'You know how to preserve and reconstitute extraplanar monsters as well as normal animals.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Planar Preservationist',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your wild shapes are mighty and muscular.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Powerful Shape',
+Special:<class 'str'>
+Desc:<class 'str'>
+desc: 'You are naturally skilled at arts, professions, and the acquisition of knowledge.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Prodigy',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your oracular abilities give you a glimpse into the future.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Prophetic Visionary',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'Not only are you immune to disease, like most paladins, but you also are highly resilient to poisons.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Pure Faith',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can wield a quarterstaff as either a two-handed or one-handed weapon.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Quarterstaff Master (Combat)',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your divine energies flash with dazzling speed.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Quick Channel',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You sacrifice power for speed in changing form.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Quick Wild Shape',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'When you charge, you do so with the power of faith.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Radiant Charge',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can set off your delayed bombs at great distances. If you have line of effect to your delayed bomb, you may detonate it earlier than its preset time by making a DC 20 Intelligence check; the DC increases by +1 for every 10 feet of distance between you and the bomb.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Remote Bomb',
+Normal:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your link with your eidolon is strong enough that it can remain with you for a short time after you fall unconscious or are killed.',
+Prerequisite:<class 'str'>
+Benefit:<class 'str'>
+Name:<class 'str'>
+name: 'Resilient Eidolon',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'When you lay on hands, divine energy ripples through you, granting you grace.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Reward of Grace',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'When you lay on hands, you are also healed.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Reward of Life',
+Normal:<class 'str'>
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'Even when your thrown splash weapons miss, they are especially dangerous.',
+Name:<class 'str'>
+name: 'Ricochet Splash Weapon',
+Benefit:<class 'str'>
+Desc:<class 'str'>
+desc: 'Creatures damaged by your spells with the cold descriptor become entangled. This feat only affects spells with the cold descriptor. A rime spell uses up a spell slot one level higher than the spell's actual level.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Rime Spell (Metamagic)',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'The minions of your divine patrons stand ready to answer your call.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Sacred Summons',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'When you and your eidolon share senses, your combined minds grant you exceptional powers of observation.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Sense Link',
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your powers of shapeshifting outstrip your dabbling in the druidic faith.',
+Name:<class 'str'>
+name: 'Shaping Focus',
+Benefit:<class 'str'>
+Special:<class 'str'>
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'Unlike others who have taken the oath against undeath (see page 60), your preoccupation with the undead does not cloud your view of good and evil.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Sin Seer',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'The walking dead respond to your call. Once per day, when you cast summon monster , you may summon a skeletal version of one of the creatures on that spell's summoning list (apply the skeleton template to that creature to create this monster).',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Skeleton Summoner',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can regain power when you kill a creature.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Sorcerous Bloodstrike',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You know the principles of arcane dueling, and when fighting other spellcasters, you have learned to hide the true nature of your spells until the last possible moment. Because you have studied how to mask the recognizable elements of your spellcasting, you gain a +2 bonus on your Spellcraft checks to identify and counter an opponent's spell if it is a spell you know or have in your spellbook.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Spell Bluff',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can transform a 1st-level spell into a hex. If the spell is a touch spell and you miss the creature, you cannot target the creature with that spell hex again for 24 hours. If the spell allows a saving throw to negate or take a partial effect from the spell, and the target succeeds at that saving throw, it cannot be affected by the spell hex for 24 hours, even if it is in the area of the spell hex.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Spell Hex',
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'Select one spell. You cast that spell with greater than normal power. Every time you gain an even level in the spellcasting class you chose your spell from, you can choose a new spell to replace the spell selected with this feat, and that spell becomes your specialized spell.',
+Name:<class 'str'>
+name: 'Spell Specialization',
+Benefit:<class 'str'>
+Special:<class 'str'>
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can blend the power of your performance and spellcasting. First, you can conceal the activity of casting a bard spell by masking it in a performance. As a swift action, you may combine your casting time of a spell with a Perform check. Observers must make a Perception or Sense Motive check opposed by your Perform check to realize you are also casting a spell. This uses 1 round of your bardic performance ability, regardless of the spell's casting time. Second, as a move action, you can use 1 round of bardic performance to maintain a bard spell with a duration of concentration. You can cast another spell in the same round you are using bardic magic to maintain concentration; if you do this, your concentration on the maintained spell ends when you end the bardic performance the spell is part of.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Spellsong',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can split the effect of one of your targeted hexes, affecting another creature you can see.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Split Hex',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can split the effect of one of your targeted hexes, affecting another creature you can see.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Split Major Hex',
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can focus to combine one of your known spells and metamagic feats.',
+Name:<class 'str'>
+name: 'Spontaneous Metafocus',
+Benefit:<class 'str'>
+Special:<class 'str'>
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your summoned minions slink along under the shadows of the stars.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Starlight Summons',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your summoned minions shine with the power of the sun.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Sunlight Summons',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can summon more creatures.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Superior Summoning',
+Normal:<class 'str'>
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your spells can pierce wards against negative energy and even affect undead targets. For example, you could cast a thanatopic vampiric touch or enervation spell on a target under the effects of death ward , and the target would suffer the normal effect of the spell. Saving throws and SR (if any) still apply. Undead are susceptible to spells augmented by this feat, as it retunes the negative energy to be harmful to them. A thanatopic spell that would kill a living creature (such as by giving it negative levels equal to its Hit Dice) destroys an undead (though undead such as ghosts, liches, and vampires may reform as normal). Undead affected by thanatopic spells that give negative levels automatically make their saving throws to remove negative levels after 24 hours. A thanatopic spell uses up a spell slot two levels higher than the spell's actual level.',
+Name:<class 'str'>
+name: 'Thanatopic Spell (Metamagic)',
+Benefit:<class 'str'>
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can blend the power of arcane and divine magic. When casting a divine spell, you may sacrifice an arcane spell slot or arcane prepared spell of that spell's level or higher as a swift action. The caster level for that divine spell increases by +1. When casting an arcane spell, you may sacrifice a divine spell slot or prepared divine spell of the same or higher level as a swift action. Half the damage dealt by the arcane spell becomes holy (if you channel positive energy) or unholy (if you channel negative energy).',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Theurgy',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'Thinking back, you discover a lie in what you once thought to be words of truth. For example, if the king told you, "My daughter is in the monster's dungeon" before you left to find her, as long as the king said that to you within the past day, you can use this feat to determine whether or not the king deliberately and knowingly lied to you when he made that statement.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Thoughtful Discernment',
+Normal:<class 'str'>
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can convert mind-affecting magic to necromantic power capable of controlling undead.',
+Name:<class 'str'>
+name: 'Threnodic Spell (Metamagic)',
+Benefit:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your spells with the force descriptor knock the affected creatures prone. A toppling spell only affects spells with the force descriptor. A toppling spell uses up a spell slot one level higher than the spell's actual level.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Toppling Spell (Metamagic)',
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can make a trip attack with your quarterstaff.',
+Name:<class 'str'>
+name: 'Tripping Staff (Combat)',
+Benefit:<class 'str'>
+Special:<class 'str'>
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can make a trip attack with a quarterstaff on all adjacent enemies.',
+Name:<class 'str'>
+name: 'Tripping Twirl (Combat)',
+Benefit:<class 'str'>
+Special:<class 'str'>
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'By using lay on hands, you can bring the dead back to life.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Ultimate Mercy',
+Normal:<class 'str'>
+Misc:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your aura of resolve does not fall with you.',
+Prerequisite:<class 'str'>
+Benefit:<class 'str'>
+Name:<class 'str'>
+name: 'Ultimate Resolve',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your research into arcana and the nature of reality has given you heightened senses.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Uncanny Alertness',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'You have learned to enter a deeper state when casting spells, allowing you to shrug off distractions, damage, weather effects, and even the effects of other spells.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Uncanny Concentration',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can marshal vast armies of the undead to serve you.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Undead Master',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can focus your ability to detect evil for more practical or mundane purposes',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Unsanctioned Detection',
+Prerequisites:<class 'str'>
+Misc:<class 'str'>
+Note:<class 'str'>
+Desc:<class 'str'>
+desc: 'You can choose to channel positive and negative energy. If you normally channel positive energy, you may choose to channel negative energy as if your effective cleric level were 2 levels lower than normal. If you normally channel negative energy, you may choose to channel positive energy as if your effective cleric level were 2 levels lower than normal. Having this feat means you qualify for feats and abilities that have "channel positive energy" or "channel negative energy" as a prerequisite (for example, you qualify for the Command Undead feat and the Turn Undead feat).',
+Name:<class 'str'>
+name: 'Versatile Channeler',
+Benefit:<class 'str'>
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your eidolon is highly observant, and its link with you increases your own watchfulness.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Vigilant Eidolon',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your voice is strangely compelling.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Voice of the Sibyl',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'Your religion is both a shield and a weapon in battle.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Warrior Priest',
+Prerequisites:<class 'str'>
+Desc:<class 'str'>
+desc: 'You speak with the tongue of men and beasts. When using wild shape to take the form of an animal, you may use speak with animals to communicate with animals of your assumed form. This is a spell-like ability with a caster level equal to your druid level, and you may use it for a number of minutes per day equal to your druid level. These minutes do not have to be consecutive, but must be used in one-minute increments.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Wild Speech',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'You empower your witch spells by incorporating the use of a special ceremonial knife during your castings.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Witch Knife',
+Prerequisite:<class 'str'>
+Desc:<class 'str'>
+desc: 'Using the same divine energy as your lay on hands ability, you can heal others at a distance.',
+Benefit:<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Word of Healing',
+Prerequisites<class 'str'>
+Desc:<class 'str'>
+desc: 'You are not easily fooled by illusions and forgeries.',
+Benefit<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Discerning Eye',
+Misc:<class 'str'>
+Benefit<class 'str'>
+Desc:<class 'str'>
+desc: 'Although you are of mixed heritage, you are closer to your elven relatives and the magic in their blood flows freely in your veins.',
+Prerequisite<class 'str'>
+Name:<class 'str'>
+name: 'Elven Spirit',
+Special<class 'str'>
+Prerequisite<class 'str'>
+Desc:<class 'str'>
+desc: 'A lifetime spent shunned by others and eschewing your heritage makes you resistant to efforts to pry inside of your mind.',
+Benefit<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Exile's Path',
+Prerequisites<class 'str'>
+Desc:<class 'str'>
+desc: 'Your drow blood is particularly strong.',
+Benefit<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Half-Drow Paragon',
+Misc:<class 'str'>
+Benefit<class 'str'>
+Desc:<class 'str'>
+desc: 'Your blood burns with the passion and unyielding quest for self-improvement displayed so prominently by your human relatives.',
+Prerequisite<class 'str'>
+Name:<class 'str'>
+name: 'Human Spirit',
+Special<class 'str'>
+Prerequisites<class 'str'>
+Misc:<class 'str'>
+Benefit<class 'str'>
+Normal<class 'str'>
+Desc:<class 'str'>
+desc: 'You are adept at numerous disciplines.',
+Name:<class 'str'>
+name: 'Multitalented Mastery',
+Prerequisites<class 'str'>
+Desc:<class 'str'>
+desc: 'You have removed yourself from your heritage so thoroughly that even magic does not recognize you.',
+Benefit<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Neither Elf nor Human',
+Prerequisites<class 'str'>
+Desc:<class 'str'>
+desc: 'Your anonymity makes you difficult to find through magical or mundane means, and you have learned how to combat both of your progenitor races.',
+Benefit<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Seen and Unseen',
+Prerequisites<class 'str'>
+Desc:<class 'str'>
+desc: 'You can subtly bolster allies' ability to misdirect and infuriate their enemies.',
+Benefit<class 'str'>
+Misc:<class 'str'>
+Name:<class 'str'>
+name: 'Shared Manipulation',

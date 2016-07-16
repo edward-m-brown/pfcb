@@ -1,0 +1,1002 @@
+Ability Focus
+Abundant Revelations
+Accursed Critical (Critical)
+Accursed Hex
+Acrobatic Steps
+Acrobatic
+Adaptive Fortune
+Adder Strike (Combat)
+Additional Traits
+Adept Champion
+Advanced Ranger Trap
+Agile Maneuvers (Combat)
+Agile Tongue
+Airy Step
+Alertness
+Alignment Channel
+Allied Spellcaster (Teamwork)
+Amateur Gunslinger (Combat)
+Amateur Investigator
+Amateur Swashbuckler
+Angel Wings
+Angelic Blood
+Angelic Flesh
+Animal Affinity
+Animal Soul
+Antagonize
+Anticipate Dodge
+Aquatic Ancestry
+Arc Slinger (Combat)
+Arcane Armor Mastery (Combat)
+Arcane Armor Training (Combat)
+Arcane Blast
+Arcane Shield
+Arcane Strike (Combat)
+Arcane Talent
+Armor of the Pit
+Armor Proficiency Heavy (Combat)
+Armor Proficiency Light (Combat)
+Armor Proficiency Medium (Combat)
+Aspect of the Beast
+Athletic
+Attuned to the Wild
+Augment Summoning
+Awesome Blow
+Back to Back (Teamwork)
+Barroom Brawler
+Bashing Finish (Combat)
+Battle Cry
+Beast Rider
+Befuddling Strike
+Believer's Boon
+Believer's Hands
+Betrayer
+Bestow Luck
+Binding Throw (Combat)
+Blasting Charge
+Blazing Aura (Combat)
+Bleeding Critical
+Blessed Striker
+Blighted Critical (Critical)
+Blighted Critical Mastery
+Blind Fight (Combat)
+Blinding Critical (Combat, Critical)
+Blistering Feint (Combat)
+Blooded Arcane Strike
+Bloody Assault (Combat)
+Blood Beat (Combat)
+Blood Drinker
+Blood Feaster
+Blood Salvage
+Blood Vengeance
+Bludgeoner (Combat)
+Blundering Defense (Combat)
+Boar Ferocity (Combat)
+Boar Shred (Combat)
+Boar Style (Combat, Style)
+Body Shield (Combat)
+Bodyguard (Combat)
+Bolstered Resilience
+Bonebreaker (Combat)
+Bookish Rogue
+Born Alone
+Bouncing Spell (Metamagic)
+Branded for Retribution
+Breadth of Experience
+Break Guard (Combat)
+Brewmaster
+Brew Potion
+Broken Wing Gambit (Teamwork)
+Bull Rush Strike (Combat)
+Bullying Blow (Comat)
+Burn! Burn! Burn!
+Burning Spell (Metamagic)
+Burrowing Teeth
+Canny Tumble
+Carrion Feeder
+Cartwheel Dodge (Combat)
+Casual Illusionist
+Catch Off Guard (Combat)
+Catfolk Exemplar
+Cautious Fighter (Combat)
+Cavalry Formation (Teamwork)
+Celestial Servant
+Channel Smite (Combat)
+Channel Force
+Channeled Blessing
+Channeled Revival
+Channeled Shield Wall
+Channeling Force
+Channeling Scourge
+Charge Through (Combat)
+Charging Hurler (Combat)
+Childlike
+Chokehold (Combat)
+Claw Pounce (Combat)
+Cleave (Combat)
+Cleaving Finish (Combat)
+Close Quarters Thrower (Combat)
+Cleave Through (Combat)
+Cloud Gazer
+Cloud Step
+Cloven Helm (Combat)
+Clustered Shots (Combat)
+Cockatrice Strike (Combat)
+Combat Casting
+Combat Expertise (Combat)
+Combat Medic (Teamwork)
+Combat Patrol (Combat)
+Combat Reflexes (Combat)
+Combat Style Master (Combat)
+Command Undead
+Concussive Spell (Metamagic)
+Contingent Channeling
+Cooperative Crafting
+Coordinated Charge (Teamwork)
+Coordinated Defense (Combat, Teamwork)
+Coordinated Maneuvers (Combat, Teamwork)
+Cosmopolitan
+Counter Reflexes
+Counterpunch
+Courageous Resolve
+Covering Defense (Combat)
+Craft Construct
+Craft Magic Arms and Armor
+Craft Rod
+Craft Staff
+Craft Wand
+Craft Wondrous Item
+Crane Riposte (Combat)
+Crane Style (Combat, Style)
+Crane Wing (Combat)
+Crane Winge (Combat)
+Create Reliquary Arms and Shields
+Create Sanguine Elixir
+Crippling Critical (Combat)
+Crippling Critical (Combat, Critical)
+Critical Focus (Combat)
+Critical Mastery (Combat)
+Crossbow Mastery (Combat)
+Critical Versatility (Combat)
+Crusader's Fist (Combat)
+Crusader's Flurry
+Crushing Blow (Combat)
+Dark Sight
+Dastardly Finish (Combat)
+Dauntless Destiny
+Dazing Assault (Combat)
+Dazing Fist
+Dazing Spell (Metamagic)
+Dazzling Display (Combat)
+Deadly Aim (Combat)
+Deadly Finish (Combat)
+Deadly Stroke (Combat)
+Deafening Critical (Combat, Critical)
+Deafening Explosion
+Death from Above (Combat)
+Death or Glory (Combat)
+Deathless Initiate (Combat)
+Deathless Master (Combat)
+Deathless Zealot (Combat)
+Deceitful
+Deceptive Exchange
+Deep Drinker
+Deepsight
+Defending Eidolon
+Defensive Combat Training (Combat)
+Defensive Weapon Training (Combat)
+Defiant Luck
+Deflect Arrows (Combat)
+Deft Hands
+Demoralizing Lash (Combat)
+Dented Helm (Combat)
+Deny Death
+Desperate Swing (Combat)
+Destroyer's Blessing (Combat)
+Destructive Dispel
+Detect Expertise
+Devastating Strike (Combat)
+Die for Your Master
+Diehard
+Dimensional Agility
+Dimensional Assault
+Dimensional Dervish
+Dimensional Maneuvers
+Dimensional Savant
+Disable Dweomer
+Disarming Strike (Combat)
+Disheartening Display
+Discerning Eye
+Discordant Voice
+Disengaging Feint (Combat)
+Disengaging Flourish (Combat)
+Disengaging Shot (Combat)
+Disorienting Maneuver
+Dispel Synergy
+Dispelling Critical (Critical)
+Dispelling Fist
+Disposable Weapon
+Disrupting Shot (Combat)
+Disruptive Recall
+Disruptive Spell (Metamagic)
+Disruptive (Combat)
+Distance Thrower (Combat)
+Diverse Palate
+Divine Interference
+Divine Protection
+Diviner's Delving
+Djinni Spin (Combat)
+Djinni Spirit (Combat)
+Djinni Style (Combat, Style)
+Dodge (Combat)
+Domain Strike (Combat)
+Double Bane
+Double Slice (Combat)
+Draconic Aspect
+Draconic Breath
+Draconic Glide
+Drag Down (Combat)
+Dragon Ferocity (Combat)
+Dragon Roar (Combat)
+Dragon Style (Combat, Style)
+Dragonbane Aura
+Draining Strike
+Dreadful Carnage (Combat)
+Drow Nobility
+Dual Enhancement
+Duck and Cover (Teamwork)
+Dueling Cape
+Dwarf Blooded
+Eagle Eyes
+Earth Child Binder (Combat)
+Earth Child Style (Combat, Style)
+Earth Child Topple (Combat)
+Echoing Spell (Metamagic)
+Echos of Stone
+Eclectic
+Ectoplasmic Spell (Metamagic)
+Efreeti Stance (Combat)
+Efreeti Style (Combat, Style)
+Efreeti Touch (Combat)
+Eldritch Claws (Combat)
+Eldritch Heritage
+Elemental Channel
+Elemental Fist (Combat)
+Elemental Focus
+Elemental Jaunt
+Elemental Spell (Metamagic)
+Elusive Redirection
+Elven Accuracy (Combat)
+Elven Battle Training (Combat)
+Elven Spirit
+Empower Spell Like Ability
+Empower Spell (Metamagic)
+Endurance
+Energy Channel
+Enfilading Fire (Teamwork)
+Enforcer (Combat)
+Enlarge Spell (Metamagic)
+Ensemble (Teamwork)
+Escape Route (Teamwork)
+Eschew Materials
+Esoteric Linguistics
+Evolved Familiar
+Evolved Companion
+Evolved Summoned Monster
+Exhausting Critical (Combat, Critical)
+Exile's Path
+Exotic Weapon Proficiency (Combat)
+Exotic Weapon Proficiency
+Expanded Arcana
+Expert Driver
+Expanded Fiendish Resistance
+Expanded Preparation
+Expanded Resistance
+Exploit Lore
+Extend Spell (Metamagic)
+Extended Animal Focus
+Extended Bane
+Extra Arcana
+Extra Arcanist Exploit
+Extra Arcane Pool
+Extra Bane
+Extra Bombs
+Extra Cantrips or Orisons
+Extra Channel
+Extra Channel
+Extra Discovery
+Extra Elemental Assault
+Extra Evolution
+Extra Grit (Grit)
+Extra Hex
+Extra Hex
+Extra Inspiration
+Extra Investigator Talent
+Extra Ki
+Extra Lay On Hands
+Extra Martial Flexibility
+Extra Mercy
+Extra Performance
+Extra Rage Power
+Extra Rage
+Extra Ranger Trap
+Extra Reservoir
+Extra Revelation
+Extra Rogue Talent
+Extra Slayer Talent
+Extra Summons
+Extreme Prejudice
+Eyes of Judgment
+False Opening (Combat)
+Faerie's Strike
+Far Shot (Combat)
+Fast Drinker
+Fast Empathy
+Fast Healer
+Fast Learner
+Favored Defense
+Favored Enemy Spellcasting
+Favored Judgment
+Fearless Aura
+Fearless Curiosity
+Feint Partner (Combat, Teamwork)
+Feint Partner (Teamwork)
+Feline Grace
+Felling Escape (Combat)
+Felling Smash (Combat)
+Feral Combat Training (Combat)
+Ferocious Action
+Ferocious Resolve
+Ferocious Summons
+Ferocious Tenacity (Combat)
+Field Repair
+Fiend Sight
+Fight On
+Final Embrace (Combat)
+Final Embrace Horror (Combat)
+Final Embrace Master (Combat)
+Fire Hand (Combat)
+Fire Music
+Fire Tamer
+Firesight
+Flame Heart
+Flanking Foil (Combat)
+Flaring Spell (Metamagic)
+Fleet
+Flexible Hex
+Flexible Wizardry
+Flyby Attack
+Focused Eidolon
+Focused Inspiration
+Focused Shot (Combat)
+Focused Spell (Metamagic)
+Focusing Blow (Teamwork)
+Following Step (Combat)
+Foment the Blood
+Force Dash
+Forge Ring
+Formula Recollection
+Fortified Armor Training (Combat)
+Fortunate One
+Furious Finish
+Furious Focus (Combat)
+Gang Up (Combat)
+Giant Steps
+Giant Killer (Combat)
+Gloom Sight
+Gloom Strike (Combat)
+Gliding Steps
+Gnome Trickster
+Gnome Weapon Focus (Combat)
+Goblin Cleaver (Combat)
+Goblin Gunslinger (Combat)
+Go Unnoticed
+Gore Fiend
+Gorgon's Fist (Combat)
+Gory Finish (Combat)
+Grant Initiative
+Grasping Strike
+Grasping Tail
+Great Cleave (Combat)
+Great Fortitude
+Great Hatred (Combat)
+Greater Blighted Critical (Critical)
+Greater Blind Fight (Combat)
+Greater Bull Rush (Combat)
+Greater Channel Force
+Greater Channel Smite
+Greater Dirge of Doom
+Greater Dirty Trick (Combat)
+Greater Disarm (Combat)
+Greater Drag (Combat)
+Greater Drow Nobility
+Greater Eldritch Heritage
+Greater Elemental Focus
+Greater Feint (Combat)
+Greater Grapple (Combat)
+Greater Mercy
+Greater Overrun (Combat)
+Greater Penetrating Strike (Combat)
+Greater Reposition (Combat)
+Greater Shield Focus (Combat)
+Greater Shield Specialization (Combat)
+Greater Skald's Vigor
+Greater Snap Shot (Combat)
+Greater Spell Focus
+Greater Spell Penetration
+Greater Spell Specialization
+Greater Steal (Combat)
+Greater Sunder (Combat)
+Greater Trip (Combat)
+Greater Two Weapon Fighting (Combat)
+Greater Vital Strike (Combat)
+Greater Weapon Focus (Combat)
+Greater Weapon of the Chosen
+Greater Weapon Specialization (Combat)
+Greater Whip Mastery (Combat)
+Greater Wild Empathy
+Groundling
+Grudge Fighter (Combat)
+Gruesome Slaughter
+Guardian of the Wild
+Guided Hand
+Gunsmithing
+Half-Drow Paragon
+Hammer the Gap (Combat)
+Hard Headed (Combat)
+Harmonic Sage
+Haunted Gnome (Combat)
+Haunted Gnome Assault (Combat)
+Haunted Gnome Shroud (Combat)
+Heavenly Radiance
+Heighten Spell (Metamagic)
+Heroic Defiance
+Heroic Recovery
+Heroic Will
+Hex Strike (Combat)
+Hobgoblin Discipline
+Horde Charge (Teamwork)
+Horse Master (Combat)
+Hover
+Human Spirit
+Huntmaster
+Hydraulic Maneuver
+Impact Critical Shot (Combat, Critical)
+Impaling Critical (Combat, Critical)
+Implant Bomb
+Improved Awesome Blow
+Improved Back to Back (Teamwork)
+Improved Blind Fight (Combat)
+Improved Bull Rush (Combat)
+Improved Channel
+Improved Charging Hurler (Combat)
+Improved Cleaving Finish (Combat)
+Improved Counterspell
+Improved Critical (Combat)
+Improved Dark Sight
+Improved Devastating Strike (Combat)
+Improved Dirge of Doom
+Improved Dirty Trick (Combat)
+Improved Disarm (Combat)
+Improved Drow Nobility
+Improved Drag (Combat)
+Improved Eldritch Heritage
+Improved Flexible Wizardry
+Improved Improvisation
+Improved Familiar
+Improved Feint (Combat)
+Improved Feint Partner (Combat, Teamwork)
+Improved Grapple (Combat)
+Improved Great Fortitude
+Improved Impaling Critical (Combat, Critical)
+Improved Initiative (Combat)
+Improved Iron Will
+Improved Ki Throw (Combat)
+Improved Lightning Reflexes
+Improved Monster Lore
+Improved Low Blow (Combat)
+Improved Natural Armor
+Improved Natural Attack
+Improved Overrun (Combat)
+Improved Precise Shot (Combat)
+Improved Rending Fury (Combat)
+Improved Reposition (Combat)
+Improved Second Chance (Combat)
+Improved Share Spells
+Improved Shield Bash (Combat)
+Improved Sidestep (Combat)
+Improved Snap Shot (Combat)
+Improved Stalwart
+Improved Steal (Combat)
+Improved Stonecunning
+Improved Studied Combatant
+Improved Sunder (Combat)
+Improved Surprise Follow-Through (Combat)
+Improved Trip (Combat)
+Improved Two Weapon Feint (Combat)
+Improved Two Weapon Fighting (Combat)
+Improved Umbral Scion
+Improved Unarmed Strike (Combat)
+Improved Vital Strike (Combat)
+Improved Whip Mastery (Combat)
+Improvised Weapon Mastery (Combat)
+Improved Weapon of the Chosen
+Improvisation
+Incremental Elemental Assault
+Inexplicable Luck
+In Harm's Way (Combat)
+Inner Breath
+Inner Flame (Combat)
+Insightful Delivery
+Insightful Gaze
+Inspired Alchemy
+Inspired by Fear
+Inspired Strike
+Instant Judgment
+Intensified Spell (Metamagic)
+Intimidating Bane
+Intimidating Confidence
+Intimidating Gaze
+Intimidating Performance
+Intimidating Prowess (Combat)
+Iron Will
+Ironguts
+Ironhide
+Item Creation Feats
+Janni Rush (Combat)
+Janni Style (Combat, Style)
+Janni Tempest (Combat)
+Jawbreaker (Combat)
+Judgment Surge
+Keen Scent
+Kick Up
+Killing Flourish
+Ki Stand
+Ki Throw (Combat)
+Kirin Path (Combat)
+Kirin Strike (Combat)
+Kirin Style (Combat, Style)
+Knockout Artist
+Kobold Ambusher (Combat)
+Kobold Sniper (Combat)
+Landing Roll (Combat)
+Lay of the Land
+Leadership
+Leaf Singer
+Learn Ranger Trap
+Ledge Walker
+Life Lure
+Life's Blood
+Light Step
+Lightning Reflexes
+Lightning Stance (Combat)
+Lingering Invisibility
+Lingering Performance
+Lingering Spell (Metamagic)
+Long Nose Form
+Lookout (Combat, Teamwork)
+Low Profile (Combat)
+Lucky Healer
+Lucky Halfling
+Lucky Strike (Combat)
+Lunge (Combat)
+Lunging Spell Touch
+Mage of the Wild
+Magical Aptitude
+Magical Tail
+Major Spell Expertise
+Manifested Blood
+Mantis Style (Combat, Style)
+Mantis Torment (Combat)
+Mantis Torment
+Mantis Wisdom (Combat)
+Manyshot (Combat)
+Marid Coldsnap (Combat)
+Marid Spirit (Combat)
+Marid Style (Combat, Style)
+Martial Mastery (Combat)
+Marital Versatility (Combat)
+Martial Weapon Proficiency (Combat)
+Master Alchemist
+Master Combat Performer (Combat)
+Master Craftsman
+Master Siege Engineer (Combat)
+Maximize Spell (Metamagic)
+Maximized Spellstrike
+Medusa's Wrath (Combat)
+Menacing Bane
+Merciful Bane
+Merciful Spell (Metamagic)
+Merciless Butchery
+Minor Spell Expertise
+Missile Shield (Combat)
+Mobility (Combat)
+Monastic Legacy (Combat)
+Monkey Moves (Combat)
+Monkey Moves(Combat)
+Monkey Shine (Combat)
+Monkey Shine
+Monkey Style (Combat, Style)
+Moonlight Stalker (Combat)
+Moonlight Stalker Feint (Combat)
+Moonlight Stalker Master (Combat)
+Moonlight Summons
+Mother's Gift
+Mounted Archery (Combat)
+Mounted Combat (Combat)
+Mounted Shield (Combat)
+Mounted Skirmisher (Combat)
+Multiattack
+Multitalented Mastery
+Murmurs of Earth
+Mystic Stride
+Natural Charmer
+Natural Spell
+Nature Magic
+Neckbreaker (Combat)
+Net Adept (Combat)
+Net and Trident (Combat)
+Net Maneuvering (Combat)
+Neither Elf nor Human
+Nightmare Fist (Combat)
+Nightmare Striker (Combat)
+Nightmare Weaver (Combat)
+Nimble Moves
+Nimble Striker (Combat)
+No Name (Grit)
+Orator
+Orc Hewer (Combat)
+Orc Weapon Expertise (Combat)
+Opening Volley (Combat)
+Oracular Intuition
+Oread Burrower
+Oread Earth Glider
+Outflank (Combat, Teamwork)
+Pack Attack (Teamwork)
+Painful
+Paired Opportunists (Combat, Teamwork)
+Panther Claw (Combat)
+Panther Parry (Combat)
+Panther Parry
+Panther Style (Combat, Style)
+Paralyzing Strike
+Parry Spell
+Parting Shot (Combat)
+Pass for Human
+Passing Trick (Combat)
+Penetrating Strike (Combat)
+Perfect Strike (Combat)
+Performance Weapon Mastery (Combat)
+Performing Combatant (Combat)
+Persistent Spell (Metamagic)
+Persuasive
+Piercing Spell (Metamagic)
+Pin Down (Combat)
+Pinning Knockout (Combat)
+Pinning Rend (Combat)
+Pinpoint Poisoner (Combat)
+Pinpoint Targeting (Combat)
+Planar Preservationist
+Planar Wild Shape
+Point Blank Master (Combat)
+Point Blank Shot (Combat)
+Power Attack (Combat)
+Powerful Shape
+Practiced Tactician
+Precise Shot (Combat)
+Precise Strike (Combat, Teamwork)
+Preferred Spell
+Prodigy
+Prone Shooter (Combat)
+Prone Slinger (Combat)
+Prophetic Visionary
+Punishing Kick (Combat)
+Pure Faith
+Pushing Assault (Combat)
+Quarterstaff Master (Combat)
+Quick Bull Rush (Combat)
+Quick Channel
+Quick Dirty Trick (Combat)
+Quick Drag (Combat)
+Quick Draw (Combat)
+Quick Reposition (Combat)
+Quick Steal (Combat)
+Quick Wild Shape
+Quicken Blessing
+Quicken Spell Like Ability
+Quicken Spell Like Ability
+Quicken Spell (Metamagic)
+Racial Heritage
+Radiant Charge
+Rage Casting
+Raging Absorption
+Raging Blood
+Raging Brutality
+Raging Concentration
+Raging Deathblow
+Raging Hurler
+Raging Throw
+Raging Vitality
+Ranged Study
+Rapid Grappler (Combat)
+Rapid Reload (Combat)
+Rapid Reload (Combat, Core)
+Rapid Shot (Combat)
+Ray Shield (Combat)
+Razortusk
+Reach Spell (Metamagic)
+Realistic Likeness
+Reactive Healing
+Rebounding Leap (Combat)
+Rebuffing Reduction (Combat)
+Reckless Rage
+Recovered Rage
+Remote Bomb
+Rending Claws (Combat)
+Rending Fury (Combat)
+Repositioning Strike (Combat)
+Resilient Armor
+Resilient Brute
+Resilient Eidolon
+Resolute Rager
+Revelation Strike (Combat)
+Reverse-Feint (Combat)
+Reward of Grace
+Reward of Life
+Rhetorical Flourish
+Ricochet Shot Deed (Grit)
+Ricochet Splash Weapon
+Ride By Attack (Combat)
+Righteous Healing
+Rime Spell (Metamagic)
+Risky Striker (Combat)
+Riving Strike
+Run
+Sacred Summons
+Sap Adept (Combat)
+Sap Master (Combat
+Saving Shield (Combat)
+Scavenger's Eye
+School Strike (Combat)
+Scorching Weapons (Combat)
+Scorpion Style (Combat)
+Scribe Scroll
+Sea Hunter (Combat)
+Sea Legs
+Second Chance (Combat)
+Secret Stash Deed (Grit)
+Seen and Unseen
+Seething Hatred
+Seige Gunner (Combat)
+Seize Advantage
+Seize the Moment (Teamwork)
+Selective Channeling
+Selective Spell (Metamagic)
+Self Sufficient
+Sense Link
+Shadow Caster
+Shadowy Dash
+Shadow Ghost
+Shadow Strike (Combat)
+Shadow Walker
+Shaitan Earthblast (Combat)
+Shaitan Skin (Combat)
+Shaitan Style (Combat, Style)
+Shake It Off (Teamwork)
+Shapeshifter Foil
+Shapeshifting Hunter
+Shaping Focus
+Shared Insight
+Shared Judgment
+Shared Manipulation
+Sharpclaw (Combat)
+Sharp Senses
+Shatter Defenses (Combat)
+Shatterspell (Combat)
+Shield Focus (Combat)
+Shield Master (Combat)
+Shield of Swings (Combat)
+Shield Proficiency (Combat)
+Shield Slam (Combat)
+Shield Specialization (Combat)
+Shield Wall (Combat)
+Shielded Caster (Teamwork)
+Shot On the Run (Combat)
+Sickening Critical (Combat)
+Sickening Spell (Metamagic)
+Sidestep (Combat)
+Siege Commander (Combat)
+Siege Engineer (Combat)
+Siege Engineer (Combat
+Signature Deed (Grit)
+Silent Kill
+Silent Spell (Metamagic)
+Simple Weapon Proficiency (Combat)
+Sin Seer
+Skald's Vigor
+Skeleton Summoner
+Skill Focus
+Skilled Driver
+Skilled Rager
+Slayer's Knack
+Slayer's Feint
+Slashing Grace
+Sleep Venom
+Sling Flail (Combat)
+Slow Faller
+Smash (Combat)
+Smell Fear
+Snake Fang (Combat)
+Snake Sidewind (Combat)
+Snake Style (Combat, Style)
+Snap Shot (Combat)
+Snapping Turtle Clutch (Combat)
+Snapping Turtle Shell (Combat)
+Snapping Turtle Style (Combat, Style)
+Snatch Arrows (Combat)
+Snatch
+Sneaking Precision
+Sociable
+Sorcerous Bloodstrike
+Sorcerous Strike (Combat)
+Spell Bane
+Spell Bluff
+Spell Focus
+Spell Hex
+Spell Mastery
+Spell Penetration
+Spell Perfection
+Spell Specialization
+Spellbreaker (Combat)
+Spellsong
+Spider Step
+Spider Step (ARG)
+Spider Summoner
+Spinning Throw (Combat)
+Spirited Charge (Combat)
+Spirit of the Wild
+Spirit's Gift
+Spirit Talker
+Spiritual Guardian
+Spit Venom (Combat)
+Splintering Weapon
+Split Hex
+Split Major Hex
+Spontaneous Metafocus
+Spontaneous Nature's Ally
+Spring Attack (Combat)
+Stabbing Shot (Combat)
+Stage Combatant (Combat)
+Staggering Critical (Combat, Critical)
+Staggering Fist
+Stalker's Focus
+Stalwart
+Stand Still (Combat)
+Steadfast Personality
+Starlight Summons
+Stealth Synergy (Teamwork)
+Stealthy
+Steam Caster
+Steel Soul
+Step Up and Strike (Combat)
+Step Up (Combat)
+Still Spell (Metamagic)
+Stoic Pose
+Stone Faced
+Stone Sense
+Stone Singer
+Stony Step
+Stouthearted
+Strangler (Combat)
+Stretched Wings
+Strike Back (Combat)
+Strong Comeback
+Studied Combatant
+Stunning Assault (Combat)
+Stunning Critical (Combat, Critical)
+Stunning Fist (Combat)
+Stunning Pin (Combat)
+Summoner's Call
+Sundering Strike (Combat)
+Sunlight Summons
+Superior Summoning
+Sure and Fleet
+Sure Grasp
+Surge of Success
+Surprise Follow-Through (Combat)
+Surprise Maneuver
+Surprise Strike (Combat)
+Swap Places (Combat)
+Swift Aid (Combat)
+Sword and Pistol (Combat
+Sympathetic Rage (Combat)
+Tail Terror (Combat)
+Talented Magician
+Tandem Trip (Teamwork)
+Tangle Feet (Combat)
+Target of Opportunity (Teamwork)
+Taskmaster (Combat)
+Taunt
+Team Pickpocketing (Teamwork)
+Team Up (Combat)
+Teleport Tactician (Combat)
+Tenacious Survivor
+Tenacious Transmutation
+Tengu Raven Form
+Tengu Wings
+Terrorizing Display (Combat)
+Thanatopic Spell (Metamagic)
+Theurgy
+Thoughtful Discernment
+Threnodic Spell (Metamagic)
+Thrill of the Kill
+Throw Anything (Combat)
+Thundering Spell (Metamagic)
+Tiger Claws (Combat)
+Tiger Pounce (Combat)
+Tiger Style (Combat, Style)
+Tiring Critical (Combat, Critical)
+Toppling Spell (Metamagic)
+Touch of Serenity (Combat)
+Toughness
+Tower Shield Proficiency (Combat)
+Toxic Recovery
+Trample
+Trap Wrecker
+Trapper's Setup
+Tree Hanger (Combat)
+Trick Riding (Combat)
+Tripping Staff (Combat)
+Tripping Strike (Combat)
+Tripping Twirl (Combat)
+Triton Portal
+Turn Undead
+Tunnel Rat
+Twinned Feint
+Twin Thunders (Combat)
+Twin Thunders Flurry (Combat)
+Twin Thunders Master (Combat)
+Twist Away
+Two Handed Thrower (Combat)
+Two Weapon Defense (Combat)
+Two Weapon Feint (Combat)
+Two Weapon Fighting (Combat)
+Two Weapon Rend (Combat)
+Ultimate Mercy
+Ultimate Resolve
+Umbral Scion
+Uncanny Alertness
+Uncanny Concentration
+Uncanny Defense (Combat)
+Undead Master
+Under and Over (Combat)
+Underfoot (Combat)
+Unsanctioned Detection
+Undersized Mount
+Unfettered Familiar
+Unseat (Combat)
+Vast Hatred (Combat)
+Vermin Heart
+Versatile Channeler
+Vicious Stomp (Combat)
+Vigilant Eidolon
+Vital Strike (Combat)
+Voice of the Sibyl
+War Blessing
+War Singer
+Warrior Priest
+Water Skinned
+Wave Strike (Combat)
+Weapon Finesse (Combat)
+Weapon Focus (Combat)
+Weapon of the Chosen
+Weapon Specialization (Combat)
+Well Prepared
+Whip Mastery (Combat)
+Whirlwind Attack (Combat)
+Widen Spell (Metamagic)
+Wild Speech
+Wind Stance (Combat)
+Wingover
+Wings of Air
+Winter's Strike
