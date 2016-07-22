@@ -15,18 +15,18 @@ def getLinks(url):
     print(e)
     return None
   try:
-    bsObj = BeautifulSoup(html.read())
-    div = bsObj.body.find_all("div", {"id":"spell-index-wrapper"})
+    bsObj = BeautifulSoup(html.read(), "html.parser")
+    target = bsObj.find_all("table", {"id":"feats-index-table"})
   except AttributeError as e:
     print(e)
     return None
   try:
-    in_div = BeautifulSoup(str(div))
-    links = in_div.find_all('a');
+    in_target = BeautifulSoup(str(target), "html.parser")
+    links = in_target.find_all('a')
   except AttributeError as e:
     print(e)
     return None
-  #try returning links in div
+  #try returning links in target
   return links
 
 #function to split anchors off of links.
@@ -34,6 +34,9 @@ def getLinks(url):
 # list of anchors via a dictionary object
 def filterLink(href):
   link = str(href)
+  #re.split is breaking the scraper
+  #need to check that re.split will return (re.search first. If None, process regular href.
+  #  ^Might want to do this before entering the function
   href_anchor = re.split('#',link)
   feat_sites.add(href_anchor[0])
   if href_anchor[0] in anchor_maps:
@@ -50,7 +53,7 @@ def storeFeatPages(href):
   except HTTPError as e:
     print(e)
     return None
-  page = BeautifulSoup(html.read())
+  page = BeautifulSoup(html.read(), "html.parser")
   directory = "feat_sites/"
   href = href.replace("/","_")
   path = directory+href
@@ -61,7 +64,7 @@ def storeFeatPages(href):
 #int main()
 featInd = "http://paizo.com/pathfinderRPG/prd/indices/feats.html"
 allFeatLinks = getLinks(featInd)
-if allFeatLinks== None:
+if allFeatLinks== None or :
   print("links could not be found")
 else:
   for link in allFeatLinks:
@@ -74,5 +77,4 @@ else:
   anchor_file.close()
   while len(feat_sites):
     href = feat_sites.pop()
-
     storeFeatPages(href)
