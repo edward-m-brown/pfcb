@@ -3,78 +3,92 @@ from urllib.error import HTTPError
 from bs4 import BeautifulSoup
 import re
 
-feat_sites = set()
-anchor_maps = dict()
-type(anchor_maps)
+featSites = set()
+anchorMaps = dict()
+# type(anchorMaps)
 
-#function to get the links from the feat index in the pathfinder srd
-def getLinks(url):
-  try:
-    html = urlopen(url)
-  except HTTPError as e:
-    print(e)
-    return None
-  try:
-    bsObj = BeautifulSoup(html.read(), "html.parser")
-    target = bsObj.find_all("table", {"id":"feats-index-table"})
-  except AttributeError as e:
-    print(e)
-    return None
-  try:
-    in_target = BeautifulSoup(str(target), "html.parser")
-    links = in_target.find_all('a')
-  except AttributeError as e:
-    print(e)
-    return None
-  #try returning links in target
-  return links
 
-#function to split anchors off of links.
-#should also put link into set, and associate link to a 
+def get_links(url):
+    """
+    Function to get the links from the feat index in the prd
+
+    :param url: String path to the desired prd page.
+    :type url: str
+
+    :returns:
+    :rtype:
+    """
+    try:
+        html = urlopen(url)
+        soup = BeautifulSoup(html.read(), "html.parser")
+        table = soup.find("table", {"id": "feats-index-table"})
+        in_table = BeautifulSoup(str(table), "html.parser")
+        rows = in_table.find_all("tr")
+        in_rows = BeautifulSoup(str(rows), "html.parser")
+        links = []
+        for row in in_rows:
+            link = row.find("a")
+            if link != -1 and link is not None:
+                links.append(link)
+    except AttributeError as e:
+        print(e)
+        return None
+    if len(links) == 0:
+        links = None
+    # try returning links in table
+    return links
+
+
+# function to split anchors off of links.
+# should also put link into set, and associate link to a
 # list of anchors via a dictionary object
-def filterLink(href):
-  link = str(href)
-  #re.split is breaking the scraper
-  #need to check that re.split will return (re.search first. If None, process regular href.
-  #  ^Might want to do this before entering the function
-  href_anchor = re.split('#',link)
-  feat_sites.add(href_anchor[0])
-  if href_anchor[0] in anchor_maps:
-    anchor_maps[href_anchor[0]].add(href_anchor[1])
-  else:
-    anchor_maps[href_anchor[0]] = set()
-    anchor_maps[href_anchor[0]].add(href_anchor[1])
+def filter_link(href):
+    link = str(href)
+    # re.split is breaking the scraper
+    # need to check that re.split will return (re.search first. If None, process regular href.
+    # ^Might want to do this before entering the function
+    href_anchor = re.split('#', link)
+    featSites.add(href_anchor[0])
+    if href_anchor[0] in anchorMaps:
+        anchorMaps[href_anchor[0]].add(href_anchor[1])
+    else:
+        anchorMaps[href_anchor[0]] = set()
+        anchorMaps[href_anchor[0]].add(href_anchor[1])
 
-def storeFeatPages(href):
-  href = str(href) 
-  url = "http://paizo.com/"+ href 
-  try:
-    html = urlopen(url)
-  except HTTPError as e:
-    print(e)
-    return None
-  page = BeautifulSoup(html.read(), "html.parser")
-  directory = "feat_sites/"
-  href = href.replace("/","_")
-  path = directory+href
-  store = open(path,"w+")
-  store.write(page.prettify())
-  store.close()
 
-#int main()
+def store_feat_pages(href):
+    href = str(href)
+    url = "http://paizo.com/" + href
+    try:
+        html = urlopen(url)
+    except HTTPError as e:
+        print(e)
+        return None
+    page = BeautifulSoup(html.read(), "html.parser")
+    directory = "feat_sites/"
+    href = href.replace("/", "_")
+    path = directory + href
+    store = open(path,"w+")
+    store.write(page.prettify())
+    store.close()
+
+
+# int main()
 featInd = "http://paizo.com/pathfinderRPG/prd/indices/feats.html"
-allFeatLinks = getLinks(featInd)
-if allFeatLinks== None or :
-  print("links could not be found")
+allFeatLinks = get_links(featInd)
+if allFeatLinks is None:
+    print("links could not be found")
 else:
-  for link in allFeatLinks:
-    href = link.get('href')
-    filterLink(href)
-  for key in anchor_maps:
-    anchor_maps[key] = sorted(anchor_maps[key])
-  anchor_file = open("anchor_map","w+")
-  anchor_file.write(str(anchor_maps))
-  anchor_file.close()
-  while len(feat_sites):
-    href = feat_sites.pop()
-    storeFeatPages(href)
+    for featLink in allFeatLinks:
+        feat_href = featLink.get('href')
+        filter_link(feat_href)
+
+for key in anchorMaps:
+    anchorMaps[key] = sorted(anchorMaps[key])
+
+anchorFile = open("anchor_map", "w+")
+anchorFile.write(str(anchorMaps))
+anchorFile.close()
+while len(featSites) != 0:
+    featSite = featSites.pop()
+    store_feat_pages(featSite)
