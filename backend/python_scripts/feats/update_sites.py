@@ -68,9 +68,9 @@ def store_feat_pages(href):
     directory = "feat_sites/"
     href = href.replace("/", "_")
     path = directory + href
-    store = open(path,"w+")
-    store.write(page.prettify())
-    store.close()
+    outfile = open(path,"w+")
+    outfile.write(page.prettify())
+    outfile.close()
 
 
 # int main()
