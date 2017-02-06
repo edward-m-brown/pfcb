@@ -6,8 +6,6 @@ anchor_maps = anchor_file.read()
 anchor_maps = ast.literal_eval(anchor_maps)
 anchor_file.close()
 
-# need this in getFeats
-benefit = re.compile('\ABen')
 # get the feat info from local feat pages
 # Feat Format:
 # 1.) Feat Name
@@ -25,12 +23,11 @@ def get_feats(fname):
     anchors = anchor_maps[href]
     feat_file = open("feat_sites/" + fname, "r+")
     try:
-        feat_soup = BeautifulSoup(feat_file.read(), 'lxml')
+        feat_soup = BeautifulSoup(feat_file.read(), 'html.parser')
     except AttributeError as e:
         print(e)
         return None
     page_feats= []
-    # TODO: quit filtering be regexes and just get the whole feat text. Should be easier, and allows us to interpret in more than one way.
     for anchor in anchors:
         feat_fields = {}
         feat_fields["Name"] = []
@@ -117,7 +114,15 @@ def get_feats(fname):
     feat_file.close()
     return page_feats
 
+
 def get_feats_fulltext(fname):
+    # need this in getFeats
+    benefit = re.compile('\ABen')
+    prereq = re.compile('\APre')
+    special = re.compile('\ASpe')
+    normal = re.compile('\ANor')
+    subtype= re.compile("\(")
+    header_regex = re.compile("h[1-6]")
     href = fname.replace("_", "/")
     anchors = anchor_maps[href]
     feat_file = open("feat_sites/" + fname, "r+")
@@ -126,38 +131,69 @@ def get_feats_fulltext(fname):
     except AttributeError as e:
         print(e)
         return None
-    page_feats= []
+    page_feats = {}
     for anchor in anchors:
         feat_fields = {}
         feat_fields["Name"] = []
         feat_fields["Text"] = []
+        feat_fields["Html"] = ""
+        feat_fields["Note"] = []
+        feat_fields["Prereq"] = []
+        feat_fields["Benefit"] = []
+        feat_fields["Normal"] = []
+        feat_fields["Special"] = []
         start = feat_soup.find(id=anchor)
         if start:
-            start_type = start.name
-            # name is one string
-            if start.string:
-                feat_fields["Name"].append(start.string.strip())
-            else:
-                # name is multiple strings
-                for string in start.stripped_strings:
-                    feat_fields["Name"].append(string)
+            feat_fields["Html"] += str(start)
+            for string in start.stripped_strings:
+                feat_fields["Name"].append(string)
+                if re.search(subtype, string): # This feat has a subtype
+                    feat_fields["Subtype"] = []
+                    subs = string.split('(')[-1].replace(')','') # should just be a comma-delimited list, or one type
+                    for sub in subs.split(','):
+                        feat_fields["Subtype"].append(sub)
             for sibling in start.next_siblings:
                 # check only the contents of other tags
                 if type(sibling) is type(start):
-                    # if we've hit another tag of the same type as start, we've probably hit the next feat entry
-                    if sibling.name != start_type:
-                        if sibling.string:
-                            feat_fields["Text"].append(sibling.string.strip())
-                        else:
-                            for string in sibling.stripped_strings:
-                                feat_fields["Text"].append(string)
+                    # get data as long as current tag type isn't a header
+                    if not re.match(header_regex,sibling.name): # hitting a header means we've come out of the feat
+                        feat_fields["Html"] += str(sibling)
+                        for string in sibling.stripped_strings:
+                            feat_fields["Text"].append(string)
+                        if sibling.name == u'p': # also want to check if we are looking at a special feat field
+                            tag_class = sibling.get('class')
+                            if tag_class:
+                                contents = []
+                                for string in sibling.stripped_strings:
+                                    contents.append(string)
+                                category = contents.pop(0)
+                                key = category
+                                if tag_class[0] == 'stat-block-1': # This could be a Ben/Pre/Spec/Norm field
+                                    if re.match(benefit, category):
+                                        key = "Benefit"
+                                    elif re.match(prereq, category):
+                                        key = "Prereq"
+                                    elif re.match(special, category):
+                                        key = "Special"
+                                    elif re.match(normal, category):
+                                        key = "Normal"
+                                elif tag_class[0] == 'stat-block-2': # This is likely some side note about the feat
+                                    key = "Note"
+                                for string in contents:
+                                    try:
+                                        feat_fields[key].append(string)
+                                    except:
+                                        feat_fields[key] = []
+                                        feat_fields[key].append(string)
+                    # If we've hit a header, we're probably not in the feat description any more. Stop looping.
                     else:
                         break
-            feat_fields["Text"] = " ".join(feat_fields["Text"])
+            for key in ["Name", "Text", "Note", "Prereq", "Benefit", "Normal", "Special"]:
+                feat_fields[key] = " ".join(feat_fields[key])
         else:
             feat_fields["Name"] = anchor
-            feat_fields["Text"] = href + anchor + " COULD NOT BE FOUND"
-        page_feats.append(feat_fields)
+            feat_fields["Text"] = href + "#" + anchor + " COULD NOT BE FOUND"
+        page_feats[anchor] = feat_fields
     return page_feats, feat_soup
 
 
@@ -166,14 +202,6 @@ def get_feats_fulltext(fname):
 rootDir = "feat_sites/"
 html_files = os.listdir(rootDir)
 all_feats = {}
-
-# NOTES: Should change regexes for feat subtypes to be universally
-# compatible with any subtype
-  # Just search for a '\('. If a feat has that, it has a subtype.
-prereq = re.compile('\APre')
-special = re.compile('\ASpe')
-normal = re.compile('\ANor')
-subtype= re.compile("\(")
 soups = {}
 for filename in html_files:
     all_feats[filename], soups[filename]  = get_feats_fulltext(filename)

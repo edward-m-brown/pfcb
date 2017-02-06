@@ -44,16 +44,19 @@ def get_links(url):
 # list of anchors via a dictionary object
 def filter_link(href):
     link = str(href)
-    # re.split is breaking the scraper
-    # need to check that re.split will return (re.search first. If None, process regular href.
-    # ^Might want to do this before entering the function
     href_anchor = re.split('#', link)
     featSites.add(href_anchor[0])
     if href_anchor[0] in anchorMaps:
-        anchorMaps[href_anchor[0]].add(href_anchor[1])
+        try:
+            anchorMaps[href_anchor[0]].add(href_anchor[1])
+        except:
+            pass
     else:
         anchorMaps[href_anchor[0]] = set()
-        anchorMaps[href_anchor[0]].add(href_anchor[1])
+        try:
+            anchorMaps[href_anchor[0]].add(href_anchor[1])
+        except:
+            pass
 
 
 def store_feat_pages(href):
