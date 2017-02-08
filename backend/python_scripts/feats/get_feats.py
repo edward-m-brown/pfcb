@@ -15,107 +15,9 @@ anchor_file.close()
 # 5.) Normal
 # 6.) Special
 # NOTE: Filter strings that contain "[stuff]". Change to '[stuff]'
-# TODO: get info from tables within feat entries. Put it into "Benefits" section somehow.
 
 
 def get_feats(fname):
-    href = fname.replace("_", "/")
-    anchors = anchor_maps[href]
-    feat_file = open("feat_sites/" + fname, "r+")
-    try:
-        feat_soup = BeautifulSoup(feat_file.read(), 'html.parser')
-    except AttributeError as e:
-        print(e)
-        return None
-    page_feats= []
-    for anchor in anchors:
-        feat_fields = {}
-        feat_fields["Name"] = []
-        feat_fields["Desc"] = []
-        feat_fields["Misc"] = []
-        feat_fields["Text"] = ""
-        start = feat_soup.find(id=anchor)
-        if start:
-            # name is one string
-            if start.string:
-                feat_fields["Name"].append(start.string.strip())
-                feat_fields["Text"] += start.string.strip()
-            else:
-                # name is multiple strings
-                for string in start.stripped_strings:
-                    feat_fields["Name"].append(string)
-                    feat_fields["Text"] += string
-            for sibling in start.next_siblings:
-                # if the next element in the document is a tag
-                if type(sibling) is type(start):
-                    # if a paragraph, it is information we want
-                    if sibling.name is 'p':
-                        # if not bold, it is either description or something to be
-                        # added onto the feat body, probably in benefits
-                        # TODO: implement getting non-bold
-                        if not sibling.b and not sibling.strong:
-                            field = "Desc"
-                            # single-line description
-                            if sibling.string:
-                                feat_fields[field].append(sibling.string.strip())
-                            else:
-                                # multi-line description. Most cases, probably actually a
-                                # part of the Benefits section.
-                                # On studying Feat entries, it looks like standard Paizo format
-                                # is to keep descriptions to one line, so this section will
-                                # almost never be a description.
-                                # Let's try throwing it into Misc.
-                                field = "Misc"
-                                for string in sibling.stripped_strings:
-                                    feat_fields[field].append(string)
-                        # try grabbing strong tags.
-                        elif sibling.strong:
-                            if sibling.string:
-                                # only one line in the given field; this is the key.
-                                field = sibling.string.strip()
-                                # use entry_title to filter 'Benefit' 'Special', etc. out.
-                                entry_title = field
-                            # need to make a list at field index to store stripped strings
-                            feat_fields[field] = []
-                            # go through the rest of the paragraph and get the info.
-                            for string in sibling.stripped_strings:
-                                if string != entry_title:
-                                    feat_fields[field].append(string)
-                        else:
-                            # this is a feat field: Benefit, Special, etc.
-                            # The bold part is the name of the key.
-                            # TODO: one page has these in a Strong tag. Change to get those.
-                            if sibling.b.string:
-                                # only one line in the given field; this is the key.
-                                field = sibling.b.string.strip()
-                                # use entry_title to filter 'Benefit' 'Special', etc. out.
-                                entry_title = field
-                            # Following case NEVER HAPPENS. But, I am not taking data from
-                            # all pages just yet, so I'll keep it here in case I need it.
-                            else:
-                                # this is some other thing or weird edge case. Throw it to Misc.
-                                for string in sibling.b.stripped_strings:
-                                    # might never get here. Test it.
-                                    feat_fields["Misc"].append(string)
-                            # need to make a list at field index to store stripped strings
-                            feat_fields[field] = []
-                            # go through the rest of the paragraph and get the info.
-                            for string in sibling.stripped_strings:
-                                if string != entry_title:
-                                    feat_fields[field].append(string)
-                    else:
-                        # if it's not a tag, we don't want to look at it
-                        break
-            for key in feat_fields:
-                # contacenate the list of strings at each entry.
-                feat_fields[key] = " ".join(feat_fields[key])
-                # TODO: filter out "[stuff]", replace with '[stuff]'
-            page_feats.append(feat_fields)
-    feat_file.close()
-    return page_feats
-
-
-def get_feats_fulltext(fname):
     # need this in getFeats
     benefit = re.compile('\ABen')
     prereq = re.compile('\APre')
@@ -190,18 +92,25 @@ def get_feats_fulltext(fname):
                         break
             for key in ["Name", "Text", "Note", "Prereq", "Benefit", "Normal", "Special"]:
                 feat_fields[key] = " ".join(feat_fields[key])
+            feat_fields["Prereq"] = feat_fields["Prereq"].split(',')
         else:
             feat_fields["Name"] = anchor
-            feat_fields["Text"] = href + "#" + anchor + " COULD NOT BE FOUND"
+            feat_fields["Text"] = "COULD NOT BE FOUND"
         page_feats[anchor] = feat_fields
     return page_feats, feat_soup
 
 
-
 # int main()
-rootDir = "feat_sites/"
-html_files = os.listdir(rootDir)
-all_feats = {}
-soups = {}
-for filename in html_files:
-    all_feats[filename], soups[filename]  = get_feats_fulltext(filename)
+def get_all_feats():
+    root_dir = "feat_sites/"
+    html_files = os.listdir(root_dir)
+    all_feats = {}
+    soups = {}
+    for filename in html_files:
+        all_feats[filename], soups[filename]  = get_feats(filename)
+    return (all_feats, soups)
+
+
+def get_core_feats():
+    fname = '_pathfinderRPG_prd_coreRulebook_feats.html'
+    return get_feats(fname)
