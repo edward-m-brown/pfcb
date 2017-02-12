@@ -4,6 +4,5 @@ node_modules
 frontend/dist
 *jquery-ui-1.11.4.custom
 .idea/
-backend/python_scripts/feats/feat_sites
-backend/python_scripts/spells/spell_sites
+backend/python_scripts/*/*_sites
 pfcb

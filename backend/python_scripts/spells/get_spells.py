@@ -33,7 +33,7 @@ def get_spells(filename, spellname=None):
     spell_soup = spell_soup.find("div", {"class": "body"})
     if spellname:
         start = spell_soup.find("p", {"class": "stat-block-title", "id": spellname})
-    else:
+    if (not spellname) or (not start):
         start = spell_soup.find("p", {"class": "stat-block-title"})
     if start:
         spell_fields["Html"] += str(start)
