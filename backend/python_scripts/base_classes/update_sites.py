@@ -4,24 +4,27 @@ from bs4 import BeautifulSoup
 import re
 
 
-# function to get the links from the feat index in the pathfinder srd
+# Just get the base classes from the core rulebook for now.
 def get_links(url):
     try:
         html = urlopen(url)
     except HTTPError as e:
         print(e)
         return None
-    skill_index = open("skill_sites/_pathfinderRPG_prd_coreRulebook_skillDescriptions.html", "w+")
     links = []
     try:
         bs_obj = BeautifulSoup(html.read(), "html.parser")
-        skill_rows = bs_obj.find_all("tr")
-        for row in skill_rows:
-            td = row.find("td")
-            if td:
-                link = td.find("a")
-                if link != -1 and link is not None:
-                    links.append(link.get('href'))
+        class_header = bs_obj.find("h1", {"id": "classes"})
+        for sibling in class_header.next_siblings:
+            if type(sibling) is type(class_header):
+                if sibling.name == 'h1':
+                    # we have hit the Character Advancement header. Stop.
+                    break
+                else:
+                    if sibling.name == 'p':
+                        link = sibling.find("a")
+                        if link != -1 and link is not None:
+                            links.append(link.get('href'))
     except AttributeError as e:
         print(e)
         return None
@@ -37,14 +40,14 @@ def store_pages(href):
         print(e)
         return None
     page = BeautifulSoup(html.read())
-    directory = "skill_sites/"
+    directory = "base_class_sites/"
     fname = href.replace("/","_")
     path = directory + fname
     store = open(path,"w+")
     store.write(str(page))
     store.close()
 
-index = "http://paizo.com/pathfinderRPG/prd/coreRulebook/skillDescriptions.html"
+index = "http://paizo.com/pathfinderRPG/prd/coreRulebook/classes.html"
 all_links = get_links(index)
 if all_links == None:
   print("links could not be found")

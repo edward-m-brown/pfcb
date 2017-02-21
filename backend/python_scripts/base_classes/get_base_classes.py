@@ -3,61 +3,61 @@ from urllib.error import HTTPError
 from bs4 import BeautifulSoup
 import re, ast, os, operator, glob
 
-# get the Skill info from local skill pages
-# Skill Format:
+# Base Class Format:
 # inside a <div class="body">
-#   <h1>Skill Name</h1>
-#   <h2> (ABS; Armor Check Penalty; Trained Only) </h2>
-#   (<p><\p>)+ : rest of the description is either paragraphs or tables, until the footer
+#   <h1 id=classname>Class Name</h1>
+#   <p> Class summary description flavor stuff </p>
+#   <p><b> Role: ... </b></p> <!-- not needed -->
+#   <p><b> Alignment: ...
+#   <p><b> Hit Die: ...
+#   <h2>Class Skills</h2>
+#   <p> The $CLASS_NAME's class skills are [skill list]
+#   <p><b> Skill Ranks per Level</b>": $NUM
+#   ... etc.
+src_dir = "base_class_sites/"
 
-src_dir = "skill_sites/"
-
-def get_skills(filename):
+def get_base_classes(filename, classname):
     # entries will end on stat-block-title or a <div class='footer'>
-    skill_file = open(filename, "r+")
-    skill_fields = {}
-    skill_fields["Name"] = []
-    skill_fields["Attribute"] = ""
-    skill_fields["ACP"] = False
-    skill_fields["TO"] = False
-    skill_fields["Html"] = ""
+    base_class_file = open(filename, "r+")
+    base_class_fields = {}
+    base_class_fields["Name"] = []
+    base_class_fields["Alignment"] = ""
+    base_class_fields["HD"] = 0
+    base_class_fields["Skills"] = []
+    base_class_fields["Ranks"] = 0
+    base_class_fields["Html"] = ""
     try:
-        skill_soup = BeautifulSoup(skill_file.read(), "html.parser")
-        skill_soup = skill_soup.find("div", {"class": "body"})
-        start = skill_soup.h1
-        skill_fields["Name"] = start.get_text()
-        details = skill_soup.h2.get_text().strip('()').split(';')
-        for field in details:
-            if field in ['Str', 'Dex', 'Con', 'Int', 'Wis', 'Cha']:
-                skill_fields["Attribute"] = field
-            elif field.find("Armor Check Penalty") > -1:
-                skill_fields["ACP"] = True
-            elif field.find("Trained Only") > -1:
-                skill_fields["TO"] = True
-        skill_fields["Html"] += str(start)
-        for sibling in start.next_siblings:
-            if type(sibling) is type(start):
-                attrs = sibling.attrs
-                attr_keys = list(sibling.attrs.keys())
-                is_div = sibling.name == "div"
-                has_class = 'class' in attr_keys
-                if is_div and has_class and attrs['class'] == ['footer']:
-                    break
-                else:
-                    skill_fields["Html"] += str(sibling)
+        base_class_soup = BeautifulSoup(base_class_file.read(), "html.parser")
+        base_class_soup = base_class_soup.find("div", {"class": "body"})
+        header_block = base_class_soup.h1 # class name
+        base_class_fields["Name"] = header_block.get_text()
+        base_class_fields["Html"] += str(header_block)
+        for sibling in header_block.next_siblings:
+            if type(sibling) is type(header_block):
+                if sibling.name == 'p'
+                    if sibling.b: # one of many impo
+                        b_text = sibling.b.get_text()
+                        if b_text.search("Alignment") > -1:
+                            alignment = str(sibling.b.next_sibling).strip(': .')
+                            base_class_fields["Alignment"] = alignment
+                        elif b_text.search("Hit Die") > -1:
+                            hd = str(sibling.b.next_sibling).strip(': d.')
+                            base_class_fields["HD"] = int(hd)
+
+
     except AttributeError as e:
-        print("get_skills(" + filename + ") failed!\n" + e)
+        print("get_base_classes(" + filename + ") failed!\n" + e)
         return None
     else:
-        return skill_fields
+        return base_class_fields
 
 
-def scrape_skills():
-    html_files = glob.glob(src_dir + "skills_*")
-    core_skills = {}
+def scrape_base_classes():
+    html_files = glob.glob(src_dir + "classes_*")
+    core_base_classes = {}
     for filename in html_files:
-        skillname = filename.split('#')[1]
-        core_skills[skillname] = get_skills(filename)
-    return core_skills
+        base_classname = filename.split('#')[1]
+        core_base_classes[base_classname] = get_base_classes(filename, base_classname)
+    return core_base_classes
 
 
