@@ -1,0 +1,27 @@
+name: python3.3
+dependencies:
+- flask=0.10.1=py33_1
+- ipython=3.2.1=py33_0
+- itsdangerous=0.24=py33_0
+- jinja2=2.8=py33_0
+- markupsafe=0.23=py33_0
+- openssl=1.0.1k=1
+- pip=8.0.3=py33_0
+- pymongo=2.8=py33_0
+- python=3.3.5=4
+- readline=6.2=2
+- requests=2.9.1=py33_0
+- setuptools=20.1.1=py33_0
+- sqlite=3.13.0=0
+- system=5.8=2
+- tk=8.5.18=0
+- werkzeug=0.10.4=py33_0
+- wheel=0.29.0=py33_0
+- xz=5.0.5=1
+- zlib=1.2.8=3
+- pip:
+  - beautifulsoup4==4.5.3
+  - flask-login==0.4.0
+  - flask-pymongo==0.4.1
+prefix: /home/edward/anaconda2/envs/python3.3
+
