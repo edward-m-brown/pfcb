@@ -4,5 +4,5 @@ node_modules
 frontend/dist
 *jquery-ui-1.11.4.custom
 .idea/
-backend/rules_scrapers/*/*_sites
+backend/flask/rules_scrapers/*/*_sites
 pfcb
