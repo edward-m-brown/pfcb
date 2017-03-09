@@ -30,8 +30,15 @@
                   <a class="navbar-brand" href="{{ url_for('index')}}">Pathfinder Character Builder</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="/classes">Classes</a></li>
+                        <li><a href="/feats">Feats</a></li>
+                        <li><a href="/skills">Skills</a></li>
+                        <li><a href="/spells">Spells</a></li>
+                    </ul>
                     <ul class="nav navbar-nav navbar-right">
                         {% if current_user.is_authenticated %}
+                            <li><a href="/characters">My Characters</a></li>
                             <li><a href="{{ url_for('logout') }}">Logout</a></li>
                         {% else %}
                             <li><a href="{{ url_for('login') }}">Login</a></li>

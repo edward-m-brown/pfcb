@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Pathfinder Core Rulebook {{ cursor.collection.name.title() }}</h2>
+    <ul>
+        {% for item in cursor %}
+        <li><a href="{{ cursor.collection.name }}/{{ item['Name'] }}">{{ item["Name"] }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

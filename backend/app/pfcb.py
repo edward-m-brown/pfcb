@@ -37,14 +37,6 @@ def load_user(username):
 
 @app.route('/')
 def index():
-    """
-    html = "<html><ul>"
-    for name in db.collection_names():
-        if name != "system.indexes":
-            html += "<li> <a href='/" + name + "'> " + name + "</a></li>"
-    html += "</ul></html>"
-    """
-    # return html
     return render_template('index.html')
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -52,12 +44,11 @@ def login():
     form = LoginForm()
     if request.method == 'POST' and form.validate_on_submit():
         user = app.config["USERS_COLLECTION"].find_one({"username": form.username.data})
-        print(form.username.data)
         if user and User.validate_login(user['password'], form.password.data):
             user_obj = User(user['username'])
             login_user(user_obj)
             flash("Logged in successfully!", category = 'success')
-            return redirect(request.args.get("next") or url_for("write"))
+            return redirect(request.args.get("next") or url_for("index"))
         flash("Wrong username or password! Do you need to <a href='/signup'>Create an account</a>?", category = 'error')
     return render_template('login.html', title = 'login', form = form)
 
@@ -75,28 +66,56 @@ def signup():
         users = db.users
         extant = users.find_one({"username": form.username.data})
         if extant is None:
-            pass_hash = generate_password_hash(request.form['pass'])
-            users.insert({'name': request.form['username'], 'password': pass_hash})
-            session['username'] = request.form['username']
-            return redirect(url_for('index'))
-        return 'Username ' + request.form['username'] + ' already exists!'
-    return render_template('signup.html')
-    return "Not Yet Implemented"
+            saved = users.insert({'username': form.username.data, 'password': generate_password_hash(form.password.data)})
+            print(saved)
+            if saved:
+                flash("User " + form.username.data + " created successfully!", category = 'success')
+            else:
+                flash("User " + form.username.data + " could not be created!", category = 'error')
+            return redirect(url_for('login'))
+        flash('Username ' + request.form['username'] + ' already exists!')
+    return render_template('signup.html', title = 'signup', form = form)
 
-@app.route('/write')
-def write():
-    return render_template('write.html')
 
 @app.route('/<collection_name>')
 def show_collection(collection_name):
-    collection = db[collection_name]
-    cursor = collection.find()
-    html = "<html><ul>"
-    for item in cursor:
-        html += "<li><a href='/{col_name}/{item_name}'>{item_name}</a></li>"\
-            .format(col_name = collection_name, item_name = item["Name"])
-    html += "</ul></html>"
-    return html
+    if collection_in_db(collection_name):
+        collection = db[collection_name]
+        cursor = collection.find().sort('Name')
+        return render_template('show_collection.html', cursor = cursor)
+    return render_template('index.html')
+
+
+@app.route('/characters')
+@login_required
+def show_characters():
+    return render_template('characters.html')
+
+
+@app.route('/<collection_name>/<document_name>')
+def show_document(collection_name, document_name):
+    if collection_in_db(collection_name):
+        collection = db[collection_name]
+        cursor = collection.find({"Name": document_name})
+        if cursor.count() == 1:
+            return render_template('show_document.html', document = cursor[0])
+        elif cursor.count() == 0:
+            flash("Could not find %s in %s!" % (document_name, collection_name), category = 'error')
+        else:
+            flash("More than one document with name %s in %s!" % (document_name, collection_name), category = 'error')
+    return render_template('index.html')
+
+
+# helpers
+def collection_in_db(collection_name):
+    if collection_name not in db.collection_names() or collection_name in ["users", "system.info"]:
+        flash("Could not view collection %s" % collection_name, category = 'error')
+        return False
+    return True
+
+
+def redirect_url():
+    return request.args.get('next') or request.referrer or url_for('index')
 
 if __name__ == '__main__':
     app.run()

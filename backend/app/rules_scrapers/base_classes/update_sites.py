@@ -47,7 +47,7 @@ def store_pages(href):
     store.write(str(page))
     store.close()
 
-index = "http://paizo.com/pathfinderRPG/prd/coreRulebook/classes.html"
+index = "http://paizo.com/pathfinderRPG/prd/coreRulebook/show_collection.html"
 all_links = get_links(index)
 if all_links == None:
   print("links could not be found")

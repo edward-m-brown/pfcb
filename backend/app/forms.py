@@ -10,7 +10,7 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
 
 class SignupForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired(), InputRequired(),
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired(), InputRequired(),
                                                    EqualTo('confirm', message = "Passwords must match")])
-    password = PasswordField('Password', validators=[DataRequired()])
     confirm = PasswordField('Confirm Password')
