@@ -1,8 +1,6 @@
 .DS_Store
 node_modules
 *.pyc
-frontend/dist
 *jquery-ui-1.11.4.custom
 .idea/
-backend/app/rules_scrapers/*/*_sites
-pfcb
+app/rules_scrapers/*/*_sites

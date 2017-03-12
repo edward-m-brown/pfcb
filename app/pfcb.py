@@ -74,7 +74,7 @@ def signup():
                 flash("User " + form.username.data + " could not be created!", category = 'error')
             return redirect(url_for('login'))
         flash('Username ' + request.form['username'] + ' already exists!')
-    return render_template('signup.html', title = 'signup', form = form)
+    return render_template('signup.html', form = form)
 
 
 @app.route('/<collection_name>')
@@ -113,9 +113,6 @@ def collection_in_db(collection_name):
         return False
     return True
 
-
-def redirect_url():
-    return request.args.get('next') or request.referrer or url_for('index')
 
 if __name__ == '__main__':
     app.run()
