@@ -4,3 +4,4 @@ node_modules
 *jquery-ui-1.11.4.custom
 .idea/
 app/rules_scrapers/*/*_sites
+app/static/bower_components

@@ -73,7 +73,7 @@ def signup():
             else:
                 flash("User " + form.username.data + " could not be created!", category = 'error')
             return redirect(url_for('login'))
-        flash('Username ' + request.form['username'] + ' already exists!')
+        flash('Username ' + request.form['username'] + ' already exists!', category = 'error')
     return render_template('signup.html', form = form)
 
 
@@ -104,6 +104,11 @@ def show_document(collection_name, document_name):
         else:
             flash("More than one document with name %s in %s!" % (document_name, collection_name), category = 'error')
     return render_template('index.html')
+
+
+@app.route('/react')
+def start_react():
+    return render_template('hello_react.html')
 
 
 # helpers
