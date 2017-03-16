@@ -38,8 +38,8 @@ var DynamicSearch = React.createClass({
 
 // list of countries, defined with JavaScript object literals
 var countries = [
-  {"name": "Sweden"}, {"name": "China"}, {"name": "Peru"}, {"name": "Czech Republic"},
-  {"name": "Bolivia"}, {"name": "Latvia"}, {"name": "Samoa"}, {"name": "Armenia"},
+  {"name": "Sweeeeden"}, {"name": "Chiiiiiiiiiina"}, {"name": "Peeeeeeru"}, {"name": "Czech Republic"},
+  {"name": "Bolivia"}, {"name": "Lasdasadadatvia"}, {"name": "Samoa"}, {"name": "Armenia"},
   {"name": "Greenland"}, {"name": "Cuba"}, {"name": "Western Sahara"}, {"name": "Ethiopia"},
   {"name": "Malaysia"}, {"name": "Argentina"}, {"name": "Uganda"}, {"name": "Chile"},
   {"name": "Aruba"}, {"name": "Japan"}, {"name": "Trinidad and Tobago"}, {"name": "Italy"},
@@ -49,5 +49,5 @@ var countries = [
 
 ReactDOM.render(
   <DynamicSearch items={ countries } />,
-  document.getElementById('main')
+  document.getElementById('character-builder')
 );

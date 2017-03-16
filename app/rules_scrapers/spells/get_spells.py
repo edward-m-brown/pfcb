@@ -44,7 +44,7 @@ def get_spells(filename, spellname=None):
         for field in spell_header:
             key_tags = field.find_all('b')
             for key in key_tags:
-                field_name = key.get_text()
+                field_name = key.get_text().strip(" ")
                 spell_fields[field_name] = []
                 for sibling in key.next_siblings:
                     if type(sibling) is type(key): # this is a Tag

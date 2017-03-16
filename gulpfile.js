@@ -7,8 +7,9 @@ var del = require('del');
 
 // tasks
 
-gulp.task('default', function() {
+gulp.task('default', ['del'], function() {
   gulp.start('transform');
+  gulp.watch('./app/static/scripts/jsx/*.js', ['transform']);
 });
 
 
@@ -22,4 +23,5 @@ gulp.task('transform', function() {
 
 
 gulp.task('del', function() {
+  return del(['./app/static/scripts/js']);
 });

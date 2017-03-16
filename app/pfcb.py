@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, request, session, redirect, flash
 from flask.ext.pymongo import PyMongo
-from flask.ext.login import LoginManager, login_user, logout_user, login_required
+from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import LoginForm, SignupForm
 from user import User
@@ -66,7 +66,9 @@ def signup():
         users = db.users
         extant = users.find_one({"username": form.username.data})
         if extant is None:
-            saved = users.insert({'username': form.username.data, 'password': generate_password_hash(form.password.data)})
+            saved = users.insert({'username': form.username.data,
+                                  'password': generate_password_hash(form.password.data),
+                                  'characters': []})
             print(saved)
             if saved:
                 flash("User " + form.username.data + " created successfully!", category = 'success')
@@ -89,20 +91,30 @@ def show_collection(collection_name):
 @app.route('/characters')
 @login_required
 def show_characters():
-    return render_template('characters.html')
+    if current_user.is_active:
+        username = current_user.get_id()
+        user = app.config["USERS_COLLECTION"].find_one({"username": username})
+        if user:
+            characters = user["characters"]
+            return render_template('characters.html', characters = characters)
+        else:
+            flash("User %s does not exist! You need to <a href='/signup'> signup</a>!" % username, category = 'error')
+            return redirect(url_for('signup'))
+    else:
+        flash("No active user! You need to <a href='/login'> login</a>!", category = 'error')
+        return redirect(url_for('login'))
+
 
 
 @app.route('/<collection_name>/<document_name>')
 def show_document(collection_name, document_name):
     if collection_in_db(collection_name):
         collection = db[collection_name]
-        cursor = collection.find({"Name": document_name})
-        if cursor.count() == 1:
-            return render_template('show_document.html', document = cursor[0])
-        elif cursor.count() == 0:
-            flash("Could not find %s in %s!" % (document_name, collection_name), category = 'error')
+        document = collection.find_one({"Name": document_name})
+        if document:
+            return render_template('show_document.html', document = document)
         else:
-            flash("More than one document with name %s in %s!" % (document_name, collection_name), category = 'error')
+            flash("Could not find %s in %s!" % (document_name, collection_name), category = 'error')
     return render_template('index.html')
 
 

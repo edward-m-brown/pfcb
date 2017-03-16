@@ -98,7 +98,7 @@ def process_class_table(table, class_dict, soup):
                 level_rows.remove(level_row)
         for level_row in level_rows:
             level = {}
-            level["SPD"] = {}
+            level["SPD"] = []
             level_data = level_row.find_all('td')
             # print(repr(level_data))
             index = 0
@@ -153,7 +153,7 @@ def process_class_table(table, class_dict, soup):
                         else:
                             continue
                 elif spell_level_fields and key in spell_level_fields:
-                    level["SPD"][key] = data.get_text()
+                    level["SPD"].append(data.get_text())
             class_dict["Levels"].append(level)
     except AttributeError as e:
         print("process_class_table(" + class_dict["Name"] + ") failed!")
@@ -171,5 +171,4 @@ def scrape_base_classes():
         core_base_classes[base_classname] = get_base_classes(filename, base_classname)
     core_base_classes["cleric"]["Alignment"] = "Within one step of chosen Deity"
     return core_base_classes
-
 

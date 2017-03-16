@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for character in characters %}
+        <a> {{ character["Name"] }} </a>
+    {% endfor %}
+{% endblock %}
