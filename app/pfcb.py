@@ -4,6 +4,7 @@ from flask.ext.login import LoginManager, login_user, logout_user, login_require
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import LoginForm, SignupForm
 from user import User
+from json import dumps
 
 app = Flask(__name__)
 app.debug = True
@@ -88,9 +89,9 @@ def show_collection(collection_name):
     return render_template('index.html')
 
 
-@app.route('/characters')
+@app.route('/character_builder')
 @login_required
-def show_characters():
+def start_builder():
     if current_user.is_active:
         username = current_user.get_id()
         user = app.config["USERS_COLLECTION"].find_one({"username": username})
@@ -115,12 +116,24 @@ def show_document(collection_name, document_name):
             return render_template('show_document.html', document = document)
         else:
             flash("Could not find %s in %s!" % (document_name, collection_name), category = 'error')
+    flash("Error! Could not find collection %s." % collection_name, category = 'error')
     return render_template('index.html')
 
 
-@app.route('/react')
-def start_react():
-    return render_template('hello_react.html')
+@app.route('/get-user-characters')
+@login_required
+def characters():
+    if current_user.is_active:
+        username = current_user.get_id()
+        user = app.config["USERS_COLLECTION"].find_one({"username": username})
+        if user:
+            return dumps(user["characters"])
+        else:
+            flash("User %s does not exist! You need to <a href='/signup'> signup</a>!" % username, category = 'error')
+            return redirect(url_for('signup'))
+    else:
+        flash("No active user! You need to <a href='/login'> login</a>!", category = 'error')
+        return redirect(url_for('login'))
 
 
 # helpers

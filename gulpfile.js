@@ -1,27 +1,18 @@
-var gulp = require('gulp')
+var gulp = require('gulp');
+var browserify = require('browserify');
+var babelify = require('babelify');
+var source = require('vinyl-source-stream');
 
-var gulpBrowser = require("gulp-browser");
-var reactify = require('reactify');
-var size = require('gulp-size');
-var del = require('del');
-
-// tasks
-
-gulp.task('default', ['del'], function() {
-  gulp.start('transform');
-  gulp.watch('./app/static/scripts/jsx/*.js', ['transform']);
+gulp.task('build', function () {
+    return browserify({entries: './app/static/scripts/jsx/17CharacterBuilder.js', extensions: ['.js'], debug: true})
+        .transform('babelify', {presets: ['es2015', 'react']})
+        .bundle()
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest('./app/static/scripts/js'));
 });
 
-
-gulp.task('transform', function() {
-  var stream = gulp.src('./app/static/scripts/jsx/*.js')
-    .pipe(gulpBrowser.browserify({transform: ['reactify']}))
-    .pipe(gulp.dest('./app/static/scripts/js/'))
-    .pipe(size());
-  return stream;
+gulp.task('watch', ['build'], function () {
+    gulp.watch('./app/static/scripts/jsx/*.js', ['build']);
 });
 
-
-gulp.task('del', function() {
-  return del(['./app/static/scripts/js']);
-});
+gulp.task('default', ['watch']);
