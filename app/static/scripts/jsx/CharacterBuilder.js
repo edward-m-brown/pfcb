@@ -3,7 +3,7 @@ import CharacterSheet from './CharacterSheet'
 var CharacterBuilder = React.createClass({
     getInitialState: function() {
         return({
-            curChar: null,
+            cur_char: null,
             characters: []
         });
     },
@@ -14,16 +14,23 @@ var CharacterBuilder = React.createClass({
             characters = JSON.parse(user_chars);
             console.log("Data Loaded: " + user_chars);
             that.setState({
-                curChar: null,
+                cur_char: null,
                 characters: characters? characters: null
             });
         });
     },
     selectCharacter: function(event) {
-        // function for setting the curChar state
-        console.log("Setting curChar to index " + parseInt(event.target.value))
+        // function for setting the cur_char state
+        console.log("Setting cur_char to index " + parseInt(event.target.value))
         this.setState({
-            curChar: this.state.characters[parseInt(event.target.value)]
+            cur_char: this.state.characters[parseInt(event.target.value)]
+        })
+    },
+    deselectCharacter: function() {
+        // function for unsetting cur_char state(getting back to characters menu)
+        console.log("Unsetting character " + this.state.cur_char["Name"] + "!")
+        this.setState({
+            cur_char: null
         })
     },
     addCharacter: function(event) {
@@ -32,20 +39,23 @@ var CharacterBuilder = React.createClass({
 
     },
     updateCharacter: function(key, json) {
-        this.state.curChar[key] = json // I dunno, something like this
-                                        // curChar should be selected in this component, and should serve as the
+        this.state.cur_char[key] = json // I dunno, something like this
+                                        // cur_char should be selected in this component, and should serve as the
                                         // definitive character state. All child components should only edit their
-                                        // chunk of curChar in their internal state, and should update it whenever the
+                                        // chunk of cur_char in their internal state, and should update it whenever the
                                         // user exits the component, or when a 'submit' button is clicked.
     },
-    // <CharacterSheet character = curChar/> eventually, render should return this. For now, return a list of character
+    // <CharacterSheet character = cur_char/> eventually, render should return this. For now, return a list of character
     // names, so we know json is being transferred properly
     render: function() {
         let that = this
-        if(this.state.curChar){
+        if(this.state.cur_char){
             return(
                 <div>
-                    <CharacterSheet character={this.state.curChar} updateCharacter={this.updateCharacter}/>
+                    <CharacterSheet character={this.state.cur_char}
+                                    updateCharacter={this.updateCharacter}
+                                    deselectCharacter={this.deselectCharacter}
+                    />
                 </div>
             )
         } else {

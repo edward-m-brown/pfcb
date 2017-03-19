@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-    {% for character in characters %}
+    <!--{% for character in characters %}
         <a> {{ character["Name"] }} </a>
-    {% endfor %}
+    {% endfor %} -->
     <div id="character-builder"></div>
     <script src="{{ url_for('static', filename='bower_components/react/react.min.js') }}"></script>
     <script src="{{ url_for('static', filename='bower_components/react/react-dom.min.js') }}"></script>
