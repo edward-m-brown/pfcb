@@ -10,7 +10,8 @@ var longNames = {
 
 var Abilities = React.createClass({
     handleChange(event) {
-        this.props.update(event.target.name, parseInt(event.target.value))
+        let isTemp = event.target.alt == "temp"? true: false;
+        this.props.update(event.target.name, parseInt(event.target.value), isTemp)
     },
     handleBlur(event) {
 
@@ -18,6 +19,8 @@ var Abilities = React.createClass({
     render() {
        let scores = this.props.abilityScores;
        let mods = this.props.abilityMods;
+       let temp_adjustments = this.props.tempAdjustments;
+       let temp_mods = this.props.tempMods;
        return(
            <div className="table-responsive">
                <table className="table">
@@ -29,24 +32,41 @@ var Abilities = React.createClass({
                        <th>Temp. Modifier</th>
                    </tr>
                    {
-                       Object.keys(scores).map((key) =>{
+                       ["STR", "DEX", "CON", "INT", "WIS", "CHA"].map((key) =>{
                            return(
                                <tr>
+                                   {/* Ability Name */}
                                    <td>
                                        <ul className="list-unstyled">
                                            <li>{key}</li>
                                            <li><sub>{longNames[key]}</sub></li>
                                        </ul>
                                    </td>
+                                   {/* Ability Score */}
                                    <td>
                                        <input type="number"
                                               value={ scores[key] }
                                               name={key}
                                               onChange={this.handleChange}
+                                              alt="base"
                                        />
                                    </td>
+                                   {/* Ability Mod */}
                                    <td>
                                        <text>{ mods[key] >= 0? "+":"" }{ mods[key] }</text>
+                                   </td>
+                                   {/* Temp. Adj */}
+                                   <td>
+                                       <input type="number"
+                                              value={ temp_adjustments[key] }
+                                              name={key}
+                                              onChange={this.handleChange}
+                                              alt="temp"
+                                       />
+                                   </td>
+                                   {/* Temp. Mod */}
+                                   <td>
+                                       <text>{ temp_mods[key] >= 0? "+":"" }{ temp_mods[key] }</text>
                                    </td>
                                </tr>
                            )

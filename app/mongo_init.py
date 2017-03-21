@@ -52,12 +52,22 @@ loki_char = {
         'Class_Levels': [{'Fighter': 1}]
     },
     'Ability_Scores': {
-        'STR': 10,
-        'DEX': 10,
-        'CON': 10,
-        'INT': 10,
-        'WIS': 10,
-        'CHA': 10
+        'base': {
+            'STR': 10,
+            'DEX': 10,
+            'CON': 10,
+            'INT': 10,
+            'WIS': 10,
+            'CHA': 10
+        },
+        'temp': {
+            'STR': 0,
+            'DEX': 0,
+            'CON': 0,
+            'INT': 0,
+            'WIS': 0,
+            'CHA': 0
+        }
     },
     'Movement': {
         'Base': 30,
@@ -67,7 +77,7 @@ loki_char = {
         'Burrow': 0
     },
     'Feats': [],
-    'Special_Abilities' : {
+    'Special_Features' : {
         'Abilities': [],
         'Class_Features': []
     },
