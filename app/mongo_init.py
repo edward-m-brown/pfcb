@@ -49,7 +49,7 @@ loki_char = {
      },
     'Levels': {
         'Exp': 0,
-        'Class_Levels': [{'Fighter': 1}]
+        'Class_Levels': {'Fighter': 1}
     },
     'Ability_Scores': {
         'base': {

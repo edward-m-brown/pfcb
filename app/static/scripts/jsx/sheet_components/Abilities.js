@@ -10,8 +10,11 @@ var longNames = {
 
 var Abilities = React.createClass({
     handleChange(event) {
-        let isTemp = event.target.alt == "temp"? true: false;
-        this.props.update(event.target.name, parseInt(event.target.value), isTemp)
+        let name = event.target.name;
+        let value = parseInt(event.target.value);
+        event.target.alt == "temp"
+            ? this.props.updateTemp(name, value)
+            : this.props.updateBase(name, value)
     },
     handleBlur(event) {
 
@@ -22,57 +25,64 @@ var Abilities = React.createClass({
        let temp_adjustments = this.props.tempAdjustments;
        let temp_mods = this.props.tempMods;
        return(
-           <div className="table-responsive">
-               <table className="table">
-                   <tr>
-                       <th>Ability Name</th>
-                       <th>Ability Score</th>
-                       <th>Ability Modifier</th>
-                       <th>Temp. Adjustment</th>
-                       <th>Temp. Modifier</th>
-                   </tr>
+           <div className="flex-container-col" style={{width: 600}}>
+               <div className="flex-item">
+                   <div className="flex-container">
+                       <div className="flex-item">Ability Name</div>
+                       <div className="flex-item">Ability Score</div>
+                       <div className="flex-item">Ability Modifier</div>
+                       <div className="flex-item">Temp. Adjustment</div>
+                       <div className="flex-item">Temp. Modifier</div>
+                   </div>
+               </div>
+               <div className="flex-item">
                    {
                        ["STR", "DEX", "CON", "INT", "WIS", "CHA"].map((key) =>{
                            return(
-                               <tr>
+                               <div className="flex-container">
                                    {/* Ability Name */}
-                                   <td>
+                                   <div className="flex-item">
                                        <ul className="list-unstyled">
                                            <li>{key}</li>
                                            <li><sub>{longNames[key]}</sub></li>
                                        </ul>
-                                   </td>
+                                   </div>
                                    {/* Ability Score */}
-                                   <td>
+                                   <div className="flex-item">
                                        <input type="number"
                                               value={ scores[key] }
                                               name={key}
                                               onChange={this.handleChange}
                                               alt="base"
                                        />
-                                   </td>
+                                   </div>
                                    {/* Ability Mod */}
-                                   <td>
+                                   <div className="flex-item">
                                        <text>{ mods[key] >= 0? "+":"" }{ mods[key] }</text>
-                                   </td>
+                                   </div>
                                    {/* Temp. Adj */}
-                                   <td>
+                                   <div className="flex-item">
                                        <input type="number"
                                               value={ temp_adjustments[key] }
                                               name={key}
                                               onChange={this.handleChange}
                                               alt="temp"
                                        />
-                                   </td>
+                                   </div>
                                    {/* Temp. Mod */}
-                                   <td>
-                                       <text>{ temp_mods[key] >= 0? "+":"" }{ temp_mods[key] }</text>
-                                   </td>
-                               </tr>
+                                   <div className="flex-item">
+                                       {
+                                           temp_adjustments[key] ?
+                                               <text>{ temp_mods[key] >= 0? "+":"" }{ temp_mods[key] }</text>
+                                               : <text>--</text>
+                                       }
+
+                                   </div>
+                               </div>
                            )
                        })
                    }
-               </table>
+               </div>
            </div>
        )
     }

@@ -119,7 +119,7 @@ def show_document(collection_name, document_name):
     flash("Error! Could not find collection %s." % collection_name, category = 'error')
     return render_template('index.html')
 
-
+# routes used by React app
 @app.route('/get-user-characters')
 @login_required
 def characters():
@@ -134,6 +134,10 @@ def characters():
     else:
         flash("No active user! You need to <a href='/login'> login</a>!", category = 'error')
         return redirect(url_for('login'))
+
+@app.route('/assets/<asset_name>')
+def serve_asset(asset_name):
+    return url_for('static', filename='assets/' + asset_name)
 
 
 # helpers

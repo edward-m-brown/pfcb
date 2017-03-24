@@ -5,3 +5,4 @@ node_modules
 .idea/
 app/rules_scrapers/*/*_sites
 app/static/bower_components
+app/static/scripts/js/bundle.js

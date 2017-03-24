@@ -1,5 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
+    <style>
+        .flex-container {
+            display: flex;
+            background-color: #f8efc0;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .flex-item {
+            background-color: lightgrey;
+        }
+
+        .flex-container-col {
+            display: flex;
+            background-color: #f8efc0;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .app-wrapper {
+            display: flex;
+            background-color: #f8efc0;
+            flex-direction: column;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+        body {
+            font-size: 3.2vw;
+        }
+    </style>
     <!--{% for character in characters %}
         <a> {{ character["Name"] }} </a>
     {% endfor %} -->
