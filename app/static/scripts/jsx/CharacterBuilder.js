@@ -125,7 +125,7 @@ var CharacterBuilder = React.createClass({
             characters.shift()
         }
         // delete from backend here
-        this.setState({characters: characters});
+        this.putCharacters(characters);
     },
     addCharacter: function(event) {
         // function for starting a new character sheet
@@ -135,11 +135,14 @@ var CharacterBuilder = React.createClass({
         this.setState({characters: characters});
     },
     updateCharacter(character, index=this.state.char_index) {
-        let that = this;
         let characters = Object.assign([], this.state.characters);
         index >= 0
             ? characters[index] = character
             : throw_error("char_index not set!");
+        this.putCharacters(characters)
+    },
+    putCharacters(characters) {
+        let that = this;
         $.ajax({
             url: "/save-characters",
             method: 'PUT',

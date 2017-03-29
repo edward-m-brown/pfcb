@@ -135,7 +135,8 @@ def save_character():
         response = db.users.find_and_modify(
             {"username": user["username"]},
             {"$set": {"characters": data}},
-            full_response = True
+            full_response = True,
+            new=True
         )
         print(repr(response))
         if response["ok"] > 0:
