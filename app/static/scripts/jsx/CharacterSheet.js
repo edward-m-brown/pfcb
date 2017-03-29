@@ -20,63 +20,6 @@ function calculateTempModifiers(temp_adjustments, base_scores) {
     return temp_modifiers;
 }
 
-const default_char = {
-    'Name': '',
-    'Description' : {
-        'Alignment': null,
-        'Deity': 'Loki',
-        'Race': null,
-        'Size': null,
-        'Gender': null,
-        'Age': 0,
-        'Height': '',
-        'Weight': '',
-        'Hair': '',
-        'Eyes': ''
-    },
-    'Levels': {
-        'Exp': 0,
-        'Class_Levels': {}
-    },
-    'Ability_Scores': {
-        'base': {
-            'STR': 0,
-            'DEX': 0,
-            'CON': 0,
-            'INT': 0,
-            'WIS': 0,
-            'CHA': 0
-        },
-        'temp': {
-            'STR': 0,
-            'DEX': 0,
-            'CON': 0,
-            'INT': 0,
-            'WIS': 0,
-            'CHA': 0
-        },
-
-    },
-    'Movement': {
-        'Base': 0,
-        'Fly': 0,
-        'Swim': 0,
-        'Climb': 0,
-        'Burrow': 0
-    },
-    'Feats': [],
-    'Special_Abilities' : {
-        'Abilities': [],
-        'Class_Features': []
-    },
-    'Spells': {
-        'Known': {
-        },
-        'Prepared': {
-        }
-    }
-}
-
 // CharacterSheet component
 var CharacterSheet = React.createClass({
     getInitialState() {
@@ -90,6 +33,10 @@ var CharacterSheet = React.createClass({
             temp_mods: calculateTempModifiers(temp_adjustments, base_scores),
             character: character
         }
+    },
+    deselectCharacter() {
+        this.saveCharacter();
+        this.props.deselectCharacter();
     },
     updateAbilityScores(name, score) {
         let character = Object.assign({}, this.state.character);
@@ -130,42 +77,42 @@ var CharacterSheet = React.createClass({
            temp_mods: calculateTempModifiers(adjustments, base_scores)
         });
     },
+    saveCharacter(){
+        this.props.updateCharacter(this.state.character);
+    },
     componentWillMount(){
         // use this function for AJAX
 
     },
+    componentWillUnmount(){
+
+    },
     render(){
         return (
-            <div className="app-wrapper">
-                <div className="flex-item" style={{margin:20}}>
-                    <div className="flex-container">
-                        <div className="flex-item">
-                                <Description characterName={this.state.character["Name"]}
-                                    description={this.state.character["Description"]}
-                                    levels={this.state.character['Levels']['Class_Levels']}
-                                    updateName={this.updateName}
-                                    updateDescription={this.updateDescription}
-                                />
-                        </div>
+            <div className="container">
+                <div className="row">
+                    <Description characterName={this.state.character["Name"]}
+                        description={this.state.character["Description"]}
+                        levels={this.state.character['Levels']['Class_Levels']}
+                        updateName={this.updateName}
+                        updateDescription={this.updateDescription}
+                    />
+                </div>
+                <div className="row">
+                    <div className="col-xs-12 col-md-6">
+                    <Abilities abilityScores={this.state.character["Ability_Scores"]["base"]}
+                               abilityMods={this.state.ability_mods}
+                               tempAdjustments={this.state.character["Ability_Scores"]["temp"]}
+                               tempMods={this.state.temp_mods}
+                               updateBase={this.updateAbilityScores}
+                               updateTemp={this.updateTempAdjustments}
+                    />
                     </div>
                 </div>
                 <div className="flex-item">
                     <div className="flex-container">
                         <div className="flex-item">
-                            <Abilities abilityScores={this.state.character["Ability_Scores"]["base"]}
-                                       abilityMods={this.state.ability_mods}
-                                       tempAdjustments={this.state.character["Ability_Scores"]["temp"]}
-                                       tempMods={this.state.temp_mods}
-                                       updateBase={this.updateAbilityScores}
-                                       updateTemp={this.updateTempAdjustments}
-                            />
-                        </div>
-                    </div>
-                </div>
-                <div className="flex-item">
-                    <div className="flex-container">
-                        <div className="flex-item">
-                            <button type="button" className="btn btn-info btn-md" onClick={ this.props.deselectCharacter }>
+                            <button type="button" className="btn btn-info btn-md" onClick={ this.deselectCharacter }>
                                 <span className="glyphicon glyphicon-transfer"></span> Switch Characters
                             </button>
                         </div>

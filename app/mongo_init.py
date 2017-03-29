@@ -47,9 +47,16 @@ loki_char = {
         'Hair': 'bald',
         'Eyes': 'blue'
      },
+    'Status': {
+        'HP': 0,
+        'HD': 0,
+        'DR': {},
+        'Effects': {}
+    }
     'Levels': {
         'Exp': 0,
-        'Class_Levels': {'Fighter': 1}
+        'Class_Levels': {'Fighter': 1},
+        'Character_Level': 1
     },
     'Ability_Scores': {
         'base': {

@@ -3,22 +3,23 @@
     <style>
         .flex-container {
             display: flex;
-            background-color: #f8efc0;
+            background-color: #ffffff;
             flex-direction: row;
             justify-content: space-around;
-            flex-wrap: wrap;
         }
 
+        /*noinspection ALL*/
         .flex-item {
             background-color: lightgrey;
+            flex-shrink: 0;
+            flex-grow: 2;
         }
 
         .flex-container-col {
             display: flex;
-            background-color: #f8efc0;
+            background-color: #ffffff;
             flex-direction: column;
             justify-content: space-between;
-            flex-wrap: wrap;
         }
 
         .app-wrapper {
@@ -28,9 +29,31 @@
             justify-content: flex-start;
             flex-wrap: wrap;
         }
-        body {
-            font-size: 3.2vw;
+
+        .small-item {
+            flex-grow: 1;
+            flex-shrink: 2;
         }
+
+        .flex-wrap {
+            flex-wrap: wrap;
+        }
+
+        .help-block {
+            text-align: center;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 3.0vw;
+            }
+            input {
+                width: 10.0vw
+            }
+        }
+
     </style>
     <!--{% for character in characters %}
         <a> {{ character["Name"] }} </a>

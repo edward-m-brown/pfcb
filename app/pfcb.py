@@ -4,7 +4,7 @@ from flask.ext.login import LoginManager, login_user, logout_user, login_require
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import LoginForm, SignupForm
 from user import User
-from json import dumps
+from json import dumps, loads
 
 app = Flask(__name__)
 app.debug = True
@@ -14,12 +14,7 @@ with app.app_context():
 app.config["WTF_CSRF_ENABLED"] = True
 app.config["SECRET_KEY"] = 'harriet_the_spy'
 app.config["DB_NAME"] = 'pfcb'
-app.config["DATABASE"] = db
-app.config["SPELLS_COLLECTION"] = db.spells
-app.config["CLASSES_COLLECTION"] = db.classes
-app.config["SKILLS_COLLECTION"] = db.skills
-app.config["FEATS_COLLECTION"] = db.feats
-app.config["USERS_COLLECTION"] = db.users
+
 app.config["CHARACTERS_COLLECTION"] = db.characters
 app.config["SETTINGS_COLLECTION"] = db.settings
 app.config["DEBUG"] = True
@@ -30,7 +25,7 @@ login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(username):
-    user = app.config['USERS_COLLECTION'].find_one({"username": username})
+    user = db.users.find_one({"username": username})
     if not user:
         return None
     return User(user['username'])
@@ -44,7 +39,7 @@ def index():
 def login():
     form = LoginForm()
     if request.method == 'POST' and form.validate_on_submit():
-        user = app.config["USERS_COLLECTION"].find_one({"username": form.username.data})
+        user = db.users.find_one({"username": form.username.data})
         if user and User.validate_login(user['password'], form.password.data):
             user_obj = User(user['username'])
             login_user(user_obj)
@@ -92,19 +87,9 @@ def show_collection(collection_name):
 @app.route('/character_builder')
 @login_required
 def start_builder():
-    if current_user.is_active:
-        username = current_user.get_id()
-        user = app.config["USERS_COLLECTION"].find_one({"username": username})
-        if user:
-            characters = user["characters"]
-            return render_template('characters.html', characters = characters)
-        else:
-            flash("User %s does not exist! You need to <a href='/signup'> signup</a>!" % username, category = 'error')
-            return redirect(url_for('signup'))
-    else:
-        flash("No active user! You need to <a href='/login'> login</a>!", category = 'error')
-        return redirect(url_for('login'))
-
+    user = get_current_user()
+    if user:
+        return render_template('characters.html', characters = user['characters'])
 
 
 @app.route('/<collection_name>/<document_name>')
@@ -123,21 +108,40 @@ def show_document(collection_name, document_name):
 @app.route('/get-user-characters')
 @login_required
 def characters():
-    if current_user.is_active:
-        username = current_user.get_id()
-        user = app.config["USERS_COLLECTION"].find_one({"username": username})
-        if user:
-            return dumps(user["characters"])
-        else:
-            flash("User %s does not exist! You need to <a href='/signup'> signup</a>!" % username, category = 'error')
-            return redirect(url_for('signup'))
+    user = get_current_user()
+    if type(user) is dict:
+        return dumps(user['characters'])
     else:
-        flash("No active user! You need to <a href='/login'> login</a>!", category = 'error')
-        return redirect(url_for('login'))
+        return user
 
-@app.route('/assets/<asset_name>')
-def serve_asset(asset_name):
-    return url_for('static', filename='assets/' + asset_name)
+
+@app.route('/get-base-classes')
+@login_required
+def base_classes():
+    b_classes = []
+    for doc in db.classes.find(fields={"_id": False}):
+        b_classes.append(doc)
+    return dumps(b_classes)
+    # return dumps(b_classes)
+
+
+@app.route('/save-characters', methods=['PUT'])
+@login_required
+def save_character():
+    user = get_current_user()
+    data = request.get_json()
+    if type(user) is dict:
+        # attempt to save character data
+        response = db.users.find_and_modify(
+            {"username": user["username"]},
+            {"$set": {"characters": data}},
+            full_response = True
+        )
+        print(repr(response))
+        if response["ok"] > 0:
+            return dumps(response["value"]["characters"])
+    else:
+        return user
 
 
 # helpers
@@ -146,6 +150,20 @@ def collection_in_db(collection_name):
         flash("Could not view collection %s" % collection_name, category = 'error')
         return False
     return True
+
+def get_current_user():
+    if current_user.is_active:
+        username = current_user.get_id()
+        user = db.users.find_one({"username": username})
+        if user: return user
+        else:
+            flash("User does not exist! You need to <a href='/signup'> signup</a>!", category='error')
+            return redirect(url_for('signup'))
+    else:
+        flash("No active user! You need to <a href='/login'> login</a>!", category='error')
+        return redirect(url_for('login'))
+
+
 
 
 if __name__ == '__main__':

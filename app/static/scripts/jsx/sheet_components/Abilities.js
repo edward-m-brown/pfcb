@@ -25,64 +25,58 @@ var Abilities = React.createClass({
        let temp_adjustments = this.props.tempAdjustments;
        let temp_mods = this.props.tempMods;
        return(
-           <div className="flex-container-col" style={{width: 600}}>
-               <div className="flex-item">
-                   <div className="flex-container">
-                       <div className="flex-item">Ability Name</div>
-                       <div className="flex-item">Ability Score</div>
-                       <div className="flex-item">Ability Modifier</div>
-                       <div className="flex-item">Temp. Adjustment</div>
-                       <div className="flex-item">Temp. Modifier</div>
-                   </div>
-               </div>
-               <div className="flex-item">
+           <div>
+               <h1 style={{textAlign: "center"}}> Abilities </h1>
+               <table className="table">
+                   <tr>
+                       <th>Ability Name</th>
+                       <th>Ability Score</th>
+                       <th>Ability Modifier</th>
+                       <th>Temp. Adjustment</th>
+                       <th>Temp. Modifier</th>
+                   </tr>
                    {
                        ["STR", "DEX", "CON", "INT", "WIS", "CHA"].map((key) =>{
                            return(
-                               <div className="flex-container">
+                               <tr>
                                    {/* Ability Name */}
-                                   <div className="flex-item">
+                                   <td>
                                        <ul className="list-unstyled">
                                            <li>{key}</li>
                                            <li><sub>{longNames[key]}</sub></li>
                                        </ul>
-                                   </div>
+                                   </td>
                                    {/* Ability Score */}
-                                   <div className="flex-item">
+                                   <td>
                                        <input type="number"
                                               value={ scores[key] }
                                               name={key}
                                               onChange={this.handleChange}
                                               alt="base"
                                        />
-                                   </div>
+                                   </td>
                                    {/* Ability Mod */}
-                                   <div className="flex-item">
+                                   <td style={{width: 50}}>
                                        <text>{ mods[key] >= 0? "+":"" }{ mods[key] }</text>
-                                   </div>
+                                   </td>
                                    {/* Temp. Adj */}
-                                   <div className="flex-item">
+                                   <td>
                                        <input type="number"
                                               value={ temp_adjustments[key] }
                                               name={key}
                                               onChange={this.handleChange}
                                               alt="temp"
                                        />
-                                   </div>
+                                   </td>
                                    {/* Temp. Mod */}
-                                   <div className="flex-item">
-                                       {
-                                           temp_adjustments[key] ?
-                                               <text>{ temp_mods[key] >= 0? "+":"" }{ temp_mods[key] }</text>
-                                               : <text>--</text>
-                                       }
-
-                                   </div>
-                               </div>
+                                   <td style={{width: 50}}>
+                                       <text>{ temp_mods[key] >= 0? "+":"" }{ temp_mods[key] }</text>
+                                   </td>
+                               </tr>
                            )
                        })
                    }
-               </div>
+               </table>
            </div>
        )
     }
