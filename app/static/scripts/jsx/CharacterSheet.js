@@ -6,7 +6,8 @@ import Description from './sheet_components/Description'
 function calculateAbilityModifiers(ability_scores) {
     let ability_mods = {};
     Object.keys(ability_scores).map((key) => {
-        ability_mods[key] = Math.floor((ability_scores[key] - 10)/2);
+        let score = ability_scores[key];
+        ability_mods[key] = score? Math.floor((score - 10)/2) : 0;
     });
     return ability_mods;
 }
@@ -14,8 +15,9 @@ function calculateAbilityModifiers(ability_scores) {
 function calculateTempModifiers(temp_adjustments, base_scores) {
     let temp_modifiers = {};
     Object.keys(temp_adjustments).map((key) => {
-        let adjustment = temp_adjustments[key]
-        temp_modifiers[key] = adjustment? Math.floor((base_scores[key] + temp_adjustments[key] - 10)/2) : 0
+        let adjustment = temp_adjustments[key];
+        let base_score = base_scores[key];
+        temp_modifiers[key] = adjustment && base_score? Math.floor((base_score + adjustment - 10)/2) : 0;
     });
     return temp_modifiers;
 }

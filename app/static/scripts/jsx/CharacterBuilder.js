@@ -22,12 +22,12 @@ const default_char = {
     },
     'Ability_Scores': {
         'base': {
-            'STR': 0,
-            'DEX': 0,
-            'CON': 0,
-            'INT': 0,
-            'WIS': 0,
-            'CHA': 0
+            'STR': 8,
+            'DEX': 8,
+            'CON': 8,
+            'INT': 8,
+            'WIS': 8,
+            'CHA': 8
         },
         'temp': {
             'STR': 0,

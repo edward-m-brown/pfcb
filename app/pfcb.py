@@ -44,7 +44,7 @@ def login():
             user_obj = User(user['username'])
             login_user(user_obj)
             flash("Logged in successfully!", category = 'success')
-            return redirect(request.args.get("next") or url_for("index"))
+            return redirect(request.args.get("next") or url_for("start_builder"))
         flash("Wrong username or password! Do you need to <a href='/signup'>Create an account</a>?", category = 'error')
     return render_template('login.html', title = 'login', form = form)
 
