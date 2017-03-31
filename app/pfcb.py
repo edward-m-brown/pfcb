@@ -12,7 +12,7 @@ with app.app_context():
     mongo = PyMongo(app)
     db = mongo.db
 app.config["WTF_CSRF_ENABLED"] = True
-app.config["SECRET_KEY"] = 'harriet_the_spy'
+app.config["SECRET_KEY"] = 'mongo_like_candy'
 app.config["DB_NAME"] = 'pfcb'
 
 app.config["CHARACTERS_COLLECTION"] = db.characters
@@ -118,9 +118,9 @@ def characters():
 @app.route('/get-base-classes')
 @login_required
 def base_classes():
-    b_classes = []
+    b_classes = {}
     for doc in db.classes.find(fields={"_id": False}):
-        b_classes.append(doc)
+        b_classes[doc["Name"]] = doc;
     return dumps(b_classes)
     # return dumps(b_classes)
 

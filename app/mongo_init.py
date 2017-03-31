@@ -52,7 +52,7 @@ loki_char = {
         'HD': 0,
         'DR': {},
         'Effects': {}
-    }
+    },
     'Levels': {
         'Exp': 0,
         'Class_Levels': {'Fighter': 1},
@@ -67,7 +67,17 @@ loki_char = {
             'WIS': 10,
             'CHA': 10
         },
+        # temporary adjustments should be stored, in case they persist between game sessions
         'temp': {
+            'STR': 0,
+            'DEX': 0,
+            'CON': 0,
+            'INT': 0,
+            'WIS': 0,
+            'CHA': 0
+        },
+        # racial bonuses/minuses
+        'racial': {
             'STR': 0,
             'DEX': 0,
             'CON': 0,

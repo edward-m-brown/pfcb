@@ -1,4 +1,4 @@
-
+import Levels from './Levels'
 let sizes = ["Fine", "Diminutive", "Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan", "Colossal"];
 let alignments = [
     "LG", "NG", "CG",
@@ -127,6 +127,11 @@ var Description = React.createClass({
                                 name="Eyes"
                                 onChange={this.updateDescription} />
                         <span id="eyes" className="help-block">Eyes</span>
+                    </div>
+                    <div className="flex-item">
+                        <Levels levels={this.props.levels}
+                                classes={this.props.baseClasses}
+                        />
                     </div>
                 </div>
             </div>

@@ -45,6 +45,10 @@
             margin-bottom: 0px;
         }
 
+        th, td {
+            padding: 5px;
+        }
+
         @media (max-width: 768px) {
             body {
                 font-size: 3.0vw;
@@ -55,9 +59,7 @@
         }
 
     </style>
-    <!--{% for character in characters %}
-        <a> {{ character["Name"] }} </a>
-    {% endfor %} -->
+
     <div id="character-builder"></div>
     <script src="{{ url_for('static', filename='bower_components/react/react.min.js') }}"></script>
     <script src="{{ url_for('static', filename='bower_components/react/react-dom.min.js') }}"></script>

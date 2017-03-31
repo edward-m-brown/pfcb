@@ -28,7 +28,7 @@ var Abilities = React.createClass({
            <div>
                <h1 style={{textAlign: "center"}}> Abilities </h1>
                <table className="table">
-                   <tr>
+                   <tr className="table-header">
                        <th>Ability Name</th>
                        <th>Ability Score</th>
                        <th>Ability Modifier</th>

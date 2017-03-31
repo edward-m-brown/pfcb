@@ -37,6 +37,14 @@ const default_char = {
             'WIS': 0,
             'CHA': 0
         },
+        'racial': {
+            'STR': 0,
+            'DEX': 0,
+            'CON': 0,
+            'INT': 0,
+            'WIS': 0,
+            'CHA': 0
+        }
 
     },
     'Movement': {
@@ -55,6 +63,10 @@ const default_char = {
         'Known': {
         },
         'Prepared': {
+        },
+        'Caster_Level': {
+            'arcane': 0,
+            'divine': 0
         }
     }
 }

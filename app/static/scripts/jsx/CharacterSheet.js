@@ -95,7 +95,8 @@ var CharacterSheet = React.createClass({
                 <div className="row">
                     <Description characterName={this.state.character["Name"]}
                         description={this.state.character["Description"]}
-                        levels={this.state.character['Levels']['Class_Levels']}
+                        levels={this.state.character['Levels']}
+                        baseClasses={this.props.baseClasses}
                         updateName={this.updateName}
                         updateDescription={this.updateDescription}
                     />
