@@ -1,73 +1,30 @@
-from pymongo import MongoClient
-from pymongo.collection import Collection
-import os, sys, traceback
-from datetime import datetime
-from werkzeug.security import generate_password_hash
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import rules_scrapers
-
-
-client = MongoClient()
-
-db = client.pfcb
-
-# Next, populate all the tables with scraped data
-spells = db.spells
-classes = db.classes
-feats = db.feats
-skills = db.skills
-rules_collections = [(spells, rules_scrapers.core_spells), (classes, rules_scrapers.core_classes),
-                    (feats, rules_scrapers.core_feats), (skills, rules_scrapers.core_skills)]
-for collection in rules_collections:
-    collection[0].remove() # clean old documents out
-    for key in collection[1]:
-        try: collection[0].insert(collection[1][key])
-        except: traceback.print_exc()
-# set up some initial users
-users_collection = db.users
-users = [
-    {"username": "Loki", "password": generate_password_hash('bunny101'), "characters": []},
-    {"username": "Bartleby", "password": generate_password_hash('demons666'), "characters": []}
-]
-users_collection.remove() # clear out the old users
-for user in users:
-    users_collection.insert(user) # populate some dummy users
-
-loki_char = {
-    'Name': 'Loki',
+const character_template = {
+    'Name': 'Unknown Hero',
     'Description' : {
-        'Alignment': 'Lawful Neutral',
-        'Deity': 'Loki',
-        'Race': 'Human',
-        'Size': 'Medium',
-        'Gender': 'Male',
-        'Age': 2000,
-        'Height': '5ft. 9in.',
-        'Weight': '200lbs.',
-        'Hair': 'bald',
-        'Eyes': 'blue'
-     },
-    'Status': {
-        'HP': 0,
-        'HD': 0,
-        'DR': {},
-        'Effects': {}
+        'Alignment': null,
+        'Deity': 'N/A',
+        'Race': null,
+        'Size': null,
+        'Gender': null,
+        'Age': 0,
+        'Height': '',
+        'Weight': '',
+        'Hair': '',
+        'Eyes': ''
     },
     'Levels': {
         'Exp': 0,
-        'Class_Levels': {'Fighter': 1},
-        'Character_Level': 1
+        'Class_Levels': {}
     },
     'Ability_Scores': {
         'base': {
-            'STR': 10,
-            'DEX': 10,
-            'CON': 10,
-            'INT': 10,
-            'WIS': 10,
-            'CHA': 10
+            'STR': 8,
+            'DEX': 8,
+            'CON': 8,
+            'INT': 8,
+            'WIS': 8,
+            'CHA': 8
         },
-        # temporary adjustments should be stored, in case they persist between game sessions
         'temp': {
             'STR': 0,
             'DEX': 0,
@@ -76,7 +33,6 @@ loki_char = {
             'WIS': 0,
             'CHA': 0
         },
-        # racial bonuses/minuses
         'racial': {
             'STR': 0,
             'DEX': 0,
@@ -85,16 +41,17 @@ loki_char = {
             'WIS': 0,
             'CHA': 0
         }
+
     },
     'Movement': {
-        'Base': 30,
-        'Fly': 60,
-        'Swim': 15,
-        'Climb': 15,
+        'Base': 0,
+        'Fly': 0,
+        'Swim': 0,
+        'Climb': 0,
         'Burrow': 0
     },
     'Feats': [],
-    'Special_Features' : {
+    'Special_Abilities' : {
         'Abilities': [],
         'Class_Features': []
     },
@@ -102,6 +59,10 @@ loki_char = {
         'Known': {
         },
         'Prepared': {
+        },
+        'Caster_Level': {
+            'arcane': 0,
+            'divine': 0
         }
     },
     'Skills': {
@@ -198,41 +159,74 @@ loki_char = {
     }
 }
 
-users_collection.update({"username": "Loki"}, {"$push": {"characters": loki_char}})
+const exp_table = {
+    'slow': {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+        6: 0,
+        7: 0,
+        8: 0,
+        9: 0,
+        10: 0,
+        11: 0,
+        12: 0,
+        13: 0,
+        14: 0,
+        15: 0,
+        16: 0,
+        17: 0,
+        18: 0,
+        19: 0,
+        20: 0
 
+    }, 'medium': {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+        6: 0,
+        7: 0,
+        8: 0,
+        9: 0,
+        10: 0,
+        11: 0,
+        12: 0,
+        13: 0,
+        14: 0,
+        15: 0,
+        16: 0,
+        17: 0,
+        18: 0,
+        19: 0,
+        20: 0
 
+    }, 'fast': {
+        1: 0,
+        2: 1300,
+        3: 3300,
+        4: 6000,
+        5: 10000,
+        6: 15000,
+        7: 23000,
+        8: 34000,
+        9: 50000,
+        10: 71000,
+        11: 105000,
+        12: 145000,
+        13: 210000,
+        14: 295000,
+        15: 425000,
+        16: 600000,
+        17: 850000,
+        18: 1200000,
+        19: 1700000,
+        20: 2400000
+    }
 
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default character_template;

@@ -27,7 +27,7 @@ var CharacterSheet = React.createClass({
     getInitialState() {
         // CharacterSheet state is primarily for storing bonuses calculated within child components which
         // will be needed by multiple other child components.
-        let character = Object.assign({}, this.props.character);
+        let character = $.extend(true, {}, this.props.character);
         let base_scores = Object.assign({}, character["Ability_Scores"]["base"]); // avoids mutation
         let temp_adjustments = Object.assign({}, character["Ability_Scores"]["temp"]); // avoids mutation
         return {
@@ -41,7 +41,7 @@ var CharacterSheet = React.createClass({
         this.props.deselectCharacter();
     },
     updateAbilityScores(name, score) {
-        let character = Object.assign({}, this.state.character);
+        let character = $.extend(true, {}, this.state.character);
         let scores = character["Ability_Scores"]["base"];
         scores[name] = score;
         console.log("updateAbilityScores: ", name, score);
@@ -50,7 +50,7 @@ var CharacterSheet = React.createClass({
         this.setTempModifiers(this.state.character["Ability_Scores"]["temp"], scores); // always update temp mods
     },
     updateTempAdjustments(name, adjustment) {
-        let character = Object.assign({}, this.state.character);
+        let character = $.extend(true, {}, this.state.character);
         let adjustments = character["Ability_Scores"]["temp"];
         adjustments[name] = adjustment;
         console.log("updateTempAdjustments: ", name, adjustment);
@@ -58,16 +58,32 @@ var CharacterSheet = React.createClass({
         this.setTempModifiers(adjustments, this.state.character["Ability_Scores"]["base"]);
     },
     updateName(name) {
-        let character = Object.assign({}, this.state.character);
+        let character = $.extend(true, {}, this.state.character);
         character["Name"] = name;
         console.log("updateName: ", name);
         this.setState({character: character});
     },
     updateDescription(key, value) {
-        let character = Object.assign({}, this.state.character);
+        let character = $.extend(true, {}, this.state.character);
         character["Description"][key] = value;
         console.log("updateDescription: ", key, value);
         this.setState({character: character});
+    },
+    updateClassLevels(className, level){
+        let character = $.extend(true, {}, this.state.character);
+        character['Levels']['Class_Levels'][className] = level > 0? level: 1;
+        this.setState({character: character});
+    },
+    removeClass(className) {
+        let character = $.extend(true, {}, this.state.character);
+        delete character['Levels']['Class_Levels'][className];
+        this.setState({character: character});
+    },
+    updateExp(exp) {
+        let character = $.extend(true, {}, this.state.character);
+        character['Levels']['Exp'] = exp;
+        this.setState({character: character});
+
     },
     setAbilityModifiers(scores){
         this.setState({
@@ -97,18 +113,21 @@ var CharacterSheet = React.createClass({
                         description={this.state.character["Description"]}
                         levels={this.state.character['Levels']}
                         baseClasses={this.props.baseClasses}
-                        updateName={this.updateName}
+                        updateClassLevels={this.updateClassLevels}
                         updateDescription={this.updateDescription}
+                        updateExp={this.updateExp}
+                        updateName={this.updateName}
+                        removeClass={this.removeClass}
                     />
                 </div>
                 <div className="row">
                     <div className="col-xs-12 col-md-6">
                     <Abilities abilityScores={this.state.character["Ability_Scores"]["base"]}
-                               abilityMods={this.state.ability_mods}
-                               tempAdjustments={this.state.character["Ability_Scores"]["temp"]}
-                               tempMods={this.state.temp_mods}
-                               updateBase={this.updateAbilityScores}
-                               updateTemp={this.updateTempAdjustments}
+                        abilityMods={this.state.ability_mods}
+                        tempAdjustments={this.state.character["Ability_Scores"]["temp"]}
+                        tempMods={this.state.temp_mods}
+                        updateBase={this.updateAbilityScores}
+                        updateTemp={this.updateTempAdjustments}
                     />
                     </div>
                 </div>

@@ -46,6 +46,8 @@ var Description = React.createClass({
                         </select>
                         <span id="alignment" className="help-block">Alignment</span>
                     </div>
+                    {/*Change this to incorporate some actual data for Races. Either from backend or simple
+                        structures madein the frontend, down't matter.*/}
                     <div className="flex-item small-item">
                         <select  className="form-control" aria-describedby="race"
                                  name="Race"
@@ -131,7 +133,9 @@ var Description = React.createClass({
                     <div className="flex-item">
                         <Levels levels={this.props.levels}
                                 classes={this.props.baseClasses}
-                        />
+                                removeClass={this.props.removeClass}
+                                updateClassLevels={this.props.updateClassLevels}
+                                updateExp={this.props.updateExp}/>
                     </div>
                 </div>
             </div>

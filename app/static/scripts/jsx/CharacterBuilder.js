@@ -1,75 +1,7 @@
 var $ = require('jquery');
 import CharacterSheet from './CharacterSheet'
+import character_template from './base_components/helpers'
 
-// helpers
-const default_char = {
-    'Name': 'Unknown Hero',
-    'Description' : {
-        'Alignment': null,
-        'Deity': 'N/A',
-        'Race': null,
-        'Size': null,
-        'Gender': null,
-        'Age': 0,
-        'Height': '',
-        'Weight': '',
-        'Hair': '',
-        'Eyes': ''
-    },
-    'Levels': {
-        'Exp': 0,
-        'Class_Levels': {}
-    },
-    'Ability_Scores': {
-        'base': {
-            'STR': 8,
-            'DEX': 8,
-            'CON': 8,
-            'INT': 8,
-            'WIS': 8,
-            'CHA': 8
-        },
-        'temp': {
-            'STR': 0,
-            'DEX': 0,
-            'CON': 0,
-            'INT': 0,
-            'WIS': 0,
-            'CHA': 0
-        },
-        'racial': {
-            'STR': 0,
-            'DEX': 0,
-            'CON': 0,
-            'INT': 0,
-            'WIS': 0,
-            'CHA': 0
-        }
-
-    },
-    'Movement': {
-        'Base': 0,
-        'Fly': 0,
-        'Swim': 0,
-        'Climb': 0,
-        'Burrow': 0
-    },
-    'Feats': [],
-    'Special_Abilities' : {
-        'Abilities': [],
-        'Class_Features': []
-    },
-    'Spells': {
-        'Known': {
-        },
-        'Prepared': {
-        },
-        'Caster_Level': {
-            'arcane': 0,
-            'divine': 0
-        }
-    }
-}
 
 function throw_error(message) {
     throw new Error(message);
@@ -128,7 +60,7 @@ var CharacterBuilder = React.createClass({
         if(!confirm("Do you really want to delete the character " + event.target.name + "?"))
             return
         let index = parseInt(event.target.value);
-        let characters = Object.assign([], this.state.characters);
+        let characters = $.extend(true, [], this.state.characters);
         if(index != 0 && index != characters.length - 1){
             characters = characters.slice(0,index).concat(characters.slice(index, characters.length-1));
         } else if(index == characters.length - 1) {
@@ -142,12 +74,12 @@ var CharacterBuilder = React.createClass({
     addCharacter: function(event) {
         // function for starting a new character sheet
         console.log(event.target)
-        let characters = Object.assign([], this.state.characters);
-        characters.push(Object.assign({}, default_char));
+        let characters = $.extend(true, [], this.state.characters);
+        characters.push($.extend(true, {}, character_template));
         this.setState({characters: characters});
     },
     updateCharacter(character, index=this.state.char_index) {
-        let characters = Object.assign([], this.state.characters);
+        let characters = $.extend(true, [], this.state.characters);
         index >= 0
             ? characters[index] = character
             : throw_error("char_index not set!");
