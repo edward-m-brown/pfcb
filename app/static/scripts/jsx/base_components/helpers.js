@@ -44,29 +44,20 @@ const character_template = {
 
     },
     'Movement': {
-        'Base': 0,
+        'Base Speed': 30,
+        'With Armor': 30,
         'Fly': 0,
-        'Swim': 0,
-        'Climb': 0,
+        'Swim': 15,
+        'Climb': 15,
         'Burrow': 0
     },
+    'BAB': 0,
     'Feats': [],
     'Special_Abilities' : {
         'Abilities': [],
         'Class_Features': []
     },
-    'Spells': {
-        'Known': {
-        },
-        'Prepared': {
-        },
-        'Caster_Level': {
-            'arcane': 0,
-            'divine': 0
-        }
-    },
     'Skills': {
-        'Class': [],
         'Total_Ranks': 0,
         'Skill_Table': {
             'Acrobatics' : 0,
@@ -156,7 +147,28 @@ const character_template = {
             'Swim' : 0,
             'Use Magic Device' : 0
         }
+    },
+    'Spells': {
+        'Known': {
+        },
+        'Prepared': {
+        },
+        'Per_Day': {
+        },
+        'Caster_Level': {
+            'arcane': 0,
+            'divine': 0
+        }
+    },
+    'Status': {
+        'HP': 0,
+        'Damage': 0,
+        'Temp': 0,
+        'Nonlethal': 0,
+        'DR': 0,
+        'Effects': {}
     }
+
 }
 
 const exp_table = {

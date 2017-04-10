@@ -101,8 +101,54 @@ var CharacterBuilder = React.createClass({
             }
         });
     },
+    makeRows(characters) {
+        return (characters.map(function(character, index) {
+            return (
+                <tr>
+                    <td>{ character["Name"] }</td>
+                    <td>{ character["Description"]["Race"] }</td>
+                    <td>{ character["Description"]["Alignment"] }</td>
+                    <td>
+                        { Object.keys(character["Levels"]["Class_Levels"]).map(
+                            (className, index) => {
+                                return (
+                                    <span>
+                                        <b>{className}: </b>
+                                        {character["Levels"]["Class_Levels"][className]}
+                                        {Object.keys(character["Levels"]["Class_Levels"])[index + 1] ? ";" : ""}
+                                    </span>
+                                )
+                            }
+                        )}
+                    </td>
+                    <td>
+                        <button value={index}
+                                onClick={this.selectCharacter}>Edit
+                        </button>
+                    </td>
+                    <td>
+                        <button value={index} name={character["Name"]}
+                                onClick={this.deleteCharacter}> Delete
+                        </button>
+                    </td>
+                </tr>
+            )
+        }, this))
+    },
+    makeTable(){
+        return(
+            <table className="table table-responsive">
+                <tr>
+                    <th>Name</th>
+                    <th>Race</th>
+                    <th>Alignment</th>
+                    <th>Levels</th>
+                </tr>
+                {this.makeRows(this.state.characters)}
+            </table>
+        );
+    },
     render: function() {
-        let that = this;
         if(this.state.cur_char){
             return(
                 <div>
@@ -119,32 +165,7 @@ var CharacterBuilder = React.createClass({
                     Select a character<br/>
                     {
                         this.state.characters.length
-                            ? this.state.characters.map(function(character, index) {
-                                return (
-                                        <table className="table table-striped">
-                                            <tr>
-                                                <th>Name</th>
-                                                {Object.keys(character["Description"]).map(function(key) {
-                                                    return <th>{ key }</th>
-                                                })}
-                                            </tr>
-                                            <tr>
-                                                <td>{ character["Name"] }</td>
-                                                {Object.keys(character["Description"]).map(function(key) {
-                                                    return <td>{ character["Description"][key] }</td>
-                                                })}
-                                                <td>
-                                                    <button value={index}
-                                                            onClick={that.selectCharacter}>Edit</button>
-                                                </td>
-                                                <td>
-                                                    <button value={index} name={character["Name"]}
-                                                            onClick={that.deleteCharacter}> Delete </button>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                );
-                            })
+                            ? this.makeTable()
 
                             : <h6>No Characters Loaded</h6>
                     }

@@ -26,7 +26,7 @@ var Abilities = React.createClass({
        let temp_mods = this.props.tempMods;
        return(
            <div>
-               <h1 style={{textAlign: "center"}}> Abilities </h1>
+               <h2 style={{textAlign: "center"}}> Abilities </h2>
                <table className="table">
                    <tr className="table-header">
                        <th>Ability Name</th>

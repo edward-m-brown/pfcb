@@ -11,21 +11,17 @@ var Manager = React.createClass({
             info: ''
         }
     },
-    add(e) {
-        console.log("add: " + e.target.name)
-        this.props.add(e.target.name);
-    },
     componentWillMount(){
         // ajax here, if needed
     },
     resetState() {
         this.setState({
             info: ''
-        })
+        });
     },
     setInfo(e) {
         this.setState({
-            info: e.target.name
+            info: e.target.name? e.target.name : e.target.dataset.name
         })
     },
     render() {
@@ -36,8 +32,16 @@ var Manager = React.createClass({
             switch(managerName) {
                 case 'classManager':
                     return (
-                        <input type="number" value={objs[objName]} name={objName}
-                               onChange={that.props.update} style={{width: 40}}/>
+                        <div>
+                            <div className="col-xs-5 col-sm-4 col-md-2">
+                                <b>{objName}:</b>
+                            </div>
+                            <div className="col-xs-1 col-sm-1 col-md-1">
+                                <input type="number" value={objs[objName]} name={objName} className=""
+                                    onChange={that.props.update} style={{width: 40}}/>
+                            </div>
+                        </div>
+
                     )
             }
             
@@ -53,29 +57,43 @@ var Manager = React.createClass({
                             <h4 className="modal-title" id={this.props.labelName}>PFCB {this.props.labelName} Manager</h4>
                         </div>
                         <div className="modal-body">
+                            <div className="container">
                             {this.state.info
-                                ? <Info objects={this.props.dbObjects}
-                                        infoFor={this.state.info}/>
-                                : <ul className="list-unstyled">
-                                    {names.map((name) => {
-                                        return (
-                                            <li>
-                                                {name}: {listObjects(this.props.managerName, name, objects)}
-                                                <button name={name} onClick={this.props.remove}>Remove</button>
-                                                <button name={name} onClick={this.setInfo}>Info</button>
-                                            </li>
-                                        )
-                                    }, this)}
-                                </ul>
-                            }
+                                    ? <Info objects={this.props.dbObjects} infoFor={this.state.info}
+                                            setInfo={this.setInfo} labelName={this.props.labelName}/>
+                                    : <ul className="list-unstyled">
+                                        {names.map((name) => {
+                                            return (
+                                                <li className="row">
+                                                    {/* Probably want to re-think how this little section is populated. */}
+                                                    {listObjects(this.props.managerName, name, objects)}
+                                                    <button name={name} onClick={this.props.remove}
+                                                            className="col-xs-2 col-sm-1 col-md-1"
+                                                            title={"Remove " + this.props.labelName}>
+                                                        <span className="glyphicon glyphicon-remove-sign" data-name={name}></span>
+                                                    </button>
+                                                    <button name={name} onClick={this.setInfo}
+                                                        className="col-xs-2 col-sm-1 col-md-1"
+                                                        title={"Show " + this.props.labelName + " Reference"}>
+                                                        <span className="glyphicon glyphicon-book" data-name={name}></span>
+                                                    </button>
+                                                </li>
+                                            )
+                                        }, this)}
+                                    </ul>
+                                }
+                            </div>
                             <hr/>
-                            <Search objects={this.props.dbObjects} setInfo={this.setInfo} add={this.add}/>
+                            <Search objects={this.props.dbObjects} setInfo={this.setInfo} add={this.props.add}
+                                labelName={this.props.labelName}/>
 
 
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.resetState}>Close</button>
-                            <button type="button" className="btn btn-primary" onClick={this.resetState}>Save changes</button>
+                            <button type="button" className="btn btn-default" data-dismiss="modal"
+                                onClick={this.resetState}>
+                                Close
+                            </button>
                         </div>
                     </div>
                 </div>

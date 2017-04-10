@@ -13,19 +13,18 @@ var Description = React.createClass({
         }
     },
     updateName(event) {
-        this.props.updateName(event.target.value)
+        this.props.updateCharacter('name', event.target.value);
     },
     updateDescription(event) {
         let value = event.target.type == "text" || event.target.type == "select-one"
             ? event.target.value
             : parseInt(event.target.value);
-        this.props.updateDescription(event.target.name, value)
+        this.props.updateCharacter('description', value, event.target.name)
     },
     render(){
-        let classNames = Object.keys(this.props.levels)
         return(
             <div className="flex-container-col col-xs-12">
-                <h1 className="col-md-12" style={{textAlign: "center"}}>Description</h1>
+                <h2 className="col-md-12" style={{textAlign: "center"}}>Description</h2>
                 <div className="flex-container flex-wrap">
                     <div className="flex-item">
                         <input  className="form-control" aria-describedby="name"
@@ -47,7 +46,7 @@ var Description = React.createClass({
                         <span id="alignment" className="help-block">Alignment</span>
                     </div>
                     {/*Change this to incorporate some actual data for Races. Either from backend or simple
-                        structures madein the frontend, down't matter.*/}
+                        structures made in the frontend, doesn't matter.*/}
                     <div className="flex-item small-item">
                         <select  className="form-control" aria-describedby="race"
                                  name="Race"
@@ -129,13 +128,6 @@ var Description = React.createClass({
                                 name="Eyes"
                                 onChange={this.updateDescription} />
                         <span id="eyes" className="help-block">Eyes</span>
-                    </div>
-                    <div className="flex-item">
-                        <Levels levels={this.props.levels}
-                                classes={this.props.baseClasses}
-                                removeClass={this.props.removeClass}
-                                updateClassLevels={this.props.updateClassLevels}
-                                updateExp={this.props.updateExp}/>
                     </div>
                 </div>
             </div>
