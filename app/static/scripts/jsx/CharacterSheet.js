@@ -3,6 +3,7 @@ import Abilities from './sheet_components/Abilities'
 import Description from './sheet_components/Description'
 import Levels from './sheet_components/Levels'
 import Movement from './sheet_components/Movement'
+import Status from './sheet_components/Status'
 
 // helpers
 function calculateAbilityModifiers(ability_scores) {
@@ -42,7 +43,7 @@ var CharacterSheet = React.createClass({
         this.saveCharacter();
         this.props.deselectCharacter();
     },
-    updateCharacter(updateType, value, objectKey='') {
+    updateCharacter(updateType, value, objectKey='', nestedKey='') {
         let character = $.extend(true, {}, this.state.character);
         switch(updateType) {
             case 'base_score': {
@@ -72,6 +73,10 @@ var CharacterSheet = React.createClass({
             }
             case 'remove_class': {
                 delete character['Levels']['Class_Levels'][value];
+                break;
+            }
+            case 'status': {
+                character['Status'][objectKey] = value;
                 break;
             }
             case 'temp_score': {
@@ -139,18 +144,23 @@ var CharacterSheet = React.createClass({
                         updateCharacter={this.updateCharacter}/>
                 </div>
                 <div className="row">
+                    <Abilities abilityScores={this.state.character["Ability_Scores"]["base"]}
+                        abilityMods={this.state.ability_mods}
+                        tempAdjustments={this.state.character["Ability_Scores"]["temp"]}
+                        tempMods={this.state.temp_mods}
+                        updateCharacter={this.updateCharacter}
+                        updateBase={this.updateAbilityScores}
+                        updateTemp={this.updateTempAdjustments}
+                    />
                     <div className="col-xs-12 col-md-6">
-                        <Abilities abilityScores={this.state.character["Ability_Scores"]["base"]}
-                            abilityMods={this.state.ability_mods}
-                            tempAdjustments={this.state.character["Ability_Scores"]["temp"]}
-                            tempMods={this.state.temp_mods}
-                            updateCharacter={this.updateCharacter}
-                            updateBase={this.updateAbilityScores}
-                            updateTemp={this.updateTempAdjustments}
-                        />
-                    </div>
-                    <div className="col-xs-12 col-md-6">
-                        <Movement movement={this.state.character['Movement']} updateCharacter={this.updateCharacter}/>
+                        <div className="row">
+                            <div className="col-xs-12 col-md-6">
+                                <Status status={this.state.character['Status']} updateCharacter={this.updateCharacter}/>
+                            </div>
+                            <div className="col-xs-12 col-md-6">
+                                <Movement movement={this.state.character['Movement']} updateCharacter={this.updateCharacter}/>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="row">

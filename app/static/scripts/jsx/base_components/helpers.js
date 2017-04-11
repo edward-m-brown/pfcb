@@ -49,7 +49,8 @@ const character_template = {
         'Fly': 0,
         'Swim': 15,
         'Climb': 15,
-        'Burrow': 0
+        'Burrow': 0,
+        'Temp Modifiers': ''
     },
     'BAB': 0,
     'Feats': [],
@@ -58,94 +59,407 @@ const character_template = {
         'Class_Features': []
     },
     'Skills': {
+        'Class': [],
         'Total_Ranks': 0,
         'Skill_Table': {
-            'Acrobatics' : 0,
-            'Appraise' : 0,
-            'Bluff' : 0,
-            'Climb' : 0,
+            'Acrobatics' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Appraise' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Bluff' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Climb' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
             'Craft' : {
-                'alchemy': 0,
-                'armor': 0,
-                'bows': 0,
-                'poison': 0,
-                'weapons': 0,
-                'traps': 0
+                'alchemy': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'armor': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'bows': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'poison': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'weapons': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'traps':{
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                }
             },
-            'Diplomacy' : 0,
-            'Disable Device' : 0,
-            'Disguise' : 0,
-            'Escape Artist' : 0,
-            'Fly' : 0,
-            'Handle Animal' : 0,
-            'Heal' : 0,
-            'Intimidate' : 0,
+            'Diplomacy' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Disable Device' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Disguise' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Escape Artist' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Fly' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Handle Animal' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Heal' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Intimidate' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
             'Knowledge' : {
-                'arcana' : 0,
-                'dungeoneering' : 0,
-                'engineering' : 0,
-                'geography' : 0,
-                'history' : 0,
-                'local' : 0,
-                'nature' : 0,
-                'nobility' : 0,
-                'planes' : 0,
-                'religion' : 0
+                'arcana' : {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'dungeoneering' : {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'engineering' : {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'geography' : {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'history' : {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'local' : {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'nature' : {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'nobility' : {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'planes' : {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'religion' :{
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                }
             },
-            'Linguistics' : 0,
-            'Perception' : 0,
+            'Linguistics' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Perception' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
             'Perform' : {
-                'act': 0,
-                'comedy': 0,
-                'dance': 0,
-                'keyboard instruments': 0,
-                'oratory': 0,
-                'perscussion instruments': 0,
-                'string instruments': 0,
-                'wind instruments': 0,
-                'sing': 0
+                'act': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'comedy': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'dance': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'keyboard instruments': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'oratory': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'perscussion instruments': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'string instruments': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'wind instruments': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'sing':{
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                }
             },
             'Profession' : {
-                'architect': 0,
-                'baker': 0,
-                'barrister': 0,
-                'brewer': 0,
-                'butcher': 0,
-                'clerk': 0,
-                'cook': 0,
-                'courtesan': 0,
-                'driver': 0,
-                'engineer': 0,
-                'farmer': 0,
-                'fisherman': 0,
-                'gambler': 0,
-                'gardener': 0,
-                'herbalist': 0,
-                'innkeeper': 0,
-                'librarian': 0,
-                'merchant': 0,
-                'midwife': 0,
-                'miller': 0,
-                'miner': 0,
-                'porter': 0,
-                'sailor': 0,
-                'scribe': 0,
-                'shepherd': 0,
-                'stable master': 0,
-                'master': 0,
-                'soldier': 0,
-                'tanner': 0,
-                'trapper': 0,
-                'woodcutter': 0
+                'architect': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'baker': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'barrister': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'brewer': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'butcher': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'clerk': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'cook': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'courtesan': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'driver': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'engineer': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'farmer': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'fisherman': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'gambler': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'gardener': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'herbalist': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'innkeeper': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'librarian': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'merchant': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'midwife': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'miller': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'miner': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'porter': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'sailor': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'scribe': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'shepherd': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'stable master': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'master': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'soldier': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'tanner': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'trapper': {
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                },
+                'woodcutter':{
+                    'ranks': 0,
+                    'class': false,
+                    'bonuses': {}
+                }
             },
-            'Ride' : 0,
-            'Sense Motive' : 0,
-            'Sleight of Hand' : 0,
-            'Spellcraft' : 0,
-            'Stealth' : 0,
-            'Survival' : 0,
-            'Swim' : 0,
-            'Use Magic Device' : 0
+            'Ride' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Sense Motive' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Sleight of Hand' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Spellcraft' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Stealth' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Survival' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Swim' : {
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            },
+            'Use Magic Device' :{
+                'ranks': 0,
+                'class': false,
+                'bonuses': {}
+            }
         }
     },
     'Spells': {
@@ -162,10 +476,10 @@ const character_template = {
     },
     'Status': {
         'HP': 0,
+        'Temp HP': 0,
         'Damage': 0,
-        'Temp': 0,
         'Nonlethal': 0,
-        'DR': 0,
+        'DR': {},
         'Effects': {}
     }
 

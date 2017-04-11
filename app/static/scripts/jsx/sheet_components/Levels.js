@@ -12,7 +12,7 @@ var Levels = React.createClass({
     },
     render(){
         return (
-            <div className="col-xs-12">
+            <div className="col-xs-12 bordered">
                 <h2 style={{textAlign: "center"}}> Character Levels </h2>
                 <Classes classes={this.props.classes} classLevels={this.props.levels['Class_Levels']}
                     update={this.updateClassLevels} remove={this.removeClass}/>

@@ -23,7 +23,7 @@ var Description = React.createClass({
     },
     render(){
         return(
-            <div className="flex-container-col col-xs-12">
+            <div className="flex-container-col col-xs-12 bordered">
                 <h2 className="col-md-12" style={{textAlign: "center"}}>Description</h2>
                 <div className="flex-container flex-wrap">
                     <div className="flex-item">

@@ -84,8 +84,9 @@ var Manager = React.createClass({
                                 }
                             </div>
                             <hr/>
-                            <Search objects={this.props.dbObjects} setInfo={this.setInfo} add={this.props.add}
-                                labelName={this.props.labelName}/>
+                            { this.props.noSearch ?'' :<Search objects={this.props.dbObjects} setInfo={this.setInfo} add={this.props.add}
+                                     labelName={this.props.labelName}/>}
+
 
 
                         </div>
