@@ -47,8 +47,7 @@ var Classes = React.createClass({
     },
     addClass(e) {
         let className = e.target.name? e.target.name : e.target.dataset.name;
-        if(!className)
-            return
+        if(!className) return;
         this.props.update(className, 1);
     },
     render() {

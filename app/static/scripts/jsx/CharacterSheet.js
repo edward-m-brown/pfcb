@@ -4,6 +4,7 @@ import Description from './sheet_components/Description'
 import Levels from './sheet_components/Levels'
 import Movement from './sheet_components/Movement'
 import Status from './sheet_components/Status'
+import Feats from './sheet_components/Feats'
 
 // helpers
 function calculateAbilityModifiers(ability_scores) {
@@ -23,6 +24,11 @@ function calculateTempModifiers(temp_adjustments, base_scores) {
         temp_modifiers[key] = adjustment && base_score? Math.floor((base_score + adjustment - 10)/2) : 0;
     });
     return temp_modifiers;
+}
+
+const featTemplate = {
+    'Name': '',
+    'Notes': ''
 }
 
 // CharacterSheet component
@@ -63,6 +69,13 @@ var CharacterSheet = React.createClass({
                 character['Levels']['Exp'] = value;
                 break;
             }
+            case 'feats': {
+                let feat = $.extend(true, {}, featTemplate);
+                feat['Name'] = value;
+                feat['Index'] = character['Feats'].length;
+                character['Feats'].push(feat);
+                break;
+            }
             case 'movement': {
                 character['Movement'][objectKey] = value;
                 break;
@@ -75,8 +88,17 @@ var CharacterSheet = React.createClass({
                 delete character['Levels']['Class_Levels'][value];
                 break;
             }
+            case 'remove_feat': {
+                character['Feats'].splice(value, 1);
+                break;
+            }
             case 'status': {
-                character['Status'][objectKey] = value;
+                if(nestedKey){
+                    character['Status'][objectKey][nestedKey] = value;
+                } else {
+                    character['Status'][objectKey] = value;
+                }
+
                 break;
             }
             case 'temp_score': {
@@ -85,8 +107,8 @@ var CharacterSheet = React.createClass({
                 this.setTempModifiers(adjustments, this.state.character["Ability_Scores"]["base"]);
                 break;
             }
-            case 'default': {
-                console.log('updateCharacter('+updateType+')')
+            default: {
+                console.log('updateCharacter(' + updateType + ')')
                 break;
             }
         }
@@ -121,7 +143,7 @@ var CharacterSheet = React.createClass({
         });
     },
     saveCharacter(){
-        this.props.updateCharacter(this.state.character);
+        this.props.saveCharacter(this.state.character);
     },
     componentWillMount(){
         // use this function for AJAX
@@ -150,26 +172,22 @@ var CharacterSheet = React.createClass({
                         tempMods={this.state.temp_mods}
                         updateCharacter={this.updateCharacter}
                         updateBase={this.updateAbilityScores}
-                        updateTemp={this.updateTempAdjustments}
-                    />
-                    <div className="col-xs-12 col-md-6">
-                        <div className="row">
-                            <div className="col-xs-12 col-md-6">
-                                <Status status={this.state.character['Status']} updateCharacter={this.updateCharacter}/>
-                            </div>
-                            <div className="col-xs-12 col-md-6">
-                                <Movement movement={this.state.character['Movement']} updateCharacter={this.updateCharacter}/>
-                            </div>
-                        </div>
-                    </div>
+                        updateTemp={this.updateTempAdjustments}/>
+                    <Status status={this.state.character['Status']} updateCharacter={this.updateCharacter}/>
+                    <Movement movement={this.state.character['Movement']} updateCharacter={this.updateCharacter}/>
                 </div>
                 <div className="row">
-                    <div className="col-md-4">
+                    <Feats dbFeats={this.props.feats} characterFeats={this.state.character['Feats']}
+                           updateCharacter={this.updateCharacter} />
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
                         <button type="button" className="btn btn-info btn-md" onClick={ this.deselectCharacter }>
                             <span className="glyphicon glyphicon-transfer"></span> Switch Characters
                         </button>
                     </div>
                 </div>
+
             </div>
         )
     }
