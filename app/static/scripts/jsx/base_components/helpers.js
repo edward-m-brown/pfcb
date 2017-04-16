@@ -476,8 +476,8 @@ const character_template = {
     },
     'Status': {
         'HP': 0,
-        'Temp HP': 0,
-        'Damage': 0,
+        'Temp': 0,
+        'Current': 0,
         'Nonlethal': 0,
         'DR': {},
         'Effects': {}

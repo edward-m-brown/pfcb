@@ -4,7 +4,8 @@ var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 
 gulp.task('build', function () {
-    return browserify({entries: './app/static/scripts/jsx/CharacterBuilder.js', extensions: ['.js'], debug: true})
+    return browserify({entries: 
+      ['./app/static/scripts/jsx/CharacterBuilder.js'], extensions: ['.js'], debug: true})
         .transform('babelify', {presets: ['es2015', 'react']})
         .bundle()
         .pipe(source('bundle.js'))
