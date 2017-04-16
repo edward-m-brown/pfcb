@@ -9,8 +9,8 @@ const Info = React.createClass({
         return (
             <div>
                 {this.props.setInfo
-                    ? <button onClick={this.props.setInfo} name="" title={"Back to " + this.props.labelName + " Manager"}>
-                        <span className="glyphicon glyphicon-circle-arrow-left"></span>
+                    ? <button onClick={this.props.setInfo} data-name="" title={"Back to " + this.props.labelName + " Manager"}>
+                        <span data-name="" className="glyphicon glyphicon-circle-arrow-left"/>
                       </button>
                     : ''}
 
