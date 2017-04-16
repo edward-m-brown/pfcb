@@ -26,7 +26,7 @@ const Movement = React.createClass({
     },
     render(){
         return (
-            <div className="flex-container-col col-xs-12 bordered">
+            <div className="flex-container-col col-xs-12 col-md-3 bordered">
                 <h2 className="col-md-12" style={{textAlign: "center"}}>Movement</h2>
                 <div className="flex-item flex-container flex-wrap bg-none">
                     {["Base Speed", "With Armor"].map((moveType)=>{

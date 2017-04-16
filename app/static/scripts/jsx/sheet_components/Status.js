@@ -1,12 +1,14 @@
 /**
  * Created by edward on 4/8/17.
  */
+
 const Status = React.createClass({
     getInitialState() {
         return {
             static_HP: true,
             adjustment: 0,
-            color: 'transparent'
+            color: 'transparent',
+            static_DR: true
         }
     },
     update(e) {
@@ -15,7 +17,11 @@ const Status = React.createClass({
             let e_val = parseInt(value);
             value = e_val;
         }
-        this.props.updateCharacter('status', value, e.target.name);
+        this.props.updateCharacter('status', value, e.target.name,
+            e.target.dataset ? e.target.dataset.name: null);
+    },
+    updateDR(e) {
+
     },
     updateAdjustment(e) {
         let value = parseInt(e.target.value);
@@ -53,20 +59,36 @@ const Status = React.createClass({
                             <input type="number" name="HP" value={hp} onChange={this.update}
                                 disabled={this.state.static_HP} style={{width: 60}} aria-describedby="Total"/>
                             <button onClick={()=>{this.setState({static_HP: !this.state.static_HP})}}
-                                    title={this.state.static_HP? "Edit HP": "Save HP"}>
+                                title={this.state.static_HP? "Edit HP": "Save HP"}>
                                 {this.state.static_HP
                                     ? <span className="glyphicon glyphicon-pencil"></span>
                                     :<span className="glyphicon glyphicon-floppy-save"></span>}
                             </button>
                         </div>
+                        {/* DR section needs work. Maybe launch a Manager for DR?*/}
                         <div className="flex-item" aria-describedby="DR">
                             <span id="DR" className="help-block" style={{textAlign: "left"}}>DR</span>
-                            {/* actual code for editing DR here */}
-                            <button onClick={()=>{this.setState({static_HP: !this.state.static_HP})}}
-                                    title={this.state.static_HP? "Edit DR": "Save DR"}>
-                                {this.state.static_HP
+                            {drKeys.map((overcomeBy)=>{
+                                return (
+                                    <div>
+                                        <text>{overcomeBy}</text>
+                                        /
+                                        <input type="number" value={dr[overcomeBy]} onChange={this.update}
+                                            name="DR" data-name={overcomeBy}/>
+                                    </div>
+                                )
+                            }, this)}
+                            {drKeys.length
+                                ? ''
+                                : <button>
+                                    <span className="glyphicon glyphicon-plus-sign"></span>
+                                  </button>}
+                            <button onClick={()=>{this.setState({static_DR: !this.state.static_DR})}}
+                                    title={this.state.static_DR? "Edit DR": "Save DR"}>
+                                {this.state.static_DR
                                     ? <span className="glyphicon glyphicon-pencil"></span>
                                     :<span className="glyphicon glyphicon-floppy-save"></span>}
+
                             </button>
                         </div>
                     </div>
