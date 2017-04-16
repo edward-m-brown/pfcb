@@ -49,7 +49,9 @@ loki_char = {
      },
     'Status': {
         'HP': 0,
-        'HD': 0,
+        'Temp': 0,
+        'Current': 0,
+        'Nonlethal': 0,
         'DR': {},
         'Effects': {}
     },
@@ -96,10 +98,8 @@ loki_char = {
     },
     'BAB': 0,
     'Feats': [],
-    'Special_Features' : {
-        'Abilities': [],
-        'Class_Features': []
-    },
+    'Abilities': [],
+    'Class_Features': [],
     'Spells': {
         'Known': {
         },
@@ -107,7 +107,6 @@ loki_char = {
         }
     },
     'Skills': {
-        'Class': [],
         'Total_Ranks': 0,
         'Skill_Table': {
             'Acrobatics' : {

@@ -31,7 +31,7 @@ const Feats = React.createClass({
     render() {
         let featNames = this.props.characterFeats.map((feat)=>{ return feat["Name"] });
         return (
-            <div className="col-md-6">
+            <div className="col-md-6 bordered">
                 <h2 style={{textAlign: "center"}}> Feats </h2>
                 {featNames.length
                     ?   <div>
@@ -51,7 +51,6 @@ const Feats = React.createClass({
                                             title="Show Feat Reference">
                                             <span className="glyphicon glyphicon-book" data-name={featName}/>
                                         </button>
-
                                     </div>
                                 )
                             })}

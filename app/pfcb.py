@@ -117,12 +117,19 @@ def characters():
 
 @app.route('/get-base-classes')
 @login_required
-def base_classes():
+def get_base_classes():
     b_classes = {}
     for doc in db.classes.find(fields={"_id": False}):
         b_classes[doc["Name"]] = doc;
     return dumps(b_classes)
-    # return dumps(b_classes)
+
+@app.route('/get-feats')
+@login_required
+def get_feats():
+    feats = {}
+    for doc in db.feats.find(fields={"_id": False}):
+        feats[doc["Name"]] = doc;
+    return dumps(feats)
 
 
 @app.route('/save-characters', methods=['PUT'])

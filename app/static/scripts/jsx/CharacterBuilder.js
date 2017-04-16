@@ -1,4 +1,4 @@
-var $ = require('jquery');
+var $ = require('../../bower_components/jquery/dist/jquery');
 import CharacterSheet from './CharacterSheet'
 import character_template from './base_components/helpers'
 
@@ -32,6 +32,13 @@ var CharacterBuilder = React.createClass({
             console.log("Data Loaded: " + classes)
             that.setState({
                base_classes: classes
+            });
+        });
+        $.get("/get-feats", function(feats){
+            feats = JSON.parse(feats);
+            console.log("Data Loaded: " + feats);
+            that.setState({
+                feats: feats
             });
         });
     },
@@ -78,7 +85,7 @@ var CharacterBuilder = React.createClass({
         characters.push($.extend(true, {}, character_template));
         this.setState({characters: characters});
     },
-    updateCharacter(character, index=this.state.char_index) {
+    saveCharacters(character, index=this.state.char_index) {
         let characters = $.extend(true, [], this.state.characters);
         index >= 0
             ? characters[index] = character
@@ -153,10 +160,10 @@ var CharacterBuilder = React.createClass({
             return(
                 <div>
                     <CharacterSheet character={this.state.cur_char}
-                                    updateCharacter={this.updateCharacter}
+                                    saveCharacter={this.saveCharacters}
                                     deselectCharacter={this.deselectCharacter}
                                     baseClasses={this.state.base_classes}
-                    />
+                                    feats={this.state.feats}/>
                 </div>
             )
         } else {

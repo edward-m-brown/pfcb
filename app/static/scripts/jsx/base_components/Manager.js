@@ -8,24 +8,29 @@ import Info from './Info'
 var Manager = React.createClass({
     getInitialState() {
         return {
-            info: ''
+            info: '',
+            hideSearch: false
         }
     },
     componentWillMount(){
         // ajax here, if needed
     },
     resetState() {
-        this.setState({
-            info: ''
-        });
+        this.setState({info: ''});
     },
     setInfo(e) {
+        let info = e.target.name? e.target.name : e.target.dataset.name;
         this.setState({
-            info: e.target.name? e.target.name : e.target.dataset.name
-        })
+            info: info
+        });
+    },
+    toggleSearch() {
+        this.setState({hideSearch: !this.state.hideSearch});
     },
     render() {
-        let names = Object.keys(this.props.objects);
+        let names = Array.isArray(this.props.objects)
+            ? this.props.objects.map((object)=>{return object["Name"]})
+            : Object.keys(this.props.objects);
         let objects = this.props.objects;
         let that = this;
         let listObjects = (managerName, objName, objs)=>{
@@ -43,6 +48,12 @@ var Manager = React.createClass({
                         </div>
 
                     )
+                case 'featManager':
+                    return (
+                        <div className="col-xs-6 col-sm-5 col-md-3">
+                            <b>{objName}</b>
+                        </div>
+                    );
             }
             
         }
@@ -57,38 +68,41 @@ var Manager = React.createClass({
                             <h4 className="modal-title" id={this.props.labelName}>PFCB {this.props.labelName} Manager</h4>
                         </div>
                         <div className="modal-body">
-                            <div className="container">
-                            {this.state.info
-                                    ? <Info objects={this.props.dbObjects} infoFor={this.state.info}
-                                            setInfo={this.setInfo} labelName={this.props.labelName}/>
-                                    : <ul className="list-unstyled">
-                                        {names.map((name) => {
-                                            return (
-                                                <li className="row">
-                                                    {/* Probably want to re-think how this little section is populated. */}
-                                                    {listObjects(this.props.managerName, name, objects)}
-                                                    <button name={name} onClick={this.props.remove}
+                            <div className="container col-xs-12" style={{padding: "10px"}}>
+                                {this.state.info
+                                        ? <Info objects={this.props.dbObjects} infoFor={this.state.info}
+                                                setInfo={this.setInfo} labelName={this.props.labelName}/>
+                                        : <ul className="list-unstyled">
+                                            {names.map((name, index) => {
+                                                return (
+                                                    <li className="row">
+                                                        {/* Probably want to re-think how this little section is populated. */}
+                                                        {listObjects(this.props.managerName, name, objects)}
+                                                        <button onClick={this.props.remove} data-name={name}
+                                                                data-index={index}
+                                                                className="col-xs-2 col-sm-1 col-md-1"
+                                                                title={"Remove " + this.props.labelName}>
+                                                            <span className="glyphicon glyphicon-remove-sign"
+                                                                data-name={name} data-index={index}/>
+                                                        </button>
+                                                        <button data-name={name} onClick={this.setInfo}
                                                             className="col-xs-2 col-sm-1 col-md-1"
-                                                            title={"Remove " + this.props.labelName}>
-                                                        <span className="glyphicon glyphicon-remove-sign" data-name={name}></span>
-                                                    </button>
-                                                    <button name={name} onClick={this.setInfo}
-                                                        className="col-xs-2 col-sm-1 col-md-1"
-                                                        title={"Show " + this.props.labelName + " Reference"}>
-                                                        <span className="glyphicon glyphicon-book" data-name={name}></span>
-                                                    </button>
-                                                </li>
-                                            )
-                                        }, this)}
-                                    </ul>
-                                }
+                                                            title={"Show " + this.props.labelName + " Reference"}>
+                                                            <span className="glyphicon glyphicon-book" data-name={name}/>
+                                                        </button>
+                                                    </li>
+                                                )
+                                            }, this)}
+                                        </ul>
+                                    }
                             </div>
-                            <hr/>
-                            { this.props.noSearch ?'' :<Search objects={this.props.dbObjects} setInfo={this.setInfo} add={this.props.add}
-                                     labelName={this.props.labelName}/>}
-
-
-
+                            <br/>
+                            <hr style={{border: "double"}}/>
+                            <button onClick={this.toggleSearch}>
+                                {this.state.hideSearch? "Show searchbar": "Hide searchbar"}
+                            </button>
+                            <Search objects={this.props.dbObjects} setInfo={this.setInfo} add={this.props.add}
+                                labelName={this.props.labelName} hideSearch={this.state.hideSearch}/>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-default" data-dismiss="modal"
