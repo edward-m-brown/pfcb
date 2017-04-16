@@ -1,4 +1,4 @@
-var $=require('jquery');
+var $=require('../../../bower_components/jquery/dist/jquery');
 var longNames = {
     "STR": "Strength",
     "DEX": "Dexterity",
