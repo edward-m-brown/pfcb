@@ -98,10 +98,8 @@ loki_char = {
     },
     'BAB': 0,
     'Feats': [],
-    'Special_Features' : {
-        'Abilities': [],
-        'Class_Features': []
-    },
+    'Abilities': [],
+    'Class_Features': [],
     'Spells': {
         'Known': {
         },
@@ -109,7 +107,6 @@ loki_char = {
         }
     },
     'Skills': {
-        'Class': [],
         'Total_Ranks': 0,
         'Skill_Table': {
             'Acrobatics' : {

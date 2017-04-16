@@ -54,12 +54,9 @@ const character_template = {
     },
     'BAB': 0,
     'Feats': [],
-    'Special_Abilities' : {
-        'Abilities': [],
-        'Class_Features': []
-    },
+    'Abilities': [],
+    'Class_Features': [],
     'Skills': {
-        'Class': [],
         'Total_Ranks': 0,
         'Skill_Table': {
             'Acrobatics' : {
@@ -481,7 +478,10 @@ const character_template = {
         'Nonlethal': 0,
         'DR': {},
         'Effects': {}
-    }
+    },
+    'Attacks': [
+        {'atk_mod': ['STR'], 'dmg_mod': ['STR']}
+    ]
 
 }
 
