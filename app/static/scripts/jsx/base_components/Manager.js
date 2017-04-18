@@ -1,7 +1,3 @@
-/**
- * Should maybe take the modal stuff out ot ClassManager and put it here. Will need very similar components for
- * Feats, Spells, Equipment, Gear, etc.
- */
 import Search from './Search'
 import Info from './Info'
 
@@ -19,13 +15,15 @@ var Manager = React.createClass({
         this.setState({info: ''});
     },
     setInfo(e) {
-        let info = e.target.name? e.target.name : e.target.dataset.name;
-        this.setState({
-            info: info
-        });
+        this.setState({info: e.target.name? e.target.name : e.target.dataset.name});
     },
     toggleSearch() {
         this.setState({hideSearch: !this.state.hideSearch});
+    },
+    componentDidUpdate(prevProps, prevState) {
+        let info = this.state.info;
+        if(prevState && (prevState.info != info) && (info != '') && !this.state.hideSearch)
+            this.toggleSearch()
     },
     render() {
         let names = Array.isArray(this.props.objects)

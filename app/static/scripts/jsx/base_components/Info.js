@@ -8,17 +8,15 @@ const Info = React.createClass({
     render() {
         return (
             <div>
-                {this.props.setInfo
-                    ? <button onClick={this.props.setInfo} name="" title={"Back to " + this.props.labelName + " Manager"}>
-                        <span className="glyphicon glyphicon-circle-arrow-left"></span>
-                      </button>
-                    : ''}
-
                 {this.props.objects[this.props.infoFor]
                     ? <div className=""
                            dangerouslySetInnerHTML={this.showHtml(this.props.objects[this.props.infoFor]['Html'])}/>
-                    : <h6>No information for object {this.props.infoFor}</h6>
-                }
+                    : <h6>No information for object {this.props.infoFor}</h6>}
+                {this.props.setInfo
+                    ? <button onClick={this.props.setInfo} data-name="" title={"Back to " + this.props.labelName + " Manager"}>
+                        <span data-name="" className="glyphicon glyphicon-circle-arrow-left"/>
+                    </button>
+                    : ''}
 
             </div>
         )

@@ -53,6 +53,7 @@ const character_template = {
         'Temp Modifiers': ''
     },
     'BAB': 0,
+    'Initiative Modifier': 0,
     'Feats': [],
     'Abilities': [],
     'Class_Features': [],

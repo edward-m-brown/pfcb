@@ -16,7 +16,7 @@ const Note = React.createClass({
             <div className="flex-container">
                 <textarea value={this.props.note} onChange={this.props.update} data-index={this.props.index}
                     disabled={this.state.disabled} style={this.state.show? {}: {display: "none"}}
-                    aria-describedby="Note" className="flex-item"/>
+                    aria-describedby={this.props.noteName} className="flex-item"/>
                 <div className="flex-item flex-container-col">
                     <button className="flex-item" onClick={this.toggleDisabled} title={this.state.disabled
                         ? "Edit Note": "Save Note"} style={this.state.show? {}: {display: "none"}}>
@@ -32,7 +32,7 @@ const Note = React.createClass({
 
                     </button>
                 </div>
-                <span id="Note" className="help-block">Note</span>
+                <span id={this.props.noteName} className="help-block">{this.props.noteName}</span>
             </div>
         );
     }

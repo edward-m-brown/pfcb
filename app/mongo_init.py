@@ -97,6 +97,7 @@ loki_char = {
         'Burrow': 0
     },
     'BAB': 0,
+    'Initiative Modifier': 0,
     'Feats': [],
     'Abilities': [],
     'Class_Features': [],
