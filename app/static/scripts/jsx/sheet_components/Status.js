@@ -47,13 +47,13 @@ const Status = React.createClass({
                 <h2 style={{textAlign: "center"}}>Status</h2>
                 <div className="flex-container-col">
                     <div className="flex-item flex-container bg-none">
-                        <div className="flex-item"></div>
                         <span className="flex-item field-block" aria-describedby="HP">
                             <ul className="list-unstyled">
                                 <li>HP</li>
                                 <li><sub>Hit Points</sub></li>
                             </ul>
                         </span>
+                        <div className="flex-item"></div>
                         <div className="flex-item">
                             <span id="Total" className="help-block" style={{textAlign: "left"}}>Total</span>
                             <input type="number" name="HP" value={hp} onChange={this.update}

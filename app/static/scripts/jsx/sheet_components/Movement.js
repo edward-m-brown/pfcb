@@ -14,13 +14,17 @@ const Movement = React.createClass({
     movementField(moveType) {
         return (
             <div className="">
-                <span id={moveType} className="help-block">{moveType}</span>
                 <input className="flex-item" aria-describedby={moveType}
                        type="number" value={this.props.movement[moveType]}
-                       name={moveType} style={{width: 50}} onChange={this.update}/>FT.
+                       name={moveType} style={{width: 40}} onChange={this.update}/>
+                <span className="flex-item"><sub>FT.</sub>&nbsp;&nbsp;</span>
                 {moveType == 'Base Speed' || moveType == 'With Armor'
-                    ? <text className="flex-item">{Math.floor(this.props.movement[moveType]/5)} SQ.</text>
+                    ? <span className="flex-item">
+                        <text style={{textDecoration: "underline"}}>{Math.floor(this.props.movement[moveType]/5)}</text>
+                        &nbsp;<sub>SQ.</sub>&nbsp;
+                      </span>
                     : ''}
+                <span id={moveType} className="help-block">{moveType}</span>
             </div>
         );
     },
@@ -28,17 +32,22 @@ const Movement = React.createClass({
         return (
             <div className="flex-container-col col-xs-12 col-md-3 bordered">
                 <h2 className="col-md-12" style={{textAlign: "center"}}>Movement</h2>
-                <div className="flex-item flex-container flex-wrap bg-none">
+                <div className="flex-item flex-container flex-wrap">
+                    <ul className="list-unstyled field-block small-item">
+                        <li>Speed</li>
+                        <li><sub>Land</sub></li>
+                    </ul>
+                    &nbsp;&nbsp;
                     {["Base Speed", "With Armor"].map((moveType)=>{
                         return this.movementField(moveType);
                     }, this)}
                 </div>
-                <div className="flex-item flex-container flex-wrap bg-none">
+                <div className="flex-item flex-container flex-wrap">
                     {["Fly", "Swim", "Climb", "Burrow"].map((moveType)=>{
                         return this.movementField(moveType)
                     },this)}
                 </div>
-                <textarea className="flex-item bg-none" value={this.props.movement['Temp Modifiers']}
+                <textarea className="flex-item" value={this.props.movement['Temp Modifiers']} style={{resize: "none"}}
                        onChange={this.update} name="Temp Modifiers" aria-describedby="Temp"/>
                 <span id="Temp" className="help-block">Temp Modifiers</span>
             </div>

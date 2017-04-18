@@ -5,6 +5,7 @@ import Levels from './sheet_components/Levels'
 import Movement from './sheet_components/Movement'
 import Status from './sheet_components/Status'
 import Feats from './sheet_components/Feats'
+import Offense from './sheet_components/Offense'
 
 // helpers
 function calculateAbilityModifiers(ability_scores) {
@@ -52,6 +53,10 @@ var CharacterSheet = React.createClass({
     updateCharacter(updateType, value, objectKey='', nestedKey='') {
         let character = $.extend(true, {}, this.state.character);
         switch(updateType) {
+            case 'BAB': {
+                character['BAB'] = value >= 0? value: 0;
+                break;
+            }
             case 'base_score': {
                 character["Ability_Scores"]["base"][objectKey] = value;
                 this.setTempModifiers(this.state.character["Ability_Scores"]["temp"], scores)
@@ -70,10 +75,14 @@ var CharacterSheet = React.createClass({
                 break;
             }
             case 'feats': {
-                let feat = $.extend(true, {}, featTemplate);
+                let feat = Object.assign({}, featTemplate);
                 feat['Name'] = value;
                 feat['Index'] = character['Feats'].length;
                 character['Feats'].push(feat);
+                break;
+            }
+            case 'initiative': {
+                character['Initiative Modifier'] = value;
                 break;
             }
             case 'movement': {
@@ -153,9 +162,33 @@ var CharacterSheet = React.createClass({
 
     },
     render(){
+        let strMod = this.state.character['Ability_Scores']['temp']['STR']
+            ? this.state.temp_mods['STR']
+            : this.state.ability_mods['STR'];
+        let dexMod = this.state.character['Ability_Scores']['temp']['DEX']
+            ? this.state.temp_mods['DEX']
+            : this.state.ability_mods['DEX'];
+        let conMod = this.state.character['Ability_Scores']['temp']['CON']
+            ? this.state.temp_mods['CON']
+            : this.state.ability_mods['CON'];
+        let intMod = this.state.character['Ability_Scores']['temp']['INT']
+            ? this.state.temp_mods['INT']
+            : this.state.ability_mods['INT'];
+        let wisMod = this.state.character['Ability_Scores']['temp']['WIS']
+            ? this.state.temp_mods['WIS']
+            : this.state.ability_mods['WIS'];
+        let chaMod = this.state.character['Ability_Scores']['temp']['CHA']
+            ? this.state.temp_mods['CHA']
+            : this.state.ability_mods['CHA'];
         return (
             <div className="container">
                 <div className="row">
+                    {/*
+                     <div className="col-xs-12 col-md-6">
+                         <img src="/static/assets/pflogo_small.png"/>
+                     </div>
+                    */}
+
                     <Description characterName={this.state.character["Name"]}
                         description={this.state.character["Description"]}
                         updateCharacter={this.updateCharacter}/>
@@ -164,6 +197,8 @@ var CharacterSheet = React.createClass({
                     <Levels levels={this.state.character['Levels']}
                         classes={this.props.baseClasses}
                         updateCharacter={this.updateCharacter}/>
+                    <Status status={this.state.character['Status']} updateCharacter={this.updateCharacter}/>
+                    <Movement movement={this.state.character['Movement']} updateCharacter={this.updateCharacter}/>
                 </div>
                 <div className="row">
                     <Abilities abilityScores={this.state.character["Ability_Scores"]["base"]}
@@ -173,12 +208,17 @@ var CharacterSheet = React.createClass({
                         updateCharacter={this.updateCharacter}
                         updateBase={this.updateAbilityScores}
                         updateTemp={this.updateTempAdjustments}/>
-                    <Status status={this.state.character['Status']} updateCharacter={this.updateCharacter}/>
-                    <Movement movement={this.state.character['Movement']} updateCharacter={this.updateCharacter}/>
+
+                    <Offense baseAttack={this.state.character['BAB']} dexMod={dexMod}
+                             initMod={this.state.character['Initiative Modifier']}
+                             updateCharacter={this.updateCharacter}/>
                 </div>
                 <div className="row">
                     <Feats dbFeats={this.props.feats} characterFeats={this.state.character['Feats']}
                            updateCharacter={this.updateCharacter} />
+                </div>
+                <div className="row">
+
                 </div>
                 <div className="row">
                     <div className="col-md-12">
