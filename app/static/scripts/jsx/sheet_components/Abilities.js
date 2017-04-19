@@ -44,7 +44,7 @@ var Abilities = React.createClass({
                                    <td>
                                        <ul className="list-unstyled field-block">
                                            <li>{key}</li>
-                                           <li><sub>{longNames[key]}</sub></li>
+                                           <li><sup>{longNames[key]}</sup></li>
                                        </ul>
                                    </td>
                                    {/* Ability Score */}

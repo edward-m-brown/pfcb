@@ -47,6 +47,12 @@ loki_char = {
         'Hair': 'bald',
         'Eyes': 'blue'
      },
+    'Race': {
+
+    },
+    'Size': {
+
+    },
     'Status': {
         'HP': 0,
         'Temp': 0,
@@ -96,8 +102,25 @@ loki_char = {
         'Climb': 15,
         'Burrow': 0
     },
-    'BAB': 0,
-    'Initiative Modifier': 0,
+    'Defense' : {
+        'AC': {
+            'Armor Bonus': 0,
+            'Natural Armor': 0,
+            'Deflection': 0,
+            'Misc': 0
+        },
+        'Saves': {
+            'Fortitude': 0,
+            'Reflex': 0,
+            'Will': 0
+        },
+        'Spell Resistance': 0
+    },
+    'Offense': {
+        'BAB': 0,
+        'Initiative Modifier': 0,
+        'CMB Modifiers': ''
+    },
     'Feats': [],
     'Abilities': [],
     'Class_Features': [],

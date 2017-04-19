@@ -54,7 +54,11 @@ var CharacterSheet = React.createClass({
         let character = $.extend(true, {}, this.state.character);
         switch(updateType) {
             case 'BAB': {
-                character['BAB'] = value >= 0? value: 0;
+                character['Offense']['BAB'] = value >= 0? value: 0;
+                break;
+            }
+            case 'cmb_mod': {
+                character['Offense']['CMB Modifier'] = value;
                 break;
             }
             case 'base_score': {
@@ -82,7 +86,7 @@ var CharacterSheet = React.createClass({
                 break;
             }
             case 'initiative': {
-                character['Initiative Modifier'] = value;
+                character['Offense']['Initiative Modifier'] = value;
                 break;
             }
             case 'movement': {
@@ -180,6 +184,7 @@ var CharacterSheet = React.createClass({
         let chaMod = this.state.character['Ability_Scores']['temp']['CHA']
             ? this.state.temp_mods['CHA']
             : this.state.ability_mods['CHA'];
+        let cmbMod = this.state.character['CMB Modifiers'];
         return (
             <div className="container">
                 <div className="row">
@@ -209,9 +214,8 @@ var CharacterSheet = React.createClass({
                         updateBase={this.updateAbilityScores}
                         updateTemp={this.updateTempAdjustments}/>
 
-                    <Offense baseAttack={this.state.character['BAB']} dexMod={dexMod}
-                             initMod={this.state.character['Initiative Modifier']}
-                             updateCharacter={this.updateCharacter}/>
+                    <Offense offense={this.state.character['Offense']} dexMod={dexMod} strMod={strMod}
+                        updateCharacter={this.updateCharacter}/>
                 </div>
                 <div className="row">
                     <Feats dbFeats={this.props.feats} characterFeats={this.state.character['Feats']}

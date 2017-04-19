@@ -50,7 +50,7 @@ const Status = React.createClass({
                         <span className="flex-item field-block" aria-describedby="HP">
                             <ul className="list-unstyled">
                                 <li>HP</li>
-                                <li><sub>Hit Points</sub></li>
+                                <li><sup>Hit Points</sup></li>
                             </ul>
                         </span>
                         <div className="flex-item"></div>

@@ -2,6 +2,7 @@
  * Created by edward on 4/8/17.
  */
 import AddBoxes from '../base_components/AddBoxes'
+import Note from '../base_components/Note'
 
 const Offense = React.createClass({
     computeMulti(baseAttack) {
@@ -17,50 +18,100 @@ const Offense = React.createClass({
         this.props.updateCharacter('initiative', parseInt(e.target.value));
     },
     update(e) {
-        this.props.updateCharacter(event.target.dataset.name, parseInt(event.target.value));
+        let value = e.target.type == "number"? parseInt(e.target.value): e.target.value;
+        this.props.updateCharacter(event.target.dataset.name, value);
     },
     render() {
+        let baseAttack = this.props.offense['BAB'];
+        let initiative = this.props.offense['Initiative Modifier'];
+        let cmbMod = this.props.offense['CMB Modifiers'];
         let initBoxes = {
-            name: 'Initiative', 'DEX Mod': {
-                value: this.props.dexMod,
-                edit: false
-            }, 'Misc Mod': {
-                value: this.props.initMod,
+            name: 'Initiative', 'DEX': {
+                value: this.props.dexMod
+            }, 'Misc': {
+                value: initiative,
                 edit: true,
                 change: this.changeInit
             }
         };
+        let cmbBoxes = {
+            name: 'CMD', 'Base Attack': {
+                value: baseAttack
+            }, 'Strength Modifier': {
+                value: this.props.strMod,
+            }, 'Size Modifier': {
+                value: 0, // need to replace with size modifier, when I have that implemented
+            }
+        };
         let cmdBoxes = {
-            name: 'CMD', 'Base Attack Bonus': {
-                value: this.props.baseAttack,
-                edit: false
-            }, 'STR Mod': {}
-        }
+            name: 'CMD', 'BAB': {
+                value: baseAttack,
+            }, 'STR': {
+                value: this.props.strMod,
+            }, 'Size': {
+                value: 0, // need to replace with size modifier, when I have that implemented
+            }, 'DEX': {
+                value: this.props.dexMod,
+            }, 'Z' : {
+                value: 10,
+                noLabel: true
+            }
+        };
+
         return (
-            <div className="col-xs-12 col-md-4 bordered flex-container-col flex-wrap">
+            <div className="col-xs-12 col-md-6 bordered flex-container-col flex-wrap">
                 <h2 className="col-xs-12" style={{textAlign: "center"}}>Offense</h2>
                 <div className="flex-container flex-wrap flex-item">
                     <ul className="list-unstyled field-block small-item">
                         <li>Base Attack</li>
-                        <li><sub>Bonus</sub></li>
+                        <li><sup>Bonus</sup></li>
                     </ul>
                     <div className="flex-item">
                         &nbsp;+
-                        <input type="number" value={this.props.baseAttack} style={{width: 50}}
+                        <input type="number" value={baseAttack} style={{width: 40}}
                                data-name="BAB" onChange={this.update}/>
-                        {this.props.baseAttack >= 6
-                            ? <text>{this.computeMulti(this.props.baseAttack)}</text>
+                        {baseAttack >= 6
+                            ? <text>{this.computeMulti(baseAttack)}</text>
                             : ''}
+                    </div>
+                    &nbsp;&nbsp;
+                    <div className="flex-item flex-container">
+                        <ul className="list-unstyled field-block small-item">
+                            <li>Initiative</li>
+                            <li><sup>Modifier</sup></li>
+                        </ul>
+                        &nbsp;&nbsp;
+                        <div className="flex-item">
+                            <AddBoxes boxes={initBoxes}/>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="flex-item flex-container flex-wrap">
+                    <ul className="list-unstyled field-block small-item">
+                        <li>CMB</li>
+                    </ul>
+                    &nbsp;&nbsp;
+                    <div className="flex-item">
+                        <AddBoxes boxes={cmbBoxes}/>
+                    </div>
+                    <div className="flex-item">
+                        <textarea value={cmbMod} onChange={this.props.update} data-name="cmb_mod"
+                            className="flex-item" aria-describedby="CMB Mod"
+                            style={{resize: "horizontal", maxWidth: 300}}/>
+                        <span id="CMB Mod" className="help-block">
+                            <sup>Modifiers</sup>
+                        </span>
+
                     </div>
                 </div>
                 <div className="flex-item flex-container">
                     <ul className="list-unstyled field-block small-item">
-                        <li>Initiative</li>
-                        <li><sub>Modifier</sub></li>
+                        <li>CMD</li>
                     </ul>
                     &nbsp;&nbsp;
                     <div className="flex-item">
-                        <AddBoxes boxes={initBoxes}/>
+                        <AddBoxes boxes={cmdBoxes}/>
                     </div>
                 </div>
 

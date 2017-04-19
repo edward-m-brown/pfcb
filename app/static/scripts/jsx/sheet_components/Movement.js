@@ -35,7 +35,7 @@ const Movement = React.createClass({
                 <div className="flex-item flex-container flex-wrap">
                     <ul className="list-unstyled field-block small-item">
                         <li>Speed</li>
-                        <li><sub>Land</sub></li>
+                        <li><sup>Land</sup></li>
                     </ul>
                     &nbsp;&nbsp;
                     {["Base Speed", "With Armor"].map((moveType)=>{
