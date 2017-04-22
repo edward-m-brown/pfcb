@@ -103,19 +103,55 @@ loki_char = {
         'Burrow': 0
     },
     'Defense' : {
-        'AC': {
-            'Armor Bonus': 0,
-            'Natural Armor': 0,
-            'Deflection': 0,
-            'Misc': 0
+            'AC': {
+                'Armor Bonus': 0,
+                'Shield Bonus': 0,
+                'Natural Armor': 0,
+                'Deflection Modifier': 0,
+                'Dodge Bonus': 0,
+                'Misc Modifier': 0,
+                'Mod Notes': ''
+            },
+            'AC_include': {
+                'strMod': False,
+                'conMod': False,
+                'intMod': False,
+                'wisMod': False,
+                'chaMod': False
+
+            },
+            'Touch_exclude': {
+                'Armor Bonus': True,
+                'Shield Bonus': True,
+                'Natural Armor': True,
+            },
+            'Flat-footed_exclude': {
+                'DEX Modifier': True,
+                'Dodge Bonus': True
+            },
+            'Saves': {
+                'Fortitude': {
+                    'Base Save': 0,
+                    'Magic Modifier': 0,
+                    'Misc Modifier': 0,
+                    'Temporary Modifier': 0
+                },
+                'Reflex': {
+                    'Base Save': 0,
+                    'Magic Modifier': 0,
+                    'Misc Modifier': 0,
+                    'Temporary Modifier': 0
+                },
+                'Will': {
+                    'Base Save': 0,
+                    'Magic Modifier': 0,
+                    'Misc Modifier': 0,
+                    'Temporary Modifier': 0
+                },
+                'Modifiers': ''
+            },
+            'Spell Resistance': 0
         },
-        'Saves': {
-            'Fortitude': 0,
-            'Reflex': 0,
-            'Will': 0
-        },
-        'Spell Resistance': 0
-    },
     'Offense': {
         'BAB': 0,
         'Initiative Modifier': 0,

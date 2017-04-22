@@ -24,9 +24,9 @@ var Abilities = React.createClass({
        let mods = this.props.abilityMods;
        let temp_adjustments = this.props.tempAdjustments;
        let temp_mods = this.props.tempMods;
-       let inputStyle = {width:40, height:40, textAlign: "center"}
+
        return(
-           <div className="col-xs-12 col-md-6 bordered">
+           <div className="col-xs-12 col-md-4 bordered">
                <h2 style={{textAlign: "center"}}> Abilities </h2>
                <table className="table table-bordered">
                    <tr className="table-header">
@@ -50,22 +50,22 @@ var Abilities = React.createClass({
                                    {/* Ability Score */}
                                    <td style={{alignContent: "center"}}>
                                        <input type="number" value={ scores[key] } name={key}
-                                           onChange={this.handleChange} style={inputStyle} alt="base"/>
+                                           onChange={this.handleChange} className="abilities-input" alt="base"/>
                                    </td>
                                    {/* Ability Mod */}
                                    <td style={{alignContent: "center"}}>
                                        <input type="text" value={mods[key] >= 0? "+" + mods[key]: "" + mods[key]}
-                                           disabled={true} style={inputStyle}/>
+                                           disabled={true} className="abilities-input"/>
                                    </td>
                                    {/* Temp. Adj */}
                                    <td style={{alignContent: "center"}}>
                                        <input type="number" value={ temp_adjustments[key] } name={key}
-                                           onChange={this.handleChange}  style={inputStyle} alt="temp"
+                                           onChange={this.handleChange}  className="abilities-input" alt="temp"
                                        />
                                    </td>
                                    {/* Temp. Mod */}
                                    <td style={{alignContent: "center"}}>
-                                       <input type="text" disabled={true} style={inputStyle}
+                                       <input type="text" disabled={true} className="abilities-input"
                                            value={ temp_mods[key] >= 0? "+" + temp_mods[key]:"" + temp_mods[key]}/>
                                    </td>
                                </tr>

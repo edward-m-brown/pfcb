@@ -6,10 +6,9 @@ const AddBoxes = React.createClass({
         let sum = 0;
         let boxes = this.props.boxes;
         Object.keys(boxes).map((key)=>{
-           if(key != 'name')
+           if(key != 'name' && key != 'totalOnly')
                sum += boxes[key].value;
         });
-        console.log(sum);
         return sum;
     },
     makeLabel(helpName, fieldName) {
@@ -27,45 +26,59 @@ const AddBoxes = React.createClass({
             }
         }
     },
+    makeInput(fieldName, index) {
+        let boxes = this.props.boxes;
+        let name = this.props.boxes.name;
+        let boxKeys = Object.keys(boxes);
+        if(fieldName != 'name') {
+            let edit = boxes[fieldName].edit;
+            let change = boxes[fieldName].change;
+            let helpName = boxes.name + "_" + fieldName;
+            let value = boxes[fieldName].value;
+            return (
+                <div className="flex-item flex-container flex-wrap">
+                    <div className="flex-item">
+                        <input data-name={fieldName} type="number" disabled={!edit} onChange={edit? change: null}
+                            value={value} aria-describedby={helpName} data-parent={name}
+                            className="add-box"/>
+                        {boxes[fieldName].noLabel
+                            ? ''
+                            : this.makeLabel(helpName, fieldName)
+                        }
+
+                    </div>
+                    {boxKeys[index+1]
+                        ? <div className="flex-item">+</div>
+                        : ''
+                    }
+                </div>
+            );
+        }
+
+    },
     render() {
         let boxes = this.props.boxes;
         let name = this.props.boxes.name;
         let label;
         return (
-            <div className="flex-container">
-                <div className="flex-item small-item">
-                    <input type="number" disabled={true} value={this.sumBoxes()}
-                        aria-describedby={name} style={{width: 35}}/>
-                    <span id={name} className="help-block"><small>TOTAL</small></span>
+            <div className="flex-container flex-wrap">
+                <div className="small-item">
+                    <input type="text" disabled={true} value={this.sumBoxes()}
+                        aria-describedby={name} className="add-box"/>
+                    {boxes.totalOnly
+                        ? ''
+                        : <span id={name} className="help-block"><small>TOTAL</small></span>}
                 </div>
-                <div className="flex-item small-item">=</div>
-                {Object.keys(boxes).map((fieldName, index)=>{
-                    if(fieldName != 'name') {
-                        let edit = boxes[fieldName].edit;
-                        let change = boxes[fieldName].change;
-                        let helpName = boxes.name + "_" + fieldName;
-                        let value = boxes[fieldName].value;
-                        return (
-                            <div className="flex-item flex-container">
-                                <div className="flex-item">
-                                    <input data-name={fieldName} type="number" disabled={!edit} onChange={edit? change: null}
-                                        value={value}
-                                        aria-describedby={helpName} style={{width: 40}}/>
-                                    {boxes[fieldName].noLabel
-                                        ? ''
-                                        : this.makeLabel(helpName, fieldName)
-                                    }
-
-                                </div>
-                                {Object.keys(boxes)[index+1]
-                                    ? <div className="flex-item">+</div>
-                                    : ''
-                                }
-                            </div>
-                        );
-                    }
-
-                })}
+                {boxes.totalOnly
+                    ? ''
+                    : <div className="small-item">=</div>
+                }
+                {boxes.totalOnly
+                    ? ''
+                    : Object.keys(boxes).map((fieldName, index)=>{
+                        return this.makeInput(fieldName,index);
+                    })
+                }
             </div>
         );
     }

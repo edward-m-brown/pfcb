@@ -19,7 +19,7 @@ const Offense = React.createClass({
     },
     update(e) {
         let value = e.target.type == "number"? parseInt(e.target.value): e.target.value;
-        this.props.updateCharacter(event.target.dataset.name, value);
+        this.props.updateCharacter(e.target.dataset.name, value);
     },
     render() {
         let baseAttack = this.props.offense['BAB'];
@@ -96,7 +96,7 @@ const Offense = React.createClass({
                         <AddBoxes boxes={cmbBoxes}/>
                     </div>
                     <div className="flex-item">
-                        <textarea value={cmbMod} onChange={this.props.update} data-name="cmb_mod"
+                        <textarea value={cmbMod} onChange={this.update} data-name="cmb_mod"
                             className="flex-item" aria-describedby="CMB Mod"
                             style={{resize: "horizontal", maxWidth: 300}}/>
                         <span id="CMB Mod" className="help-block">

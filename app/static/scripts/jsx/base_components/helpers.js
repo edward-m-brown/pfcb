@@ -61,14 +61,50 @@ const character_template = {
     'Defense' : {
         'AC': {
             'Armor Bonus': 0,
+            'Shield Bonus': 0,
             'Natural Armor': 0,
-            'Deflection': 0,
-            'Misc': 0
+            'Deflection Modifier': 0,
+            'Dodge Bonus': 0,
+            'Misc Modifier': 0,
+            'Mod Notes': ''
+        },
+        'AC_include': {
+            'strMod': false,
+            'conMod': false,
+            'intMod': false,
+            'wisMod': false,
+            'chaMod': false
+
+        },
+        'Touch_exclude': {
+            'Armor Bonus': true,
+            'Shield Bonus': true,
+            'Natural Armor': true,
+        },
+        'Flat-footed_exclude': {
+            'DEX Modifier': true,
+            'Dodge Bonus': true
         },
         'Saves': {
-            'Fortitude': 0,
-            'Reflex': 0,
-            'Will': 0
+            'Fortitude': {
+                'Base Save': 0,
+                'Magic Modifier': 0,
+                'Misc Modifier': 0,
+                'Temporary Modifier': 0
+            },
+            'Reflex': {
+                'Base Save': 0,
+                'Magic Modifier': 0,
+                'Misc Modifier': 0,
+                'Temporary Modifier': 0
+            },
+            'Will': {
+                'Base Save': 0,
+                'Magic Modifier': 0,
+                'Misc Modifier': 0,
+                'Temporary Modifier': 0
+            },
+            'Modifiers': ''
         },
         'Spell Resistance': 0
     },

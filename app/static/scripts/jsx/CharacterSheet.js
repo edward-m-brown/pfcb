@@ -6,6 +6,8 @@ import Movement from './sheet_components/Movement'
 import Status from './sheet_components/Status'
 import Feats from './sheet_components/Feats'
 import Offense from './sheet_components/Offense'
+import Defense from './sheet_components/Defense'
+
 
 // helpers
 function calculateAbilityModifiers(ability_scores) {
@@ -53,12 +55,16 @@ var CharacterSheet = React.createClass({
     updateCharacter(updateType, value, objectKey='', nestedKey='') {
         let character = $.extend(true, {}, this.state.character);
         switch(updateType) {
+            case 'AC_update': {
+                character['Defense']['AC'][objectKey] = value;
+                break;
+            }
             case 'BAB': {
                 character['Offense']['BAB'] = value >= 0? value: 0;
                 break;
             }
             case 'cmb_mod': {
-                character['Offense']['CMB Modifier'] = value;
+                character['Offense']['CMB Modifiers'] = value;
                 break;
             }
             case 'base_score': {
@@ -105,13 +111,17 @@ var CharacterSheet = React.createClass({
                 character['Feats'].splice(value, 1);
                 break;
             }
+            case 'save': {
+                if(nestedKey) character['Defense']['Saves'][objectKey][nestedKey] = value;
+                else character['Defense']['Saves'][objectKey] = value;
+                break;
+            }
             case 'status': {
                 if(nestedKey){
                     character['Status'][objectKey][nestedKey] = value;
                 } else {
                     character['Status'][objectKey] = value;
                 }
-
                 break;
             }
             case 'temp_score': {
@@ -215,6 +225,8 @@ var CharacterSheet = React.createClass({
                         updateTemp={this.updateTempAdjustments}/>
 
                     <Offense offense={this.state.character['Offense']} dexMod={dexMod} strMod={strMod}
+                        updateCharacter={this.updateCharacter}/>
+                    <Defense defense={this.state.character['Defense']} dexMod={dexMod} conMod={conMod} wisMod={wisMod}
                         updateCharacter={this.updateCharacter}/>
                 </div>
                 <div className="row">

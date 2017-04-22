@@ -15,7 +15,7 @@ const Search = React.createClass({
         return(
             <div className="" style={this.props.hideSearch? {display: "none"}:{display: "block"}}>
                 <div className="">
-                    <span id="search-bar" className="help-block">Search</span>
+                    <span id="search-bar" className="help-block">{this.props.labelName} Search</span>
                     <input  className="form-control" aria-describedby="search-bar"
                             type="text" value={this.state.search}
                             name="search-bar"

@@ -20,6 +20,9 @@ var Manager = React.createClass({
     toggleSearch() {
         this.setState({hideSearch: !this.state.hideSearch});
     },
+    setHide(hideSearch) {
+        this.setState({hideSearch: hideSearch})
+    },
     componentDidUpdate(prevProps, prevState) {
         let info = this.state.info;
         if(prevState && (prevState.info != info) && (info != '') && !this.state.hideSearch)
@@ -69,7 +72,8 @@ var Manager = React.createClass({
                             <div className="container col-xs-12" style={{padding: "10px"}}>
                                 {this.state.info
                                         ? <Info objects={this.props.dbObjects} infoFor={this.state.info}
-                                                setInfo={this.setInfo} labelName={this.props.labelName}/>
+                                              setInfo={this.setInfo} setHide={this.setHide}
+                                              labelName={this.props.labelName}/>
                                         : <ul className="list-unstyled">
                                             {names.map((name, index) => {
                                                 return (
