@@ -7,6 +7,7 @@ import Status from './sheet_components/Status'
 import Feats from './sheet_components/Feats'
 import Offense from './sheet_components/Offense'
 import Defense from './sheet_components/Defense'
+import Skills from './sheet_components/Skills'
 
 
 // helpers
@@ -63,6 +64,11 @@ var CharacterSheet = React.createClass({
                 character['Offense']['BAB'] = value >= 0? value: 0;
                 break;
             }
+            case 'class_skill': {
+                if(nestedKey) character['Skills']['Skill_Table'][objectKey][nestedKey]['class'] = value;
+                else character['Skills']['Skill_Table'][objectKey]['class'] = value;
+                break;
+            }
             case 'cmb_mod': {
                 character['Offense']['CMB Modifiers'] = value;
                 break;
@@ -114,6 +120,14 @@ var CharacterSheet = React.createClass({
             case 'save': {
                 if(nestedKey) character['Defense']['Saves'][objectKey][nestedKey] = value;
                 else character['Defense']['Saves'][objectKey] = value;
+                break;
+            }
+            case 'skill_table': {
+                let splitKey = objectKey.split(" (")
+                let skillName = splitKey.length > 1? splitKey[0]: objectKey;
+                let subSkill = splitKey.length > 1? splitKey[1].split(")")[0]: null;
+                if(subSkill) character['Skills']['Skill_Table'][skillName][subSkill][nestedKey] = value;
+                else character['Skills']['Skill_Table'][skillName][nestedKey] = value;
                 break;
             }
             case 'status': {
@@ -194,7 +208,6 @@ var CharacterSheet = React.createClass({
         let chaMod = this.state.character['Ability_Scores']['temp']['CHA']
             ? this.state.temp_mods['CHA']
             : this.state.ability_mods['CHA'];
-        let cmbMod = this.state.character['CMB Modifiers'];
         return (
             <div className="container">
                 <div className="row">
@@ -234,7 +247,9 @@ var CharacterSheet = React.createClass({
                            updateCharacter={this.updateCharacter} />
                 </div>
                 <div className="row">
-
+                    <Skills dbSkills={this.props.skills} skills={this.state.character['Skills']}
+                        strMod={strMod} dexMod={dexMod} conMod={conMod} intMod={intMod} wisMod={wisMod} chaMod={chaMod}
+                        updateCharacter={this.updateCharacter}/>
                 </div>
                 <div className="row">
                     <div className="col-md-12">

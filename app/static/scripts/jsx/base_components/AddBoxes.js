@@ -12,19 +12,16 @@ const AddBoxes = React.createClass({
         return sum;
     },
     makeLabel(helpName, fieldName) {
-        switch(this.props.labelType) {
-            default: {
-                if(fieldName.split(' ').length > 1)
-                    return <span id={helpName} className="help-block">
-                        <ul className="list-unstyled">
-                            <li><sub>{fieldName.split(' ')[0]}</sub></li>
-                            <li><sup>{fieldName.split(' ')[1]}</sup></li>
-                        </ul>
-                    </span>
-                else
-                    return <span id={helpName} className="help-block"><sup>{fieldName}</sup></span>
-            }
-        }
+        if(fieldName.split(' ').length > 1)
+            return <span id={helpName} className="help-block">
+                <ul className="list-unstyled">
+                    <li><sub>{fieldName.split(' ')[0]}</sub></li>
+                    <li><sup>{fieldName.split(' ')[1]}</sup></li>
+                </ul>
+            </span>
+        else
+            return <span id={helpName} className="help-block"><sup>{fieldName}</sup></span>
+
     },
     makeInput(fieldName, index) {
         let boxes = this.props.boxes;
@@ -38,10 +35,14 @@ const AddBoxes = React.createClass({
             return (
                 <div className="flex-item flex-container flex-wrap">
                     <div className="flex-item">
+                        {this.props.labelAbove
+                            ? this.makeLabel(helpName, fieldName)
+                            : ''
+                        }
                         <input data-name={fieldName} type="number" disabled={!edit} onChange={edit? change: null}
                             value={value} aria-describedby={helpName} data-parent={name}
                             className="add-box"/>
-                        {boxes[fieldName].noLabel
+                        {boxes[fieldName].noLabel || this.props.labelAbove
                             ? ''
                             : this.makeLabel(helpName, fieldName)
                         }
@@ -63,9 +64,13 @@ const AddBoxes = React.createClass({
         return (
             <div className="flex-container flex-wrap">
                 <div className="small-item">
+                    {this.props.labelAbove
+                        ? <span id={name} className="help-block"><small>TOTAL</small></span>
+                        : ''
+                    }
                     <input type="text" disabled={true} value={this.sumBoxes()}
                         aria-describedby={name} className="add-box"/>
-                    {boxes.totalOnly
+                    {boxes.totalOnly || this.props.labelAbove
                         ? ''
                         : <span id={name} className="help-block"><small>TOTAL</small></span>}
                 </div>

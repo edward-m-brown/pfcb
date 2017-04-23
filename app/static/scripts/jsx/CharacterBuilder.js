@@ -41,6 +41,13 @@ var CharacterBuilder = React.createClass({
                 feats: feats
             });
         });
+        $.get("/get-skills", function(skills){
+            skills = JSON.parse(skills);
+            console.log("Data Loaded: " + skills);
+            that.setState({
+                skills: skills
+            });
+        });
     },
     refreshCharacters(){
 
@@ -160,10 +167,11 @@ var CharacterBuilder = React.createClass({
             return(
                 <div>
                     <CharacterSheet character={this.state.cur_char}
-                                    saveCharacter={this.saveCharacters}
-                                    deselectCharacter={this.deselectCharacter}
-                                    baseClasses={this.state.base_classes}
-                                    feats={this.state.feats}/>
+                        saveCharacter={this.saveCharacters}
+                        deselectCharacter={this.deselectCharacter}
+                        baseClasses={this.state.base_classes}
+                        feats={this.state.feats}
+                        skills={this.state.skills}/>
                 </div>
             )
         } else {

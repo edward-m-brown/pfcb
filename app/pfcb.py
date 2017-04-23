@@ -131,6 +131,13 @@ def get_feats():
         feats[doc["Name"]] = doc;
     return dumps(feats)
 
+@app.route('/get-skills')
+@login_required
+def get_skills():
+    skills = {}
+    for doc in db.skills.find(fields={"_id": False}):
+        skills[doc["Name"]] = doc;
+    return dumps(skills)
 
 @app.route('/save-characters', methods=['PUT'])
 @login_required
