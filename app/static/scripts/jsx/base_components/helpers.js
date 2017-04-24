@@ -1,11 +1,11 @@
 const character_template = {
     'Name': 'Unknown Hero',
     'Description' : {
-        'Alignment': null,
+        'Alignment': 'LG',
         'Deity': 'N/A',
-        'Race': null,
-        'Size': null,
-        'Gender': null,
+        'Race': 'Human',
+        'Size': 'Medium',
+        'Gender': 'N/A',
         'Age': 0,
         'Height': '',
         'Weight': '',
@@ -30,16 +30,7 @@ const character_template = {
             'INT': 8,
             'WIS': 8,
             'CHA': 8
-        },
-        'temp': {
-            'STR': 0,
-            'DEX': 0,
-            'CON': 0,
-            'INT': 0,
-            'WIS': 0,
-            'CHA': 0
-        },
-        'racial': {
+        }, 'temp': {
             'STR': 0,
             'DEX': 0,
             'CON': 0,
@@ -47,7 +38,6 @@ const character_template = {
             'WIS': 0,
             'CHA': 0
         }
-
     },
     'Movement': {
         'Base Speed': 30,
@@ -67,46 +57,37 @@ const character_template = {
             'Dodge Bonus': 0,
             'Misc Modifier': 0,
             'Mod Notes': ''
-        },
-        'AC_include': {
+        }, 'AC_include': {
             'strMod': false,
             'conMod': false,
             'intMod': false,
             'wisMod': false,
             'chaMod': false
-
-        },
-        'Touch_exclude': {
+        }, 'Touch_exclude': {
             'Armor Bonus': true,
             'Shield Bonus': true,
             'Natural Armor': true,
-        },
-        'Flat-footed_exclude': {
+        }, 'Flat-footed_exclude': {
             'DEX Modifier': true,
             'Dodge Bonus': true
-        },
-        'Saves': {
+        }, 'Saves': {
             'Fortitude': {
                 'Base Save': 0,
                 'Magic Modifier': 0,
                 'Misc Modifier': 0,
                 'Temporary Modifier': 0
-            },
-            'Reflex': {
+            }, 'Reflex': {
                 'Base Save': 0,
                 'Magic Modifier': 0,
                 'Misc Modifier': 0,
                 'Temporary Modifier': 0
-            },
-            'Will': {
+            }, 'Will': {
                 'Base Save': 0,
                 'Magic Modifier': 0,
                 'Misc Modifier': 0,
                 'Temporary Modifier': 0
-            },
-            'Modifiers': ''
-        },
-        'Spell Resistance': 0
+            }, 'Modifiers': ''
+        }, 'Spell Resistance': 0
     },
     'Offense': {
         'BAB': 0,
@@ -123,400 +104,412 @@ const character_template = {
             'Acrobatics' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Appraise' : {
+                'Misc Mod': 0,
+                'show': true
+
+            }, 'Appraise' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Bluff' : {
+                'Misc Mod': 0,
+                'show': true
+
+            }, 'Bluff' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Climb' : {
+                'Misc Mod': 0,
+                'show': true
+
+            }, 'Climb' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Craft' : {
+                'Misc Mod': 0,
+                'show': true
+
+            }, 'Craft' : {
                 'alchemy': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
+                    'Misc Mod': 0,
+                    'show': false,
+
                 },
                 'armor': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
+                    'Misc Mod': 0,
+                    'show': false
                 },
                 'bows': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
+                    'Misc Mod': 0,
+                    'show': false
                 },
                 'poison': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
+                    'Misc Mod': 0,
+                    'show': false
                 },
                 'weapons': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
+                    'Misc Mod': 0,
+                    'show': false
                 },
                 'traps':{
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
+                    'Misc Mod': 0,
+                    'show': false
                 }
-            },
-            'Diplomacy' : {
+            }, 'Diplomacy' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Disable Device' : {
+                'Misc Mod': 0,
+                'show': true
+            }, 'Disable Device' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Disguise' : {
+                'Misc Mod': 0,
+                'show': false
+            }, 'Disguise' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Escape Artist' : {
+                'Misc Mod': 0,
+                'show': false
+            }, 'Escape Artist' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Fly' : {
+                'Misc Mod': 0,
+                'show': true
+            }, 'Fly' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
+                'Misc Mod': 0,
+                'show': false
             },
             'Handle Animal' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Heal' : {
+                'Misc Mod': 0,
+                'show': false
+            }, 'Heal' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Intimidate' : {
+                'Misc Mod': 0,
+                'show': false
+            }, 'Intimidate' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Knowledge' : {
+                'Misc Mod': 0,
+                'show': false
+            }, 'Knowledge' : {
                 'arcana' : {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'dungeoneering' : {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'dungeoneering' : {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'engineering' : {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'engineering' : {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'geography' : {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'geography' : {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'history' : {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'history' : {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'local' : {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'local' : {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'nature' : {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'nature' : {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'nobility' : {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'nobility' : {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'planes' : {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'planes' : {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'religion' :{
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'religion' :{
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
+                    'Misc Mod': 0,
+                    'show': false
                 }
-            },
-            'Linguistics' : {
+            }, 'Linguistics' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Perception' : {
+                'Misc Mod': 0,
+                'show': false
+            }, 'Perception' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Perform' : {
+                'Misc Mod': 0,
+                'show': true
+            }, 'Perform' : {
                 'act': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'comedy': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'comedy': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'dance': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'dance': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'keyboard instruments': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'keyboard instruments': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'oratory': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'oratory': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'perscussion instruments': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'perscussion instruments': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'string instruments': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'string instruments': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'wind instruments': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'wind instruments': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'sing':{
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'sing':{
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
+                    'Misc Mod': 0,
+                    'show': false
                 }
-            },
-            'Profession' : {
+            }, 'Profession' : {
                 'architect': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'baker': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'baker': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'barrister': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'barrister': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'brewer': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'brewer': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'butcher': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'butcher': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'clerk': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'clerk': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'cook': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'cook': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'courtesan': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'courtesan': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'driver': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'driver': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'engineer': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'engineer': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'farmer': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'farmer': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'fisherman': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'fisherman': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'gambler': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'gambler': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'gardener': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'gardener': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'herbalist': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'herbalist': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'innkeeper': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'innkeeper': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'librarian': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'librarian': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'merchant': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'merchant': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'midwife': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'midwife': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'miller': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'miller': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'miner': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'miner': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'porter': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'porter': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'sailor': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'sailor': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'scribe': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'scribe': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'shepherd': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'shepherd': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'stable master': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'stable master': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'master': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'master': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'soldier': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'soldier': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'tanner': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'tanner': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'trapper': {
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'trapper': {
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
-                },
-                'woodcutter':{
+                    'Misc Mod': 0,
+                    'show': false
+                }, 'woodcutter':{
                     'Ranks': 0,
                     'class': false,
-                    'Misc Mod': 0
+                    'Misc Mod': 0,
+                    'show': false
                 }
-            },
-            'Ride' : {
+            }, 'Ride' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Sense Motive' : {
+                'Misc Mod': 0,
+                'show': false
+            }, 'Sense Motive' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Sleight of Hand' : {
+                'Misc Mod': 0,
+                'show': true
+            }, 'Sleight of Hand' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Spellcraft' : {
+                'Misc Mod': 0,
+                'show': false
+            }, 'Spellcraft' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Stealth' : {
+                'Misc Mod': 0,
+                'show': false
+            }, 'Stealth' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Survival' : {
+                'Misc Mod': 0,
+                'show': true
+            }, 'Survival' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Swim' : {
+                'Misc Mod': 0,
+                'show': false
+            }, 'Swim' : {
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
-            },
-            'Use Magic Device' :{
+                'Misc Mod': 0,
+                'show': true
+            }, 'Use Magic Device' :{
                 'Ranks': 0,
                 'class': false,
-                'Misc Mod': 0
+                'Misc Mod': 0,
+                'show': false
             }
         }
     },
@@ -540,8 +533,48 @@ const character_template = {
         'DR': {},
         'Effects': {}
     },
-    'Attacks': [
-        {'atk_mod': ['STR'], 'dmg_mod': ['STR']}
+    'Weapons': [
+        {
+            name: '',
+            attack: {},
+            damage: {},
+            type: '',
+            range: 0,
+            ammunition: 0,
+            critical: ''
+        }, {
+            name: '',
+            attack: {},
+            damage: {},
+            type: '',
+            range: 0,
+            ammunition: 0,
+            critical: ''
+        }, {
+            name: '',
+            attack: {},
+            damage: {},
+            type: '',
+            range: 0,
+            ammunition: 0,
+            critical: ''
+        }, {
+            name: '',
+            attack: {},
+            damage: {},
+            type: '',
+            range: 0,
+            ammunition: 0,
+            critical: ''
+        }, {
+            name: '',
+            attack: {},
+            damage: {},
+            type: '',
+            range: 0,
+            ammunition: 0,
+            critical: ''
+        }
     ]
 
 }

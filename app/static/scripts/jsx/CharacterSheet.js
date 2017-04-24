@@ -122,6 +122,11 @@ var CharacterSheet = React.createClass({
                 else character['Defense']['Saves'][objectKey] = value;
                 break;
             }
+            case 'skill_show': {
+                if(nestedKey) character['Skills']['Skill_Table'][objectKey][nestedKey]['show'] = value;
+                else character['Skills']['Skill_Table'][objectKey]['show'] = value;
+                break;
+            }
             case 'skill_table': {
                 let splitKey = objectKey.split(" (")
                 let skillName = splitKey.length > 1? splitKey[0]: objectKey;

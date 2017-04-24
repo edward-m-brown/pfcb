@@ -48,7 +48,7 @@ var Manager = React.createClass({
                             </div>
                         </div>
 
-                    )
+                    );
                 case 'featManager':
                     return (
                         <div className="col-xs-6 col-sm-5 col-md-3">

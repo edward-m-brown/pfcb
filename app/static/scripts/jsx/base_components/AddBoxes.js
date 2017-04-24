@@ -39,13 +39,12 @@ const AddBoxes = React.createClass({
                             ? this.makeLabel(helpName, fieldName)
                             : ''
                         }
-                        <input data-name={fieldName} type="number" disabled={!edit} onChange={edit? change: null}
+                        <input data-name={fieldName} type="number" onChange={change} disabled={!change}
                             value={value} aria-describedby={helpName} data-parent={name}
-                            className="add-box"/>
+                            className={"add-box"}/>
                         {boxes[fieldName].noLabel || this.props.labelAbove
                             ? ''
-                            : this.makeLabel(helpName, fieldName)
-                        }
+                            : this.makeLabel(helpName, fieldName)}
 
                     </div>
                     {boxKeys[index+1]
@@ -61,15 +60,17 @@ const AddBoxes = React.createClass({
         let boxes = this.props.boxes;
         let name = this.props.boxes.name;
         let label;
+        let className = this.props.className? "flex-container " + this.props.className: "flex-container flex-wrap";
         return (
-            <div className="flex-container flex-wrap">
+            <div className={className}>
                 <div className="small-item">
                     {this.props.labelAbove
                         ? <span id={name} className="help-block"><small>TOTAL</small></span>
                         : ''
                     }
-                    <input type="text" disabled={true} value={this.sumBoxes()}
-                        aria-describedby={name} className="add-box"/>
+                    <text aria-describedby={name} className="add-box" style={{textDecoration: "underline"}}>
+                        &nbsp;&nbsp;{this.sumBoxes()}&nbsp;&nbsp;
+                    </text>
                     {boxes.totalOnly || this.props.labelAbove
                         ? ''
                         : <span id={name} className="help-block"><small>TOTAL</small></span>}

@@ -5,6 +5,32 @@ import AddBoxes from '../base_components/AddBoxes'
 import Reference from '../base_components/Reference'
 
 const Skills = React.createClass({
+    getInitialState() {
+        return {info: '', filter: 'favorites', search: ''}
+    },
+    filterSkill(skillName, subSkill='') {
+        let skillTable = this.props.skills['Skill_Table'];
+        let skill = subSkill? skillTable[skillName][subSkill]: skillTable[skillName];
+        let lowerSkill = skillName.toLowerCase();
+        let lowerSearch = this.state.search.toLowerCase();
+        let lowerSub = subSkill.toLowerCase();
+        let searchMatch = (lowerSearch && lowerSkill.search(lowerSearch) >= 0)
+            || (lowerSearch && lowerSub.search(lowerSearch) >= 0)
+        switch(this.state.filter){
+            case 'all': {
+                return(!lowerSearch || searchMatch)
+            }
+            case 'class': {
+                return (skill['class'] || searchMatch);
+            }
+            case 'favorites': {
+                return (skill['show'] || searchMatch);
+            }
+            case 'trained': {
+                return (skill['Ranks'] > 0 || searchMatch);
+            }
+        }
+    },
     makeBoxes(skillName, skill, abilityMod) {
         return {
             name: skillName, 'Ability Mod': {
@@ -38,46 +64,86 @@ const Skills = React.createClass({
         else console.log("makeRow:: weird ability name: " + abilityName)
         let boxes = this.makeBoxes(name, skill, abilityMod);
         return (
-            <tr>
-                <td>
+            <div className="row">
+                <div className="col-xs-6">
                     <input type="checkbox" checked={skill['class']} onClick={this.toggleClassSkill}
-                        data-checked={skill['class']} data-name={skillName} data-child={subSkill}/>
-                </td>
-                <td>{name}&nbsp;{dbSkill['TO']? '*': ''}</td>
-                <td> <AddBoxes boxes={boxes}/> </td>
-            </tr>
+                           data-checked={skill['class']} data-name={skillName} data-child={subSkill}/>
+                    {name}&nbsp;{dbSkill['TO']? '*': ''}<br/>
+                    <button data-name={skillName} onClick={this.setInfo}
+                            data-toggle="modal" data-target="#skillReference" className="col-xs-2 col-sm-1 col-md-1"
+                            title="Show Skill Reference">
+                        <span className="glyphicon glyphicon-book" style={{textAlign: "center"}} data-name={skillName}/>
+                    </button>
+                    <button data-name={skillName} data-child={subSkill} data-favorite={skill['show']}
+                        onClick={this.toggleShow} style={skill['show']? {backgroundColor: "black"}: {}}>
+                        <span className={skill['show']? "glyphicon glyphicon-star": "glyphicon glyphicon-star-empty"}
+                           data-name={skillName} data-child={subSkill} data-favorite={skill['show']}
+                           style={skill['show']? {color: "gold"}: {}}/>
+                    </button>
+
+                </div>
+                <div className="flex-item col-xs-6"> <AddBoxes boxes={boxes} className="no-wrap"/> </div>
+            </div>
         );
+    },
+    setFilter(e) {
+        this.setState({filter: e.target.value})
+    },
+    setSearch(e) {
+        this.setState({search: e.target.value})
+    },
+    setInfo(e) {
+        this.setState({info: e.target.dataset.name});
     },
     toggleClassSkill(e) {
         let data = e.target.dataset;
         this.props.updateCharacter('class_skill', !(data.checked == "true"), data.name, data.child);
     },
+    toggleShow(e) {
+        let data = e.target.dataset;
+        this.props.updateCharacter('skill_show', !(data.favorite == "true"), data.name, data.child);
+    },
     updateSkill(e) {
-        let data = e.target.dataset; let intValue = parseInt(e.target.value); let value = intValue? intValue: 0;
+        let data = e.target.dataset; let intValue = parseInt(e.target.value);
+        let value = intValue && intValue >= 0 ? intValue: 0;
         this.props.updateCharacter('skill_table', value, data.parent, data.name);
     },
     render() {
         let skillTable = this.props.skills['Skill_Table'];
         let skillNames = Object.keys(skillTable).sort();
+        let filterNames = ['All', 'Class', 'Trained', 'Favorites'];
         return(
-            <div>
+            <div className="col-xs-12 col-md-6">
                 <h1 className="field-block">Skills</h1>
-                <table>
-                    <tr>
-                        <th></th>
-                        <th><sub> Skill Name </sub></th>
-                        <th></th>
-                    </tr>
-                    {skillNames.map((skillName)=>{
-                        if(skillTable[skillName]['Ranks'] >= 0){
+                <div className="row">
+                    <label className="col-xs-6">
+                        Show:&nbsp;
+                        <select onChange={this.setFilter} value={this.state.filter}>
+                            {filterNames.map((filterName)=>{
+                                return <option value={filterName.toLowerCase()}>{filterName}</option> })}
+                        </select>
+                    </label>
+                    <label className="col-xs-6">
+                        Search:&nbsp;
+                        <input type="text" onChange={this.setSearch} value={this.state.search}
+                            style={{width: "parent"}}/>
+                    </label>
+                </div>
+                {skillNames.map((skillName)=>{
+                    let lowerSkill = skillName.toLowerCase();
+                    let lowerSearch = this.state.search.toLowerCase();
+                    if(skillTable[skillName]['Ranks'] >= 0){
+                        if(this.filterSkill(skillName))
                             return (this.makeRow(skillName, ''))
-                        } else {
-                            return Object.keys(skillTable[skillName]).sort().map((subSkill)=>{
+                    } else {
+                        return Object.keys(skillTable[skillName]).sort().map((subSkill)=>{
+                            if(this.filterSkill(skillName))
                                 return (this.makeRow(skillName, subSkill))
-                            })
-                        }
-                    })}
-                </table>
+                        })
+                    }
+                }, this)}
+                <Reference referenceName="skillReference" labelName="Skill" dbObjects={this.props.dbSkills}
+                    info={this.state.info}/>
             </div>
         )
     }
