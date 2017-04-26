@@ -1,27 +1,52 @@
 name: python3.3
+channels:
+- !!python/unicode
+  'defaults'
 dependencies:
-- flask=0.10.1=py33_1
-- ipython=3.2.1=py33_0
-- itsdangerous=0.24=py33_0
-- jinja2=2.8=py33_0
-- markupsafe=0.23=py33_0
-- openssl=1.0.1k=1
-- pip=8.0.3=py33_0
-- pymongo=2.8=py33_0
-- python=3.3.5=4
-- readline=6.2=2
-- requests=2.9.1=py33_0
-- setuptools=20.1.1=py33_0
-- sqlite=3.13.0=0
-- system=5.8=2
-- tk=8.5.18=0
-- werkzeug=0.10.4=py33_0
-- wheel=0.29.0=py33_0
-- xz=5.0.5=1
-- zlib=1.2.8=3
+- !!python/unicode
+  'flask=0.10.1=py33_1'
+- !!python/unicode
+  'ipython=3.2.1=py33_0'
+- !!python/unicode
+  'itsdangerous=0.24=py33_0'
+- !!python/unicode
+  'jinja2=2.8=py33_0'
+- !!python/unicode
+  'markupsafe=0.23=py33_0'
+- !!python/unicode
+  'openssl=1.0.1k=1'
+- !!python/unicode
+  'pip=8.0.3=py33_0'
+- !!python/unicode
+  'pymongo=2.8=py33_0'
+- !!python/unicode
+  'python=3.3.5=4'
+- !!python/unicode
+  'readline=6.2=2'
+- !!python/unicode
+  'requests=2.9.1=py33_0'
+- !!python/unicode
+  'setuptools=20.1.1=py33_0'
+- !!python/unicode
+  'sqlite=3.13.0=0'
+- !!python/unicode
+  'system=5.8=2'
+- !!python/unicode
+  'tk=8.5.18=0'
+- !!python/unicode
+  'werkzeug=0.10.4=py33_0'
+- !!python/unicode
+  'wheel=0.29.0=py33_0'
+- !!python/unicode
+  'xz=5.0.5=1'
+- !!python/unicode
+  'zlib=1.2.8=3'
 - pip:
   - beautifulsoup4==4.5.3
   - flask-login==0.4.0
   - flask-pymongo==0.4.1
-prefix: /home/edward/anaconda2/envs/python3.3
+  - flask-wtf==0.14.2
+  - lxml==3.7.3
+  - wtforms==2.1
+prefix: !!python/unicode '/home/edward/anaconda2/envs/python3.3'
 

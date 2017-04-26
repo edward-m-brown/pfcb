@@ -2,7 +2,11 @@
  * Created by edward on 4/3/17.
  */
 import Manager from '../base_components/Manager'
+import Reference from '../base_components/Reference'
 var Classes = React.createClass({
+    getInitialState() {
+        return {info: ''}
+    },
     componentWillMount(){
         // ajax here, if needed
     },
@@ -45,6 +49,9 @@ var Classes = React.createClass({
         if(confirm("Are you sure you want to remove all " + className + " levels from this character?"))
             this.props.remove(className)
     },
+    setInfo(e) {
+        this.setState({info: e.target.dataset.name})
+    },
     addClass(e) {
         let className = e.target.name? e.target.name : e.target.dataset.name;
         if(!className) return;
@@ -84,6 +91,8 @@ var Classes = React.createClass({
 
                 <Manager managerName="classManager" labelName="Class" dbObjects={this.props.classes}
                      objects={this.props.classLevels} update={this.update} remove={this.remove} add={this.addClass}/>
+                 <Reference referenceName="classReference" labelName="Class" dbObjects={this.props.classes}
+                    info={this.state.info}/>
             </div>
         );
     }

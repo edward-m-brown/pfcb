@@ -17,7 +17,7 @@ import re, os, glob, traceback
 def get_base_classes(filename, classname):
     # entries will end on stat-block-title or a <div class='footer'>
     with open(filename, encoding='utf-8') as base_class_file:
-        base_class_soup = BeautifulSoup(base_class_file.read(), "html.parser")
+        base_class_soup = BeautifulSoup(base_class_file.read(), "lxml")
     base_class_fields = {}
     base_class_fields["Name"] = []
     base_class_fields["Alignment"] = ""
@@ -33,6 +33,7 @@ def get_base_classes(filename, classname):
         base_class_fields["Html"] += str(header_block)
         for sibling in header_block.next_siblings:
             if type(sibling) is element.Tag:
+                base_class_fields["Html"] += str(sibling)
                 if sibling.name == 'p':
                     if sibling.b:
                         b_text = sibling.b.get_text()

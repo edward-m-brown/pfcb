@@ -107,6 +107,14 @@ var Manager = React.createClass({
                                 labelName={this.props.labelName} hideSearch={this.state.hideSearch}/>
                         </div>
                         <div className="modal-footer">
+                            {this.state.info
+                                ? <button type="button" className="btn btn-default"
+                                    onClick={this.resetState}>
+                                    Back to {this.props.labelName} Manager
+                                  </button>
+                                : ''
+                            }
+
                             <button type="button" className="btn btn-default" data-dismiss="modal"
                                 onClick={this.resetState}>
                                 Close
