@@ -89,8 +89,8 @@ var CharacterBuilder = React.createClass({
         // function for starting a new character sheet
         console.log(event.target)
         let characters = $.extend(true, [], this.state.characters);
-        characters.push($.extend(true, {}, character_template));
-        this.setState({characters: characters});
+        let index = characters.push($.extend(true, {}, character_template)) - 1;
+        this.saveCharacters(characters[index], index)
     },
     saveCharacters(character, index=this.state.char_index) {
         let characters = $.extend(true, [], this.state.characters);

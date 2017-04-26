@@ -8,6 +8,7 @@ import Feats from './sheet_components/Feats'
 import Offense from './sheet_components/Offense'
 import Defense from './sheet_components/Defense'
 import Skills from './sheet_components/Skills'
+import Weapons from './sheet_components/Weapons'
 
 
 // helpers
@@ -33,10 +34,10 @@ function calculateTempModifiers(temp_adjustments, base_scores) {
 const featTemplate = {
     'Name': '',
     'Notes': ''
-}
+};
 
 // CharacterSheet component
-var CharacterSheet = React.createClass({
+const CharacterSheet = React.createClass({
     getInitialState() {
         // CharacterSheet state is primarily for storing bonuses calculated within child components which
         // will be needed by multiple other child components.
@@ -53,11 +54,15 @@ var CharacterSheet = React.createClass({
         this.saveCharacter();
         this.props.deselectCharacter();
     },
-    updateCharacter(updateType, value, objectKey='', nestedKey='') {
+    updateCharacter(updateType, value, objectKey='', nestedKey='', otherKey='') {
         let character = $.extend(true, {}, this.state.character);
         switch(updateType) {
             case 'AC_update': {
                 character['Defense']['AC'][objectKey] = value;
+                break;
+            }
+            case 'add_weapons': {
+                character['Weapons'] = value;
                 break;
             }
             case 'BAB': {
@@ -147,6 +152,10 @@ var CharacterSheet = React.createClass({
                 let adjustments = character["Ability_Scores"]["temp"];
                 adjustments[objectKey] = value;
                 this.setTempModifiers(adjustments, this.state.character["Ability_Scores"]["base"]);
+                break;
+            }
+            case 'weapon': {
+                character['Weapons'][objectKey][nestedKey] = value;
                 break;
             }
             default: {
@@ -248,14 +257,20 @@ var CharacterSheet = React.createClass({
                         updateCharacter={this.updateCharacter}/>
                 </div>
                 <div className="row">
-                    <Feats dbFeats={this.props.feats} characterFeats={this.state.character['Feats']}
-                           updateCharacter={this.updateCharacter} />
-                </div>
-                <div className="row">
                     <Skills dbSkills={this.props.skills} skills={this.state.character['Skills']}
                         strMod={strMod} dexMod={dexMod} conMod={conMod} intMod={intMod} wisMod={wisMod} chaMod={chaMod}
                         updateCharacter={this.updateCharacter}/>
                 </div>
+                <div className="row">
+                    <Weapons weapons={this.state.character['Weapons']} strMod={strMod} dexMod={dexMod} conMod={conMod}
+                        intMod={intMod} wisMod={wisMod} chaMod={chaMod} updateCharacter={this.updateCharacter}
+                        baseAttack={this.state.character['Offense']['BAB']}/>
+                </div>
+                <div className="row">
+                    <Feats dbFeats={this.props.feats} characterFeats={this.state.character['Feats']}
+                           updateCharacter={this.updateCharacter} />
+                </div>
+
                 <div className="row">
                     <div className="col-md-12">
                         <button type="button" className="btn btn-info btn-md" onClick={ this.deselectCharacter }>

@@ -21,7 +21,6 @@ const Defense = React.createClass({
         let boxes = $.extend(true, {}, acBoxes);
         let exclude = this.props.defense[which+'_exclude'];
         Object.keys(exclude).map((key)=>{exclude[key]? delete boxes[key]: null});
-        boxes.totalOnly = true;
         return boxes;
     },
     makeSaveBox(name, abilityMod) {
@@ -123,7 +122,7 @@ const Defense = React.createClass({
                     </ul>
                     &nbsp;&nbsp;
                     <div className="flex-item">
-                        <AddBoxes boxes={touchBoxes}/>
+                        <AddBoxes boxes={touchBoxes} totalOnly={true}/>
                     </div>
                     <ul className="list-unstyled field-block small-item">
                         <li>Flat-Footed</li>
@@ -131,7 +130,7 @@ const Defense = React.createClass({
                     </ul>
                     &nbsp;&nbsp;
                     <div className="flex-item">
-                        <AddBoxes boxes={flatFootedBoxes}/>
+                        <AddBoxes boxes={flatFootedBoxes} totalOnly={true}/>
                     </div>
                     <div className="flex-item">
                         <textarea value={modNotes} onChange={this.props.updateAC} data-name="Mod Notes"

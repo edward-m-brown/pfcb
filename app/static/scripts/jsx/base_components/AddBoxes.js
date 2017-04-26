@@ -6,7 +6,7 @@ const AddBoxes = React.createClass({
         let sum = 0;
         let boxes = this.props.boxes;
         Object.keys(boxes).map((key)=>{
-           if(key != 'name' && key != 'totalOnly')
+           if(key != 'name')
                sum += boxes[key].value;
         });
         return sum;
@@ -30,7 +30,7 @@ const AddBoxes = React.createClass({
         if(fieldName != 'name') {
             let edit = boxes[fieldName].edit;
             let change = boxes[fieldName].change;
-            let helpName = boxes.name + "_" + fieldName;
+            let helpName = name + "_" + fieldName;
             let value = boxes[fieldName].value;
             return (
                 <div className="flex-item flex-container flex-wrap">
@@ -41,7 +41,7 @@ const AddBoxes = React.createClass({
                         }
                         <input data-name={fieldName} type="number" onChange={change} disabled={!change}
                             value={value} aria-describedby={helpName} data-parent={name}
-                            className={"add-box"}/>
+                            className={"add-box"} data-index={this.props.index}/>
                         {boxes[fieldName].noLabel || this.props.labelAbove
                             ? ''
                             : this.makeLabel(helpName, fieldName)}
@@ -61,6 +61,20 @@ const AddBoxes = React.createClass({
         let name = this.props.boxes.name;
         let label;
         let className = this.props.className? "flex-container " + this.props.className: "flex-container flex-wrap";
+        let boxKeys = Object.keys(this.props.boxes);
+        let totalTitle = "";
+        boxKeys.map((key, index)=>{
+            let plus = boxKeys[index+1]? " + ": "";
+            if(key != 'name') {
+                if(key == 'baseAttack')
+                    totalTitle += ("Base Attack Bonus" + plus);
+                else if(key.search("[A-z]+Mod") >= 0)
+                    totalTitle += (key.split('M')[0] + " M" + key.split('M')[1] + plus);
+                else
+                    totalTitle += (key + plus);
+
+            }
+        })
         return (
             <div className={className}>
                 <div className="small-item">
@@ -68,18 +82,18 @@ const AddBoxes = React.createClass({
                         ? <span id={name} className="help-block"><small>TOTAL</small></span>
                         : ''
                     }
-                    <text aria-describedby={name} className="add-box" style={{textDecoration: "underline"}}>
-                        &nbsp;&nbsp;{this.sumBoxes()}&nbsp;&nbsp;
-                    </text>
-                    {boxes.totalOnly || this.props.labelAbove
+                    <input type="text" disabled={true}
+                        aria-describedby={this.props.totalOnly? this.props.describedBy: name} className="add-box"
+                        value={this.sumBoxes()} title={this.props.totalOnly? totalTitle: ''}/>
+                    {this.props.totalOnly || this.props.labelAbove
                         ? ''
                         : <span id={name} className="help-block"><small>TOTAL</small></span>}
                 </div>
-                {boxes.totalOnly
+                {this.props.totalOnly
                     ? ''
                     : <div className="small-item">=</div>
                 }
-                {boxes.totalOnly
+                {this.props.totalOnly
                     ? ''
                     : Object.keys(boxes).map((fieldName, index)=>{
                         return this.makeInput(fieldName,index);

@@ -123,12 +123,10 @@ const Skills = React.createClass({
                                 return <option value={filterName.toLowerCase()}>{filterName}</option> })}
                         </select>
                     </label>
-                    <label className="col-xs-6">
-                        Search:&nbsp;
-                        <input type="text" onChange={this.setSearch} value={this.state.search}
-                            style={{width: "parent"}}/>
-                    </label>
+                    <input type="text" onChange={this.setSearch} value={this.state.search}
+                        placeholder="Search skill names" className="col-xs-6"/>
                 </div>
+                <hr/>
                 {skillNames.map((skillName)=>{
                     let lowerSkill = skillName.toLowerCase();
                     let lowerSearch = this.state.search.toLowerCase();
@@ -137,7 +135,7 @@ const Skills = React.createClass({
                             return (this.makeRow(skillName, ''))
                     } else {
                         return Object.keys(skillTable[skillName]).sort().map((subSkill)=>{
-                            if(this.filterSkill(skillName))
+                            if(this.filterSkill(skillName, subSkill))
                                 return (this.makeRow(skillName, subSkill))
                         })
                     }

@@ -532,52 +532,9 @@ const character_template = {
         'Nonlethal': 0,
         'DR': {},
         'Effects': {}
-    },
-    'Weapons': [
-        {
-            name: '',
-            attack: {},
-            damage: {},
-            type: '',
-            range: 0,
-            ammunition: 0,
-            critical: ''
-        }, {
-            name: '',
-            attack: {},
-            damage: {},
-            type: '',
-            range: 0,
-            ammunition: 0,
-            critical: ''
-        }, {
-            name: '',
-            attack: {},
-            damage: {},
-            type: '',
-            range: 0,
-            ammunition: 0,
-            critical: ''
-        }, {
-            name: '',
-            attack: {},
-            damage: {},
-            type: '',
-            range: 0,
-            ammunition: 0,
-            critical: ''
-        }, {
-            name: '',
-            attack: {},
-            damage: {},
-            type: '',
-            range: 0,
-            ammunition: 0,
-            critical: ''
-        }
-    ]
+    }
 
-}
+};
 
 const exp_table = {
     'slow': {

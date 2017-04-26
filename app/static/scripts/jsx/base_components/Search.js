@@ -31,6 +31,8 @@ const Search = React.createClass({
                 </div>
                 <br/>
                 <div className="container">
+                    {/*With filters, this would change to if this.filter() and this.filter() would call
+                        a filter function passed as props.*/}
                     { objectNames.map((name)=>{
                         if(this.state.search == '' || name.toLowerCase().match(this.state.search.toLowerCase())) {
                             return (
