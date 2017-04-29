@@ -60,7 +60,9 @@ def get_feats(fname):
                 # check only the contents of other tags
                 if type(sibling) is type(start):
                     # get data as long as current tag type isn't a header
-                    if not re.match(header_regex,sibling.name): # hitting a header means we've come out of the feat
+                    if anchor == "leadership" and re.match(header_regex, sibling.name):
+                        print("HEADER DID MATCH")
+                    if not re.match(header_regex, sibling.name): # hitting a header means we've come out of the feat
                         feat_fields["Html"] += str(sibling)
                         for string in sibling.stripped_strings:
                             feat_fields["Text"].append(string)
@@ -91,6 +93,8 @@ def get_feats(fname):
                                         feat_fields[key].append(string.strip(" :."))
                     # If we've hit a header, we're probably not in the feat description any more. Stop looping.
                     else:
+                        if anchor == "leadership":
+                            print(sibling)
                         break
             for key in ["Name", "Text", "Note", "Prereq", "Benefit", "Normal", "Special"]:
                 feat_fields[key] = """ """.join(feat_fields[key])

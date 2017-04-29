@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup, element
 import re, os, glob, traceback
+from lxml.html import html5parser
 
 # Base Class Format:
 # inside a <div class="body">
@@ -17,7 +18,7 @@ import re, os, glob, traceback
 def get_base_classes(filename, classname):
     # entries will end on stat-block-title or a <div class='footer'>
     with open(filename, encoding='utf-8') as base_class_file:
-        base_class_soup = BeautifulSoup(base_class_file.read(), "lxml")
+        base_class_soup = BeautifulSoup(base_class_file.read(), "html5lib")
     base_class_fields = {}
     base_class_fields["Name"] = []
     base_class_fields["Alignment"] = ""

@@ -24,7 +24,7 @@ const Status = React.createClass({
     },
     updateAdjustment(e) {
         let value = parseInt(e.target.value);
-        this.setState({adjustment: value && value >= 0? value: ''});
+        this.setState({adjustment: value || value >= 0? value: ''});
     },
     heal() {
         let adj = this.state.adjustment? this.state.adjustment : 0;

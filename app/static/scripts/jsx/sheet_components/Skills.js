@@ -113,7 +113,7 @@ const Skills = React.createClass({
         let skillNames = Object.keys(skillTable).sort();
         let filterNames = ['All', 'Class', 'Trained', 'Favorites'];
         return(
-            <div className="col-xs-12 col-md-6">
+            <div className="col-xs-12 col-md-6 bordered">
                 <h1 className="field-block">Skills</h1>
                 <div className="row">
                     <label className="col-xs-6">
@@ -124,7 +124,8 @@ const Skills = React.createClass({
                         </select>
                     </label>
                     <input type="text" onChange={this.setSearch} value={this.state.search}
-                        placeholder="Search skill names" className="col-xs-6"/>
+                        placeholder="Search skill names" className="col-xs-5"/>
+                    <div className="col-xs-1"></div>
                 </div>
                 <hr/>
                 {skillNames.map((skillName)=>{

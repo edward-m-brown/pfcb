@@ -227,10 +227,9 @@ const CharacterSheet = React.createClass({
                 <div className="row">
                     {/*
                      <div className="col-xs-12 col-md-6">
-                         <img src="/static/assets/pflogo_small.png"/>
+                     <img src="/static/assets/pflogo_small.png"/>
                      </div>
-                    */}
-
+                     */}
                     <Description characterName={this.state.character["Name"]}
                         description={this.state.character["Description"]}
                         updateCharacter={this.updateCharacter}/>
@@ -250,21 +249,20 @@ const CharacterSheet = React.createClass({
                         updateCharacter={this.updateCharacter}
                         updateBase={this.updateAbilityScores}
                         updateTemp={this.updateTempAdjustments}/>
-
-                    <Offense offense={this.state.character['Offense']} dexMod={dexMod} strMod={strMod}
-                        updateCharacter={this.updateCharacter}/>
-                    <Defense defense={this.state.character['Defense']} dexMod={dexMod} conMod={conMod} wisMod={wisMod}
-                        updateCharacter={this.updateCharacter}/>
                 </div>
                 <div className="row">
+                    <Offense offense={this.state.character['Offense']} dexMod={dexMod} strMod={strMod}
+                             updateCharacter={this.updateCharacter}/>
+                    <Defense defense={this.state.character['Defense']} dexMod={dexMod} conMod={conMod} wisMod={wisMod}
+                             updateCharacter={this.updateCharacter}/>
                     <Skills dbSkills={this.props.skills} skills={this.state.character['Skills']}
                         strMod={strMod} dexMod={dexMod} conMod={conMod} intMod={intMod} wisMod={wisMod} chaMod={chaMod}
                         updateCharacter={this.updateCharacter}/>
                 </div>
                 <div className="row">
                     <Weapons weapons={this.state.character['Weapons']} strMod={strMod} dexMod={dexMod} conMod={conMod}
-                        intMod={intMod} wisMod={wisMod} chaMod={chaMod} updateCharacter={this.updateCharacter}
-                        baseAttack={this.state.character['Offense']['BAB']}/>
+                        intMod={intMod} wisMod={wisMod} chaMod={chaMod} baseAttack={this.state.character['Offense']['BAB']}
+                        updateCharacter={this.updateCharacter}/>
                 </div>
                 <div className="row">
                     <Feats dbFeats={this.props.feats} characterFeats={this.state.character['Feats']}

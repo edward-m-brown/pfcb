@@ -12,7 +12,7 @@ var Manager = React.createClass({
         // ajax here, if needed
     },
     resetState() {
-        this.setState({info: ''});
+        this.setState({info: '', hideSearch: false});
     },
     setInfo(e) {
         this.setState({info: e.target.name? e.target.name : e.target.dataset.name});

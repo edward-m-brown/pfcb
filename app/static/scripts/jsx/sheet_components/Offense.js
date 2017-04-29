@@ -46,13 +46,13 @@ const Offense = React.createClass({
         let cmdBoxes = {
             name: 'CMD', 'BAB': {
                 value: baseAttack,
-            }, 'STR': {
+            }, 'strMod': {
                 value: this.props.strMod,
-            }, 'Size': {
+            }, 'sizeMod': {
                 value: 0, // need to replace with size modifier, when I have that implemented
-            }, 'DEX': {
+            }, 'dexMod': {
                 value: this.props.dexMod,
-            }, 'Z' : {
+            }, '10' : {
                 value: 10,
                 noLabel: true
             }
@@ -93,28 +93,26 @@ const Offense = React.createClass({
                     </ul>
                     &nbsp;&nbsp;
                     <div className="flex-item">
-                        <AddBoxes boxes={cmbBoxes}/>
+                        <AddBoxes boxes={cmbBoxes} totalOnly={true}/>
                     </div>
-                    <div className="flex-item">
-                        <textarea value={cmbMod} onChange={this.update} data-name="cmb_mod"
-                            className="flex-item" aria-describedby="CMB Mod"
-                            style={{resize: "horizontal", maxWidth: 300}}/>
-                        <span id="CMB Mod" className="help-block">
-                            <sup>Modifiers</sup>
-                        </span>
-
-                    </div>
-                </div>
-                <div className="flex-item flex-container">
                     <ul className="list-unstyled field-block small-item">
                         <li>CMD</li>
                     </ul>
                     &nbsp;&nbsp;
                     <div className="flex-item">
-                        <AddBoxes boxes={cmdBoxes}/>
+                        <AddBoxes boxes={cmdBoxes} totalOnly={true}/>
                     </div>
-                </div>
+                    <div className="flex-item">
+                        <textarea value={cmbMod} onChange={this.update} data-name="cmb_mod"
+                                  className="flex-item" aria-describedby="CMB Mod"
+                                  style={{resize: "horizontal", maxWidth: 300}}/>
+                        <span id="CMB Mod" className="help-block">
+                            <sup>Modifiers</sup>
+                        </span>
 
+                    </div>
+
+                </div>
             </div>
         );
     }
