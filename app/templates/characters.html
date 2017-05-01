@@ -5,7 +5,7 @@
             display: flex;
             background-color: #ffffff;
             flex-direction: row;
-            justify-content: space-around;
+            justify-content: flex-start;
         }
 
         .flex-item {
@@ -17,7 +17,7 @@
             display: flex;
             background-color: #ffffff;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
         }
 
         .app-wrapper {
@@ -87,6 +87,29 @@
         .padded {
             padding: 5px
         }
+        .add-static {
+            border-top: none;
+            border-right: none;
+            border-left: none;
+            border-bottom-color: silver;
+            text-align: center;
+            outline: none;
+            background-color: transparent;
+            font-family: inherit;
+            font-size: inherit;
+        }
+        .weapon-notes {
+            margin-right: 5%;
+            margin-left: 5%;
+            width: 90%;
+        }
+        .text {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            font-family: inherit;
+            font-size: inherit;
+        }
 
         #triangle-left {
             width: 0;
@@ -123,7 +146,13 @@
             .ac-modifiers {
 
             }
+            .ammunition{
+                width: 25px;
+            }
             .add-box {
+                width: 25px;
+            }
+            .add-static {
                 width: 25px;
             }
             .save-modifiers {
@@ -149,11 +178,16 @@
                 height:40px;
                 textAlign: "center"
             }
+            .ammunition{
+                width: 45px;
+            }
             .ac-modifiers {
-
             }
             .add-box {
-                width: 35px;
+                width: 45px;
+            }
+            .add-static {
+                width: 45px;
             }
             .save-modifiers {
                 margin-top: 20px;

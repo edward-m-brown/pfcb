@@ -41,7 +41,7 @@ const AddBoxes = React.createClass({
                         }
                         <input data-name={fieldName} type="number" onChange={change} disabled={!change}
                             value={value} aria-describedby={helpName} data-parent={name}
-                            className={"add-box"} data-index={this.props.index}/>
+                            className={change? "add-box": "add-static"} data-index={this.props.index}/>
                         {boxes[fieldName].noLabel || this.props.labelAbove
                             ? ''
                             : this.makeLabel(helpName, fieldName)}
@@ -69,7 +69,7 @@ const AddBoxes = React.createClass({
                 if(key == 'baseAttack')
                     totalTitle += ("Base Attack Bonus" + plus);
                 else if(key.search("[A-z]+Mod") >= 0)
-                    totalTitle += (key.split('M')[0] + " M" + key.split('M')[1] + plus);
+                    totalTitle += (key.split('M')[0].toUpperCase() + " M" + key.split('M')[1] + plus);
                 else
                     totalTitle += (key + plus);
 
@@ -83,7 +83,7 @@ const AddBoxes = React.createClass({
                         : ''
                     }
                     <input type="text" disabled={true}
-                        aria-describedby={this.props.totalOnly? this.props.describedBy: name} className="add-box"
+                        aria-describedby={this.props.totalOnly? this.props.describedBy: name} className="add-static"
                         value={this.sumBoxes()} title={this.props.totalOnly? totalTitle: ''}/>
                     {this.props.totalOnly || this.props.labelAbove
                         ? ''

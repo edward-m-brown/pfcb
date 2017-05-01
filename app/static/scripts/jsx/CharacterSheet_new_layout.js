@@ -158,13 +158,6 @@ const CharacterSheet = React.createClass({
                 character['Weapons'][objectKey][nestedKey] = value;
                 break;
             }
-            case 'weapon_bonus': {
-                if(character['Weapons'][objectKey][nestedKey].includes(value)){
-                    character['Weapons'][objectKey][nestedKey]
-                        .splice(character['Weapons'][objectKey][nestedKey].indexOf(value),1)
-                } else character['Weapons'][objectKey][nestedKey].push(value);
-                break;
-            }
             default: {
                 console.log('updateCharacter(' + updateType + ')')
                 break;
@@ -230,59 +223,54 @@ const CharacterSheet = React.createClass({
             ? this.state.temp_mods['CHA']
             : this.state.ability_mods['CHA'];
         return (
-            <div className="container">
-                <div className="row">
-                    {/*
-                     <div className="col-xs-12 col-md-6">
-                     <img src="/static/assets/pflogo_small.png"/>
-                     </div>
-                     */}
-                    <Description characterName={this.state.character["Name"]}
-                        description={this.state.character["Description"]}
-                        updateCharacter={this.updateCharacter}/>
-                </div>
-                <div className="row">
+            <div className="sheet-container">
+                <div className="sheet-col">
                     <Levels levels={this.state.character['Levels']}
-                        classes={this.props.baseClasses}
-                        updateCharacter={this.updateCharacter}/>
-                    <Status status={this.state.character['Status']} updateCharacter={this.updateCharacter}/>
-                    <Movement movement={this.state.character['Movement']} updateCharacter={this.updateCharacter}/>
-                </div>
-                <div className="row">
+                            classes={this.props.baseClasses}
+                            updateCharacter={this.updateCharacter}/>
                     <Abilities abilityScores={this.state.character["Ability_Scores"]["base"]}
-                        abilityMods={this.state.ability_mods}
-                        tempAdjustments={this.state.character["Ability_Scores"]["temp"]}
-                        tempMods={this.state.temp_mods}
-                        updateCharacter={this.updateCharacter}
-                        updateBase={this.updateAbilityScores}
-                        updateTemp={this.updateTempAdjustments}/>
-                </div>
-                <div className="row">
-                    <Offense offense={this.state.character['Offense']} dexMod={dexMod} strMod={strMod}
-                             updateCharacter={this.updateCharacter}/>
+                               abilityMods={this.state.ability_mods}
+                               tempAdjustments={this.state.character["Ability_Scores"]["temp"]}
+                               tempMods={this.state.temp_mods}
+                               updateCharacter={this.updateCharacter}
+                               updateBase={this.updateAbilityScores}
+                               updateTemp={this.updateTempAdjustments}/>
                     <Defense defense={this.state.character['Defense']} dexMod={dexMod} conMod={conMod} wisMod={wisMod}
                              updateCharacter={this.updateCharacter}/>
-                    <Skills dbSkills={this.props.skills} skills={this.state.character['Skills']}
-                        strMod={strMod} dexMod={dexMod} conMod={conMod} intMod={intMod} wisMod={wisMod} chaMod={chaMod}
-                        updateCharacter={this.updateCharacter}/>
-                </div>
-                <div className="row">
+                    <Offense offense={this.state.character['Offense']} dexMod={dexMod} strMod={strMod}
+                             updateCharacter={this.updateCharacter}/>
                     <Weapons weapons={this.state.character['Weapons']} strMod={strMod} dexMod={dexMod} conMod={conMod}
-                        intMod={intMod} wisMod={wisMod} chaMod={chaMod} baseAttack={this.state.character['Offense']['BAB']}
-                        updateCharacter={this.updateCharacter}/>
+                             intMod={intMod} wisMod={wisMod} chaMod={chaMod} baseAttack={this.state.character['Offense']['BAB']}
+                             updateCharacter={this.updateCharacter}/>
                 </div>
-                <div className="row">
-                    <Feats dbFeats={this.props.feats} characterFeats={this.state.character['Feats']}
-                           updateCharacter={this.updateCharacter} />
-                </div>
-
-                <div className="row">
-                    <div className="col-md-12">
-                        <button type="button" className="btn btn-info btn-md" onClick={ this.deselectCharacter }>
-                            <span className="glyphicon glyphicon-transfer"></span> Switch Characters
-                        </button>
+                <div className="sheet-col">
+                    <div className="flex-container">
+                        <Description characterName={this.state.character["Name"]}
+                                     description={this.state.character["Description"]}
+                                     updateCharacter={this.updateCharacter}/>
                     </div>
+                    <div className="flex-container">
+                        <Status status={this.state.character['Status']} updateCharacter={this.updateCharacter}/>
+                        <Movement movement={this.state.character['Movement']} updateCharacter={this.updateCharacter}/>
+                    </div>
+                    <Skills dbSkills={this.props.skills} skills={this.state.character['Skills']}
+                            strMod={strMod} dexMod={dexMod} conMod={conMod} intMod={intMod} wisMod={wisMod} chaMod={chaMod}
+                            updateCharacter={this.updateCharacter}/>
                 </div>
+                {/*
+
+                 <div className="flex-item">
+                 <Feats dbFeats={this.props.feats} characterFeats={this.state.character['Feats']}
+                 updateCharacter={this.updateCharacter} />
+                 </div>
+                 <div className="flex-item">
+                 <div className="col-md-12">
+                 <button type="button" className="btn btn-info btn-md" onClick={ this.deselectCharacter }>
+                 <span className="glyphicon glyphicon-transfer"></span> Switch Characters
+                 </button>
+                 </div>
+                 </div>
+                */}
 
             </div>
         )

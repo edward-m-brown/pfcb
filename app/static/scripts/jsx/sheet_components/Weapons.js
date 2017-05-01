@@ -18,7 +18,8 @@ function weaponsTemplate() {
             damageBonus: ["strMod"], // AddBoxes format
             miscAttack: 0,
             miscDamage: 0,
-            enhancement: 0
+            enhancement: 0,
+            notes: ''
         }, {
             name: 'Default ranged',
             attack: ["dexMod", "baseAttack"], // AddBoxes format
@@ -31,7 +32,8 @@ function weaponsTemplate() {
             damageBonus: [], // AddBoxes format
             miscAttack: 0,
             miscDamage: 0,
-            enhancement: 0
+            enhancement: 0,
+            notes: ''
         }, {
             name: 'Default thrown',
             attack: ["dexMod", "baseAttack"], // AddBoxes format
@@ -44,7 +46,8 @@ function weaponsTemplate() {
             damageBonus: ["strMod"], // AddBoxes format
             miscAttack: 0,
             miscDamage: 0,
-            enhancement: 0
+            enhancement: 0,
+            notes: ''
         }, {
             name: '',
             attack: ["baseAttack"], // AddBoxes format
@@ -57,7 +60,8 @@ function weaponsTemplate() {
             damageBonus: [], // AddBoxes format
             miscAttack: 0,
             miscDamage: 0,
-            enhancement: 0
+            enhancement: 0,
+            notes: ''
         }, {
             name: '',
             attack: ["baseAttack"], // AddBoxes format
@@ -70,56 +74,25 @@ function weaponsTemplate() {
             damageBonus: [], // AddBoxes format
             miscAttack: 0,
             miscDamage: 0,
-            enhancement: 0
+            enhancement: 0,
+            notes: ''
         }
     ]
 }
 
 const Weapons = React.createClass({
-    getInitialState(){
-        return { edit: -1}
-    },
     updateWeapon(e) {
         let value = e.target.type == "number"? parseInt(e.target.value): e.target.value;
+        if(e.target.dataset.name == "ammunition" && value <= 0) value = 0;
         let index = parseInt(e.target.dataset.index);
-        this.props.updateCharacter('weapon', value, index, e.target.dataset.name)
-    },
-    incrementRange(e) {
-        let increments = Object.assign([], this.state.increments);
-        increments[parseInt(e.target.dataset.index)] = parseInt(e.target.value);
-        this.setState({
-            increments: increments
-        });
-        console.log("Changed increments["+parseInt(e.target.dataset.index)+"] to: "+parseInt(e.target.value))
-    },
-    makeBoxes(boxType, weapon, index) {
-        let boxes = {
-            name: weapon.name, enhancement: {
-                value: weapon.enhancement, change: this.updateWeapon
-            }};
-        let array;
-        if(boxType == 'attack') {
-            boxes['miscAttack'] = {value: weapon.miscAttack, change: this.updateWeapon};
-            array = weapon.attack;
-            if(weapon.range){
-                boxes['rangePenalty'] = {
-                    value: -2 * this.state.increments[index]
-                }
-            }
-        } else {
-            boxes['miscDamage'] = {value: weapon.miscDamage, change: this.updateWeapon};
-            array = weapon.damageBonus;
+        let name = e.target.dataset.name;
+        if(name == "attack" || name == "damageBonus"){
+            if(value)
+                this.props.updateCharacter('weapon_bonus', value, index, name)
         }
-        for(let item in array) {
-            boxes[array[item]] = {value: this.props[array[item]]};
-        }
-        return boxes;
-    },
-    makeIncrementList(range) {
-        let incrementList = [];
-        for(let i=1; i<=10; i++)
-            incrementList.push(i*range);
-        return incrementList;
+        else
+            this.props.updateCharacter('weapon', value, index, name);
+        console.log(e.target.name, e.target.value)
     },
     render() {
         {/*let tableOrder = ['name', 'attack', 'critical', 'critMultiplier', 'type', 'range',

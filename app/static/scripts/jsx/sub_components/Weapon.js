@@ -2,10 +2,62 @@
  * Created by edward on 4/29/17.
  */
 import AddBoxes from '../base_components/AddBoxes'
+const $=require('../../../bower_components/jquery/dist/jquery.min')
 
 const Weapon = React.createClass({
     getInitialState() {
-        return {increment: 0, edit: false}
+        return {
+            increment: 0,
+            edit: false
+        }
+    },
+    addSubFields(bonusType, weapon, index) {
+        let able = {add: [], sub:[]};
+        ["strMod", "dexMod", "conMod", "intMod", "wisMod", "chaMod"].map((mod)=>{
+            if(weapon[bonusType].includes(mod))
+                able.sub.push(mod);
+            else
+                able.add.push(mod);
+        });
+        return (
+            <span>
+                <label>Add Modifier: </label>&nbsp;
+                <select data-name={bonusType} data-index={index} onChange={this.props.update} onClick={this.props.update}>
+                    {able.add.map((modName)=>{
+                        return <option value={modName}>
+                                   {modName.split('M')[0].toUpperCase()} M{modName.split('M')[1]}
+                               </option>
+                    })}
+                </select>
+                &nbsp;
+                <label>Remove Modifier: </label>&nbsp;
+                <select data-name={bonusType} data-index={index} onChange={this.props.update} onClick={this.props.update}>
+                    {able.sub.map((modName)=>{
+                        return <option value={modName}>
+                            {modName.split('M')[0].toUpperCase()} M{modName.split('M')[1]}
+                        </option>
+                    })}
+                </select>
+            </span>
+        );
+    },
+    computeMulti(attackBonus, index) {
+        let curBAB = this.props.baseAttack;
+        let multiAttack = [];
+        let abCopy = $.extend(true,{}, attackBonus);
+        while(curBAB > 5){
+            curBAB -= 5;
+            let newBonus = $.extend(true, {}, abCopy);
+            newBonus.baseAttack.value = curBAB;
+            multiAttack.push('+');
+            multiAttack.push(
+                <AddBoxes boxes={newBonus} index={index} className="text"
+                    totalOnly={true} describedBy={"weapon-"+index+"-attack"}/>
+            );
+            if(curBAB > 5)
+                multiAttack.push("/")
+        }
+        return multiAttack;
     },
     incrementRange(e) {
         this.setState({
@@ -15,11 +67,11 @@ const Weapon = React.createClass({
     makeBoxes(boxType, weapon, index) {
         let boxes = {
             name: weapon.name, enhancement: {
-                value: weapon.enhancement, change: this.props.updateWeapon
+                value: weapon.enhancement, change: this.props.update
             }};
         let array;
         if(boxType == 'attack') {
-            boxes['miscAttack'] = {value: weapon.miscAttack, change: this.props.updateWeapon};
+            boxes['miscAttack'] = {value: weapon.miscAttack, change: this.props.update};
             array = weapon.attack;
             if(weapon.range){
                 boxes['Range Penalty'] = {
@@ -27,7 +79,7 @@ const Weapon = React.createClass({
                 }
             }
         } else {
-            boxes['miscDamage'] = {value: weapon.miscDamage, change: this.updateWeapon};
+            boxes['miscDamage'] = {value: weapon.miscDamage, change: this.props.update};
             array = weapon.damageBonus;
         }
         for(let item in array) {
@@ -53,9 +105,9 @@ const Weapon = React.createClass({
         let editIcon = this.state.edit? "glyphicon glyphicon-floppy-save": "glyphicon glyphicon-pencil";
         return(
             <div className="flex-container-col bordered">
-                <div className="flex-container flex-item flex-wrap" style={{textAlign: "center"}}>
+                <div className="flex-container flex-wrap" style={{textAlign: "center"}}>
                     {/* name, attack, critical, critMultiplier*/}
-                    <div className="flex-item weapon-field">
+                    <div className="weapon-field">
                         <span id={"weapon-"+index+"-name"} className="help-block flex-item">
                             <h4 className="field-block">Weapon</h4>
                         </span>
@@ -65,24 +117,31 @@ const Weapon = React.createClass({
                         <input type="text" data-index={index} data-name="name" value={weapon.name}
                                onChange={this.props.update} aria-describedby={"weapon-"+index+"-name"}/>
                     </div>
-                    <div className="flex-item weapon-field" style={{textAlign: "center"}}>
+                    <div className="weapon-field" style={{textAlign: "center"}}>
                         <span id={"weapon-"+index+"-attack"} className="help-block flex-item"
                             style={{marginTop: 15}}>
                             <h6 className="field-block">Attack Bonus</h6>
                         </span>
-                        <div className="flex-item flex-container-col">
-                        <AddBoxes boxes={attackBonus} index={index}
-                            totalOnly={!this.state.edit} describedBy={"weapon-"+index+"-attack"}/>
+                        <div className="flex-container-col">
+                            <span className="flex-container"
+                                  style={{justifyContent: "center"}}>
+                                {this.state.edit? "": "+"}
+                                <AddBoxes boxes={attackBonus} index={index}
+                                   totalOnly={!this.state.edit} describedBy={"weapon-"+index+"-attack"}/>
+                            </span>
+                            {this.state.edit
+                                ? <span className="flex-container">{this.addSubFields("attack", weapon, index)}</span>
+                                : <span className="flex-container">{this.computeMulti(attackBonus, index)}</span>}
                         </div>
-                        {this.state.edit? "Stuff for adding/subtracting fields goes here": "Additional attack bonus logic goes here"}
+
                     </div>
-                    <div className="flex-item weapon-field">
-                                       <span id={"weapon-"+index+"-critical"} className="help-block flex-item"
+                    <div className="weapon-field">
+                                       <span id={"weapon-"+index+"-critical"} className="help-block"
                                              style={{marginTop: 15}}>
                                            <h6 className="field-block">Critical</h6>
                                        </span>
-                        <div className="flex-item flex-container">
-                            <span className="flex-item">
+                        <div className="flex-container">
+                            <span>
                                <input value={weapon.critical} disabled={!this.state.edit}
                                    style={this.state.edit? {width:35}:{width: 20}}
                                    aria-describedby={"weapon-"+index+"-critical"}/>
@@ -97,12 +156,12 @@ const Weapon = React.createClass({
                         </div>
 
                     </div>
-                </div>
-                <div className="flex-container flex-item flex-wrap" style={{textAlign: "center"}}>
-                    <div className="flex-item weapon-field">
-                        <span id={"weapon-"+index+"-type"} className="help-block flex-item">
+                    <div className="weapon-field">
+                        <span id={"weapon-"+index+"-type"} className="help-block" style={{marginTop: 15}}>
                             <h6 className="field-block">Type</h6>
                         </span>
+                        <input type="text" value={weapon.type} data-name="type" data-index={index}
+                            onChange={this.props.update}/>
                     </div>
                     <div className="flex-item weapon-field">
                                         <span id={"weapon-"+index+"-range"} className="help-block flex-item">
@@ -117,7 +176,7 @@ const Weapon = React.createClass({
                                 </select>
                                 ft.
                               </div>
-                            : <span aria-describedy={"weapon-"+index+"-range"} className="flex-item">
+                            : this.state.edit? '': <span aria-describedy={"weapon-"+index+"-range"} className="flex-item">
                                                &ndash;
                              </span>}
                         {this.state.edit
@@ -127,24 +186,31 @@ const Weapon = React.createClass({
                             : ''
                         }
                     </div>
-                    <div className="flex-item weapon-field">
+                    <div className="weapon-field">
                         <span id={"weapon-"+index+"-ammunition"} className="help-block flex-item">
                            <h6 className="field-block">Ammunition</h6>
                         </span>
-                        <div className="flex-item"
-                             aria-describedby={"weapon-"+index+"-ammunition"}>
+                        <div className="flex-item" aria-describedby={"weapon-"+index+"-ammunition"}
+                            style={{textAlign: "center"}}>
                             <input type="number" value={weapon.ammunition} data-index={index} data-name="ammunition"
-                                onChange={this.props.update}/>
+                                   onChange={this.props.update} className="ammunition"/>
                         </div>
 
                     </div>
-                    <div className="flex-item weapon-field">
+                    <div className="weapon-field">
                         <span id={"weapon-"+index+"-damage"} className="help-block flex-item">
                             <h6 className="field-block">Damage</h6>
                         </span>
                         <AddBoxes boxes={damageBonus} index={index}
                             totalOnly={!this.state.edit} describedBy={"weapon-"+index+"-damage"}/>
                     </div>
+                </div>
+                <div className="weapon-field">
+                    <span id={"weapon-"+index+"-damage"} className="help-block flex-item">
+                        <h6 className="field-block">Notes</h6>
+                    </span>
+                    <textarea value={weapon.notes} onChange={this.props.update} data-name="notes" data-index={index}
+                        className="weapon-notes"/>
                 </div>
             </div>
         )
