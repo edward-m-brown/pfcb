@@ -136,12 +136,24 @@
         th, td {
             padding: 5px;
         }
+        input.xs {
+            width: 20%
+        }
+        input.small {
+            width: 30%
+        }
+        input.medium {
+            width: 60%
+        }
+        input.large {
+            width: 90%
+        }
         <!-- /*xs screen*/ -->
         @media screen and (max-width: 414px) {
             .abilities-input {
                 width:40px;
                 height:40px;
-                textAlign: "center"
+                text-align: center;
             }
             .ac-modifiers {
 
@@ -153,7 +165,13 @@
                 width: 25px;
             }
             .add-static {
-                width: 25px;
+                width: 15px;
+            }
+            .critical {
+                width: 20px;
+            }
+            .help-block {
+                font-size: smaller;
             }
             .save-modifiers {
 
@@ -176,7 +194,7 @@
             .abilities-input {
                 width:40px;
                 height:40px;
-                textAlign: "center"
+                text-align: center;
             }
             .ammunition{
                 width: 45px;
@@ -188,6 +206,9 @@
             }
             .add-static {
                 width: 45px;
+            }
+            .critical {
+                width: 35px;
             }
             .save-modifiers {
                 margin-top: 20px;

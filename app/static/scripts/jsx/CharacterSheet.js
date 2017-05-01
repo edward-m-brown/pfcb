@@ -155,11 +155,14 @@ const CharacterSheet = React.createClass({
                 break;
             }
             case 'weapon': {
-                character['Weapons'][objectKey][nestedKey] = value;
+                if(otherKey || otherKey == 0)
+                    character['Weapons'][objectKey][nestedKey][otherKey] = value;
+                else
+                    character['Weapons'][objectKey][nestedKey] = value;
                 break;
             }
             case 'weapon_bonus': {
-                if(character['Weapons'][objectKey][nestedKey].includes(value)){
+                if(otherKey == "remove"){
                     character['Weapons'][objectKey][nestedKey]
                         .splice(character['Weapons'][objectKey][nestedKey].indexOf(value),1)
                 } else character['Weapons'][objectKey][nestedKey].push(value);

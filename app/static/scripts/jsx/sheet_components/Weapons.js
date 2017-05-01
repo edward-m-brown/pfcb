@@ -8,7 +8,7 @@ function weaponsTemplate() {
     return [
         {
             name: 'Deafult melee',
-            attack: ["strMod", "baseAttack"], // AddBoxes format
+            attack: ["strMod"], // AddBoxes format
             critical: 19, // string now, tuple later?
             critMultiplier: 2,
             type: 'S',
@@ -22,7 +22,7 @@ function weaponsTemplate() {
             notes: ''
         }, {
             name: 'Default ranged',
-            attack: ["dexMod", "baseAttack"], // AddBoxes format
+            attack: ["dexMod"], // AddBoxes format
             critical: 20, // string now, tuple later?
             critMultiplier: 2,
             type: 'P',
@@ -36,13 +36,13 @@ function weaponsTemplate() {
             notes: ''
         }, {
             name: 'Default thrown',
-            attack: ["dexMod", "baseAttack"], // AddBoxes format
+            attack: ["dexMod"], // AddBoxes format
             critical: 20, // string now, tuple later?
             critMultiplier: 2,
             type: 'P',
             range: 20,
             ammunition: 10, // MUCH later, could be direct reference to Gear
-            damage: '1d6', //string now, tuple later?
+            damage: [1,6], //string now, tuple later?
             damageBonus: ["strMod"], // AddBoxes format
             miscAttack: 0,
             miscDamage: 0,
@@ -50,7 +50,7 @@ function weaponsTemplate() {
             notes: ''
         }, {
             name: '',
-            attack: ["baseAttack"], // AddBoxes format
+            attack: [], // AddBoxes format
             critical: 20, // string now, tuple later?
             critMultiplier: 2,
             type: '',
@@ -64,7 +64,7 @@ function weaponsTemplate() {
             notes: ''
         }, {
             name: '',
-            attack: ["baseAttack"], // AddBoxes format
+            attack: [], // AddBoxes format
             critical: 20, // string now, tuple later?
             critMultiplier: 2,
             type: '',
@@ -83,16 +83,20 @@ function weaponsTemplate() {
 const Weapons = React.createClass({
     updateWeapon(e) {
         let value = e.target.type == "number"? parseInt(e.target.value): e.target.value;
-        if(e.target.dataset.name == "ammunition" && value <= 0) value = 0;
-        let index = parseInt(e.target.dataset.index);
         let name = e.target.dataset.name;
+        // set boundaries on field values.
+        if((name == "ammunition" || name == "range") && value <= 0) value = 0;
+        if((name == "damage" || name == "critical") && value <= 1) value = 1;
+        if(name == "critical" && value > 20) value = 20;
+        if(name == "critMultiplier" && value <= 2) value = 2;
+        let index = parseInt(e.target.dataset.index);
         if(name == "attack" || name == "damageBonus"){
             if(value)
-                this.props.updateCharacter('weapon_bonus', value, index, name)
+                this.props.updateCharacter('weapon_bonus', value, index, name, e.target.dataset.action)
         }
         else
-            this.props.updateCharacter('weapon', value, index, name);
-        console.log(e.target.name, e.target.value)
+            this.props.updateCharacter('weapon', value, index, name, parseInt(e.target.dataset.nested));
+        console.log(e.target.dataset.name, e.target.dataset.index, e.target.dataset.nested, e.target.value)
     },
     render() {
         {/*let tableOrder = ['name', 'attack', 'critical', 'critMultiplier', 'type', 'range',
