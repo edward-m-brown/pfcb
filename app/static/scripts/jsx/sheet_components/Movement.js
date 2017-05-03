@@ -30,9 +30,9 @@ const Movement = React.createClass({
     },
     render(){
         return (
-            <div className="flex-container-col col-xs-12 col-md-3 bordered">
-                <h2 className="col-md-12" style={{textAlign: "center"}}>Movement</h2>
-                <div className="flex-item flex-container flex-wrap">
+            <div className="flex-container-col col-xs-12 bordered">
+                {/*<h2 className="col-md-12" style={{textAlign: "center"}}>Movement</h2>*/}
+                <div className="flex-container">
                     <ul className="list-unstyled field-block small-item">
                         <li>Speed</li>
                         <li><sup>Land</sup></li>
@@ -42,7 +42,7 @@ const Movement = React.createClass({
                         return this.movementField(moveType);
                     }, this)}
                 </div>
-                <div className="flex-item flex-container flex-wrap">
+                <div className="flex-container">
                     {["Fly", "Swim", "Climb", "Burrow"].map((moveType)=>{
                         return this.movementField(moveType)
                     },this)}

@@ -42,7 +42,7 @@ var Manager = React.createClass({
                             <div className="col-xs-5 col-sm-4 col-md-2">
                                 <b>{objName}:</b>
                             </div>
-                            <div className="col-xs-1 col-sm-1 col-md-1">
+                            <div className="col-xs-3 col-sm-1 col-md-1">
                                 <input type="number" value={objs[objName]} name={objName} className=""
                                     onChange={that.props.update} style={{width: 40}}/>
                             </div>

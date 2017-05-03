@@ -231,7 +231,6 @@ const CharacterSheet = React.createClass({
                     <Levels levels={this.state.character['Levels']}
                             classes={this.props.baseClasses}
                             updateCharacter={this.updateCharacter}/>
-                    <Movement movement={this.state.character['Movement']} updateCharacter={this.updateCharacter}/>
                 </div>
                 <div className="flex-container flex-wrap">
                     <Abilities abilityScores={this.state.character["Ability_Scores"]["base"]}
@@ -241,26 +240,24 @@ const CharacterSheet = React.createClass({
                                updateCharacter={this.updateCharacter}
                                updateBase={this.updateAbilityScores}
                                updateTemp={this.updateTempAdjustments}/>
-                    <div className="flex-container-col flex-wrap">
-                        <div className="flex-container flex-wrap">
-                            <Status status={this.state.character['Status']} updateCharacter={this.updateCharacter}/>
-                            <Movement movement={this.state.character['Movement']} updateCharacter={this.updateCharacter}/>
-                        </div>
-                        <Defense defense={this.state.character['Defense']} dexMod={dexMod} conMod={conMod} wisMod={wisMod}
-                                 updateCharacter={this.updateCharacter}/>
+                    <div className="flex-container-col flex-wrap front-middle">
+                        <Status status={this.state.character['Status']} updateCharacter={this.updateCharacter}/>
+                        <Movement movement={this.state.character['Movement']} updateCharacter={this.updateCharacter}/>
+                        <Offense offense={this.state.character['Offense']} dexMod={dexMod} strMod={strMod}
+                            updateCharacter={this.updateCharacter}/>
                     </div>
-                </div>
                     <Defense defense={this.state.character['Defense']} dexMod={dexMod} conMod={conMod} wisMod={wisMod}
                              updateCharacter={this.updateCharacter}/>
-                    <Offense offense={this.state.character['Offense']} dexMod={dexMod} strMod={strMod}
-                             updateCharacter={this.updateCharacter}/>
+
+                </div>
+                <div className="flex-container flex-wrap">
                     <Weapons weapons={this.state.character['Weapons']} strMod={strMod} dexMod={dexMod} conMod={conMod}
                              intMod={intMod} wisMod={wisMod} chaMod={chaMod} baseAttack={this.state.character['Offense']['BAB']}
                              updateCharacter={this.updateCharacter}/>
-
                     <Skills dbSkills={this.props.skills} skills={this.state.character['Skills']}
-                            strMod={strMod} dexMod={dexMod} conMod={conMod} intMod={intMod} wisMod={wisMod} chaMod={chaMod}
-                            updateCharacter={this.updateCharacter}/>
+                        strMod={strMod} dexMod={dexMod} conMod={conMod} intMod={intMod} wisMod={wisMod} chaMod={chaMod}
+                        updateCharacter={this.updateCharacter}/>
+                </div>
                 {/*
 
                  <div className="flex-item">

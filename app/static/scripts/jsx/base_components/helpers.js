@@ -530,7 +530,7 @@ const character_template = {
         'Temp': 0,
         'Current': 0,
         'Nonlethal': 0,
-        'DR': {},
+        'DR': '',
         'Effects': {}
     }
 

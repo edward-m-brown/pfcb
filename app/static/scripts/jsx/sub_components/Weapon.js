@@ -137,10 +137,12 @@ const Weapon = React.createClass({
                     <div className="weapon-field">
                         <span id={"weapon-"+index+"-name"} className="help-block flex-item">
                             <h4 className="field-block">
-                                Weapon
-                                <button title={editTitle} onClick={this.toggleEdit}>
+                                <button title={editTitle} onClick={this.toggleEdit}
+                                    style={{color: "black", fontSize: "smaller"}}>
                                     <span className={editIcon}/>
                                 </button>
+                                &nbsp;&nbsp;
+                                Weapon
                             </h4>
                         </span>
                         <input type="text" data-index={index} data-name="name" value={weapon.name} className="large"
@@ -164,11 +166,11 @@ const Weapon = React.createClass({
                         </div>
 
                     </div>
-                    <div className="weapon-field">
-                            <span id={"weapon-"+index+"-damage"} className="help-block" style={{marginTop: 15}}>
-                                <h6 className="field-block">Damage</h6>
-                            </span>
-                        <span className="flex-container">
+                    <div className="weapon-field flex-item">
+                        <span id={"weapon-"+index+"-damage"} className="help-block" style={{marginTop: 15}}>
+                            <h6 className="field-block">Damage</h6>
+                        </span>
+                        <span className="flex-container justify-center">
                                 {this.state.edit
                                     ? <span>
                                           <input type="number" value={weapon.damage[0]} className="small"
@@ -214,8 +216,10 @@ const Weapon = React.createClass({
                         </div>
 
                     </div>
+                    {/*
                 </div>
                 <div className="flex-container flex-wrap" style={{textAlign: "center"}}>
+                     */}
                     <div className="weapon-field">
                             <span id={"weapon-"+index+"-type"} className="help-block" style={{marginTop: 15}}>
                                 <h6 className="field-block">Type</h6>

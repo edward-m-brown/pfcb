@@ -7,7 +7,7 @@ var $=require('../../../bower_components/jquery/dist/jquery.min.js');
 const Defense = React.createClass({
     updateAC(e) {
         let value = e.target.value;
-        if(e.target.type == "number") value = parseInt(value)? parseInt(value): 0;
+        if(e.target.type == "number") value = parseInt(value) >= 0? parseInt(value): 0;
         this.props.updateCharacter('AC_update', value, e.target.dataset.name);
     },
     updateSave(e) {
@@ -67,9 +67,9 @@ const Defense = React.createClass({
                 value: shieldBonus,
                 edit: true,
                 change: this.updateAC
-            }, 'DEX Modifier': {
+            }, 'DEX Mod': {
                 value: this.props.dexMod
-            }, 'Size Modifier': {
+            }, 'Size Mod': {
                 value: 0, // need to replace with size modifier, when I have that implemented
             }, 'Natural Armor': {
                 value: naturalArmor,
@@ -105,9 +105,9 @@ const Defense = React.createClass({
             }
         };
         return (
-            <div className="col-xs-12 col-md-6 bordered flex-container-col flex-wrap">
-                <h2 className="col-xs-12" style={{textAlign: "center"}}>Defense</h2>
-                <div className="flex-container flex-wrap flex-item">
+            <div className="col-xs-12 col-md-3 flex-item bordered flex-container-col flex-wrap">
+                {/*<h2 className="col-xs-12" style={{textAlign: "center"}}>Defense</h2>*/}
+                <div className="flex-container flex-wrap">
                     <ul className="list-unstyled field-block small-item">
                         <li>AC</li>
                         <li><sup>Armor Class</sup></li>
@@ -115,7 +115,7 @@ const Defense = React.createClass({
                     &nbsp;&nbsp;
                     <AddBoxes boxes={acBoxes}/>
                 </div>
-                <div className="flex-item flex-container flex-wrap">
+                <div className="flex-container flex-wrap">
                     <ul className="list-unstyled field-block small-item">
                         <li>Touch</li>
                         <li><sup>Armor Class</sup></li>

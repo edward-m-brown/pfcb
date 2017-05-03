@@ -34,6 +34,9 @@ const AddBoxes = React.createClass({
             let value = boxes[fieldName].value;
             return (
                 <div className="flex-item flex-container flex-wrap">
+                    {boxes[fieldName].labelSide
+                        ? this.makeLabel(helpName, fieldName)
+                        : ''}
                     <div className="flex-item">
                         {this.props.labelAbove
                             ? this.makeLabel(helpName, fieldName)
@@ -42,7 +45,7 @@ const AddBoxes = React.createClass({
                         <input data-name={fieldName} type="number" onChange={change} disabled={!change}
                             value={value} aria-describedby={helpName} data-parent={name}
                             className={change? "add-box": "add-static"} data-index={this.props.index}/>
-                        {boxes[fieldName].noLabel || this.props.labelAbove
+                        {boxes[fieldName].noLabel || this.props.labelAbove || boxes[fieldName].labelSide
                             ? ''
                             : this.makeLabel(helpName, fieldName)}
 

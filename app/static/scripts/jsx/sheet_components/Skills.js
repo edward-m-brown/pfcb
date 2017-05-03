@@ -31,10 +31,11 @@ const Skills = React.createClass({
             }
         }
     },
-    makeBoxes(skillName, skill, abilityMod) {
+    makeBoxes(skillName, skill, abilityMod, abilityName) {
         return {
-            name: skillName, 'Ability Mod': {
-                value: abilityMod
+            name: skillName, [abilityName.toUpperCase()]: {
+                value: abilityMod,
+                labelSide: true
             }, 'Ranks': {
                 value: skill['Ranks'],
                 edit: true,
@@ -46,7 +47,7 @@ const Skills = React.createClass({
                 edit: true,
                 change: this.updateSkill
             }
-        }
+        };
 
     },
     makeRow(skillName, subSkill='') {
@@ -62,7 +63,7 @@ const Skills = React.createClass({
         else if (abilityName == "Wis") abilityMod = this.props.wisMod;
         else if (abilityName == "Cha") abilityMod = this.props.chaMod;
         else console.log("makeRow:: weird ability name: " + abilityName)
-        let boxes = this.makeBoxes(name, skill, abilityMod);
+        let boxes = this.makeBoxes(name, skill, abilityMod, abilityName);
         return (
             <div className="row">
                 <div className="col-xs-6">
@@ -126,6 +127,15 @@ const Skills = React.createClass({
                     <input type="text" onChange={this.setSearch} value={this.state.search}
                         placeholder="Search skill names" className="col-xs-5"/>
                     <div className="col-xs-1"></div>
+                </div>
+                <div className="row">
+                    <text className="col-xs-3">Total Ranks: {this.props.skills['Total Ranks']}</text>
+                    <text className="col-xs-3">Ranks Used: {this.props.skills['Ranks Used']}</text>
+                    <text className="col-xs-3">
+                        Ranks Available: {this.props.skills['Total Ranks'] - this.props.skills['Ranks Used']}
+                    </text>
+                    <text className="col-xs-3">Max. Ranks: {"Put character level here"}</text>
+
                 </div>
                 <hr/>
                 {skillNames.map((skillName)=>{

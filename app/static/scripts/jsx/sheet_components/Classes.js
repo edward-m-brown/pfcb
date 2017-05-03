@@ -22,26 +22,27 @@ var Classes = React.createClass({
             + "the official Pathfinder core rulebook rule set."
             + "\n\nClick OK to continue."
         if(!confirm(conf_msg))
-            return
+            return;
         let hd = 0;
         let bab = 0;
         let skillRanks = 0;
         let classSkills = [];
+        let classNames = Object.keys(this.props.classes);
         Object.keys(this.props.classLevels).map((className)=>{
-            let classNames = Object.keys(this.props.classes);
+            let numLevels = this.props.classLevels[className];
             if(classNames.includes(className)) { // we can use this class to update the character
                 let levels = this.props.classes[className]['Levels'];
-                let num_levels = 0 + this.props.classLevels[className];
-                let cur_level = levels[num_levels - 1];
-                if(cur_level) { // level is defined, so we can make calculations
-                    bab += cur_level['BAB'];
+                skillRanks += numLevels * this.props.classes[className]['Ranks'];
+                let curLevel = levels[numLevels - 1];
+                if(curLevel) { // level is defined, so we can make calculations
+                    bab += curLevel['BAB'];
                 } else{ // level is not defined. Possibly greater than the amount of levels we have for the class?
-
+                    console.log("Failed to check undefined level "+ numLevels + " for class " + className);
                 }
             } else { // we can't use this class to update the character. Maybe send an alert?
                 console.log("No class information for " + className)
             }
-            hd += this.props.classLevels[className]; // increment hd
+            hd += numLevels; // increment hd
         });
     },
     remove(e) {

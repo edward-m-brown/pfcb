@@ -12,14 +12,15 @@ var Levels = React.createClass({
     },
     render(){
         return (
-            <div className="col-xs-12 col-md-6 bordered">
-                <h2 style={{textAlign: "center"}}> Character Levels </h2>
+            <div className="flex-container bordered" aria-describedby={this.props.describedBy}>
                 <Classes classes={this.props.classes} classLevels={this.props.levels['Class_Levels']}
                     update={this.updateClassLevels} remove={this.removeClass}/>
-                <label className="col-xs-6">
-                   XP:
-                   <input type="number" value={this.props.levels['Exp']} onChange={this.updateExp}/>
-                </label>
+                <div>
+                    <input type="number" value={this.props.levels['Exp']} onChange={this.updateExp}
+                        aria-describedby="experience"/>
+                    <span id="experience" className="help-block">Experience Points</span>
+                </div>
+
             </div>
         )
     }
