@@ -84,7 +84,14 @@ const CharacterSheet = React.createClass({
                 break;
             }
             case 'class_levels': {
-                character['Levels']['Class_Levels'][objectKey] = value > 0? value: 1;
+                let curLevel = character['Levels']['Class_Levels'][objectKey] > 0
+                    ? character['Levels']['Class_Levels'][objectKey]
+                    : 0;
+                let newValue = value > 0? value: 1;
+                if(!(character['Levels']['Character_Level'] >= 0))
+                    character['Levels']['Character_Level'] = curLevel;
+                character['Levels']['Character_Level'] += newValue - curLevel;
+                character['Levels']['Class_Levels'][objectKey] = newValue;
                 break;
             }
             case 'description': {
@@ -115,6 +122,7 @@ const CharacterSheet = React.createClass({
                 break;
             }
             case 'remove_class': {
+                character['Levels']['Character_Level'] -= character['Levels']['Class_Levels'][value];
                 delete character['Levels']['Class_Levels'][value];
                 break;
             }
@@ -244,6 +252,9 @@ const CharacterSheet = React.createClass({
         ["STR", "DEX", "CON", "INT", "WIS", "CHA"].map((mod)=>{
             inherentMods[mod] =  this.state.ability_mods[mod];
         }, this);
+        let characterLevel = this.state.character['Levels']['Character_Level'] >= 0
+            ? this.state.character['Levels']['Character_Level']
+            : 0;
         return (
             <div id="character-sheet">
                 <div className="flex-container-col flex-wrap" id="page-1">
@@ -263,7 +274,9 @@ const CharacterSheet = React.createClass({
                             updateTemp={this.updateTempAdjustments}/>
                         <div className="flex-container-col flex-wrap front-middle">
                             <Status status={this.state.character['Status']} conMod={conMod}
-                                updateCharacter={this.updateCharacter}/>
+                                updateCharacter={this.updateCharacter}
+                                conScore={this.state.character['Ability_Scores']['base']['CON']}
+                                characterLevel={characterLevel}/>
                             <Movement movement={this.state.character['Movement']} updateCharacter={this.updateCharacter}/>
                             <Offense offense={this.state.character['Offense']} strMod={strMod} dexMod={dexMod}
                                 conMod={conMod} intMod={intMod} wisMod={wisMod} chaMod={chaMod}
@@ -279,7 +292,8 @@ const CharacterSheet = React.createClass({
                             baseAttack={this.state.character['Offense']['BAB']} updateCharacter={this.updateCharacter}/>
                         <Skills dbSkills={this.props.skills} skills={this.state.character['Skills']}
                             strMod={strMod} dexMod={dexMod} conMod={conMod} intMod={intMod} wisMod={wisMod} chaMod={chaMod}
-                            updateCharacter={this.updateCharacter} inherentInt={inherentMods["INT"]}/>
+                            updateCharacter={this.updateCharacter} inherentInt={inherentMods["INT"]}
+                            characterLevel={characterLevel}/>
                     </div>
                     <div className="flex-item">
                         <div className="col-md-12">

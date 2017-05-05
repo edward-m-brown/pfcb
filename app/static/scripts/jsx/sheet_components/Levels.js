@@ -11,8 +11,9 @@ var Levels = React.createClass({
         this.props.updateCharacter('remove_class', className)
     },
     render(){
+        let className = "flex-container bordered " + this.props.className;
         return (
-            <div className="flex-container bordered" aria-describedby={this.props.describedBy}>
+            <div className={className} aria-describedby={this.props.describedBy}>
                 <Classes classes={this.props.classes} classLevels={this.props.levels['Class_Levels']}
                     update={this.updateClassLevels} remove={this.removeClass}/>
                 <div>

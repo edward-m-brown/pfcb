@@ -14,7 +14,7 @@ const AddBoxes = React.createClass({
     makeLabel(helpName, fieldName) {
         if(fieldName.split(' ').length > 1)
             return <span id={helpName} className="help-block">
-                <ul className="list-unstyled">
+                <ul className="list-unstyled" style={{marginTop: -5}}>
                     <li><sub>{fieldName.split(' ')[0]}</sub></li>
                     <li><sup>{fieldName.split(' ')[1]}</sup></li>
                 </ul>

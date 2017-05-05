@@ -1,12 +1,142 @@
 {% extends "base.html" %}
 {% block content %}
+    <style>
+        th, td {
+            padding-right: 10px;
+        }
+    </style>
     <h2>Welcome to the Pathfinder Character Builder!</h2>
     <p>
         <a href="{{url_for('signup')}}">Signup</a> and/or <a href="{{url_for('login')}}">Login</a> to access the
         Character Builder application.
+    </p>
 
+    <h3>PFCB Features</h3>
+    <p>
         In the Character Builder, you can make as many new characters as you want, and edit them just as you would
-        a paper character sheet.
+        a paper character sheet. Unlike a paper character sheet, you will never have to manually erase and re-record
+        calculations for Skill Bonuses, Attack Bonuses, Damage Bonuses, AC, Saves, CMB/CMD, or Initiative. The Character
+        Builder also provides the benefit of in-app references to Skills, Classes, Spells, and Feats. This means that
+        you never have to look up the text reference in a book, or Google it. It's all built in!
+        Read up on some of the key features of the Character Builder below.
+    </p>
+    <h4>Ability Modifiers</h4>
+    <p>
+        PFCB will apply Ability Modifiers in all of the relevant places, as you
+        update them. Those modifiers are used to automatically calculate things like your Attack Bonus for Weapons,
+        your total Skill bonuses for all of your skills, and any other calculations based upon your Ability Modifiers.
+        If you record a Temporary Adjustment (such as a temporary increase/decrease due to a spell, or an increase
+        due to a magic item), that will be favored over your base Ability Modifier in any relevant places.
+    </p>
+    <h4>References</h4>
+    <p>
+        PFCB has built-in rules references for Classes, Skills, Feats, and Spells. This means that you don't have to go
+        searching through a book, or turn to Google for looking up the text of any of these rules relevant to your
+        character. Simply click the reference button (<button><span class="glyphicon glyphicon-book"></span></button>)
+        anywhere it is shown, and a window with the full reference text will pop up, allowing you to read up on the rule
+        whenever you need to.
+    </p>
+    <h4>Customizeable Attack and Damage for Weapons</h4>
+    <p>
+        PFCB allows you to customize up to 5 Weapons for quick calculation of your Attack and Damage bonuses. Just
+        click the Edit Weapon button (<button><span class="glyphicon glyphicon-pencil"></span></button>) in the
+        Weapon header, and a number of input boxes will appear, showing the numbers currently being used to calculate
+        Attack and Damage. You can add or remove any Ability Modifier from these numbers, adjust the Weapon's
+        enhancement bonus (affecting both Attack and Damage), and add in any Miscellaneous modifiers you want to track
+        (such as bonuses from Feats, Class Features, or any other source). Click the save button
+        (<button><span class="glyphicon glyphicon-floppy-save"></span></button>) and the calculation will be updated as
+        the relevant Ability Modifiers are.
+        If you ever want to view the calculations being used for these bonuses without clicking the Edit button, simply
+        hover over the bonus number in question and the calculation will be displayed.
+    </p>
+    <h4>Helpful HP tracking</h4>
+    <p>
+        The HP block includes your Total HP, an input for notes on Damage Reduction, Current HP, an input for HP
+        Adjustment, and Nonlethal damage tracking. To edit your Total HP, click the edit button
+        (<button><span class="glyphicon glyphicon-pencil"></span></button>) and type your new Base HP into the box. This
+        Base HP will be used to calculate your Total HP (Base + (Character Level * Con Modifier)), which is what is
+        displayed in the "Total" box after you click the Save button
+        (<button><span class="glyphicon glyphicon-floppy-save"></span></button>). To edit your Current HP, either type
+        a new number into the Current HP box, or type the amount of damage/healing you receive in the Adjustment box and
+        click <button><span class="glyphicon glyphicon-plus"></span></button> or
+        <button><span class="glyphicon glyphicon-minus"></span></button>.
+    </p>
+    <p>
+        The margins of the HP section will change color based on your Current HP and Nonlethal damage, based on the
+        following table:
+        <table>
+            <tr>
+                <th>Color</th>
+                <th>Condition</th>
+                <th>Meaning</th>
+            </tr>
+            <tr>
+                <td>
+                    <span class="glyphicon glyphicon-stop" style="color:green"></span>
+                </td>
+                <td>
+                    Full Health
+                </td>
+                <td>
+                    (Current HP - Nonlethal damage) >= Total HP
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="glyphicon glyphicon-stop" style="color:yellowgreen"></span>
+                </td>
+                <td>
+                    Some Damage
+                </td>
+                <td>
+                    (Current HP - Nonlethal damage) > <sup>1/2</sup> Total HP, but less than full
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="glyphicon glyphicon-stop" style="color:gold"></span>
+                </td>
+                <td>
+                    Heavy Damage
+                </td>
+                <td>
+                    (Current HP - Nonlethal damage) < <sup>1/2</sup> Total HP, but greater than 0
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="glyphicon glyphicon-stop" style="color:orange"></span>
+                </td>
+                <td>
+                    Staggered
+                </td>
+                <td>
+                    (Current HP - Nonlethal damage) = 0
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="glyphicon glyphicon-stop" style="color:orangered"></span>
+                </td>
+                <td>
+                    Unconscious
+                </td>
+                <td>
+                    (Current HP - Nonlethal damage) < 0 OR Current HP <= 0
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="glyphicon glyphicon-stop" style="color:darkred"></span>
+                </td>
+                <td>
+                    Dead
+                </td>
+                <td>
+                    Current HP < -(Con score)
+                </td>
+            </tr>
+        </table>
     </p>
 
 {% endblock %}

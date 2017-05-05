@@ -20,7 +20,8 @@ const character_template = {
     },
     'Levels': {
         'Exp': 0,
-        'Class_Levels': {}
+        'Class_Levels': {},
+        'Character_Level': 0
     },
     'Ability_Scores': {
         'base': {
@@ -98,7 +99,7 @@ const character_template = {
     'Abilities': [],
     'Class_Features': [],
     'Skills': {
-        'Total Ranks': 0,
+        'Class Ranks': 0,
         'Ranks Used': 0,
         'Skill_Table': {
             'Acrobatics' : {

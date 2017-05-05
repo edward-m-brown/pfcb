@@ -233,7 +233,8 @@ const Weapon = React.createClass({
                             </span>
                         {weapon.range
                             ? this.state.edit? '': <div aria-describedy={"weapon-"+index+"-range"}>
-                                    <select defaultValue="0" onChange={this.incrementRange} data-index={index}>
+                                    <select defaultValue="0" onChange={this.incrementRange} data-index={index}
+                                        className="range-select">
                                         {this.makeIncrementList(weapon.range).map((increment, incIndex)=>{
                                             return <option value={incIndex}>{increment}</option>
                                         })}

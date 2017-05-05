@@ -39,15 +39,15 @@ var Description = React.createClass({
                 <h2 className="col-md-12" style={{textAlign: "center", display: this.state.show? '': 'none'}}>
                     Description
                 </h2>
-                <div className="flex-container sm-wrap" style={{display: this.state.show? '': 'none'}}>
-                    <div>
-                        <input className="form-control" aria-describedby="name"
+                <div className="flex-container flex-wrap" style={{display: this.state.show? '': 'none'}}>
+                    <div className="flex-item">
+                        <input className="" aria-describedby="name"
                             type="text" value={this.props.characterName}
                             onChange={this.updateName} />
                         {/**/}<span id="name" className="help-block">Character Name</span>
                     </div>
-                    <div>
-                        <select className="form-control" aria-describedby="alignment" name="Alignment"
+                    <div className="flex-item">
+                        <select className="" aria-describedby="alignment" name="Alignment"
                             value={this.props.description["Alignment"]} onChange={this.updateDescription}>
                             {
                                 alignments.map((alignment)=>{
@@ -59,8 +59,8 @@ var Description = React.createClass({
                     </div>
                     {/*Change this to incorporate some actual data for Races. Either from backend or simple
                         structures made in the frontend, doesn't matter.*/}
-                    <div>
-                        <select aria-describedby="race" className="form-control"
+                    <div className="flex-item">
+                        <select aria-describedby="race" className=""
                             name="Race" value={this.props.description["Race"]} onChange={this.updateDescription}>
                             {
                                 races.map((race)=>{
@@ -70,8 +70,8 @@ var Description = React.createClass({
                         </select>
                         {/**/} <span id="race" className="help-block">Race</span>
                     </div>
-                    <div>
-                        <select className="form-control" aria-describedby="size"
+                    <div className="flex-item">
+                        <select className="" aria-describedby="size"
                                 name="Size"
                                 value={this.props.description["Size"]}
                                 onChange={this.updateDescription}>
@@ -83,71 +83,67 @@ var Description = React.createClass({
                         </select>
                         <span id="size" className="help-block">Size</span>
                     </div>
-                </div>
-                <div className="flex-container sm-wrap" style={{display: this.state.show? '': 'none'}}>
-                    <div>
-                        <Levels levels={this.props.levels} classes={this.props.classes} modifiers={this.props.modifiers}
-                                updateCharacter={this.props.updateCharacter} describedBy="levels"/>
-                        <span id="levels" className="help-block">Class Levels</span>
-                    </div>
-                    <div>
-                        <input className="form-control" aria-describedby="deity"
+                    <div className="flex-item">
+                        <input className="" aria-describedby="deity"
                                 type="text" value={this.props.description["Deity"]}
                                 name="Deity"
                                 onChange={this.updateDescription} />
                         <span id="deity" className="help-block">Deity</span>
                     </div>
-                    <div>
-                        <input className="form-control" aria-describedby="homeland"
+                    <div className="flex-item">
+                        <input className="" aria-describedby="homeland"
                                 type="text" value={this.props.description["Homeland"]}
                                 name="Homeland"
                                 onChange={this.updateDescription} />
                         <span id="homeland" className="help-block">Homeland</span>
                     </div>
-                </div>
-                <div className="flex-container sm-wrap" style={{display: this.state.show? '': 'none'}}>
-                    <div>
-                        <input className="form-control" aria-describedby="gender"
+                    <div className="flex-item">
+                        <input className="" aria-describedby="gender"
                                 type="text" value={this.props.description["Gender"]}
                                 name="Gender"
                                 onChange={this.updateDescription} />
                         <span id="gender" className="help-block">Gender</span>
                     </div>
-                    <div>
-                        <input className="form-control" aria-describedby="age"
+                    <div className="flex-item">
+                        <input className="" aria-describedby="age"
                                  type="number" value={this.props.description["Age"]}
                                  name="Age"
                                  onChange={this.updateDescription} />
                         <span id="age" className="help-block">Age</span>
                     </div>
-                    <div>
-                        <input className="form-control" aria-describedby="height"
+                    <div className="flex-item">
+                        <input className="" aria-describedby="height"
                                 type="text" value={this.props.description["Height"]}
                                 name="Height"
                                 onChange={this.updateDescription} />
                         <span id="height" className="help-block">Height</span>
                     </div>
-                    <div>
-                        <input className="form-control" aria-describedby="weight"
+                    <div className="flex-item">
+                        <input className="" aria-describedby="weight"
                                 type="text" value={this.props.description["Weight"]}
                                 name="Weight"
                                 onChange={this.updateDescription} />
                         <span id="weight" className="help-block">Weight</span>
                     </div>
-                    <div>
-                        <input className="form-control" aria-describedby="hair"
+                    <div className="flex-item">
+                        <input className="" aria-describedby="hair"
                                 type="text" value={this.props.description["Hair"]}
                                 name="Hair"
                                 onChange={this.updateDescription} />
                         <span id="hair" className="help-block">Hair</span>
                     </div>
-                    <div>
-                        <input className="form-control" aria-describedby="eyes"
+                    <div className="flex-item">
+                        <input className="" aria-describedby="eyes"
                                 type="text" value={this.props.description["Eyes"]}
                                 name="Eyes"
                                 onChange={this.updateDescription} />
 
                         <span id="eyes" className="help-block">Eyes</span>
+                    </div>
+                    <div className="flex-item">
+                        <Levels levels={this.props.levels} classes={this.props.classes} modifiers={this.props.modifiers}
+                                updateCharacter={this.props.updateCharacter} describedBy="levels"/>
+                        <span id="levels" className="help-block">Class Levels</span>
                     </div>
                 </div>
                 </div>

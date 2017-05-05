@@ -6,8 +6,9 @@ const Status = React.createClass({
     getInitialState() {
         let initialStatus = this.computeStatus(this.props.status);
         return {
-            static_HP: true,
+            edit_HP: false,
             adjustment: 0,
+            total_HP: this.props.status['HP'] + (this.props.conMod * this.props.characterLevel),
             color: initialStatus.color,
             status: initialStatus.status
         }
@@ -20,12 +21,16 @@ const Status = React.createClass({
     computeStatus(nextStatus) {
         if(!nextStatus) return {color: 'transparent', status:''}
         let nextCurrent = nextStatus['Current'];
-        let nextHP = nextStatus['HP'];
-        let nextNonlethal = nextStatus['Nonlethal'];
+        let nextHP = nextStatus['HP'] + (this.props.conMod * this.props.characterLevel);
+        let minusNonlethal = nextCurrent - nextStatus['Nonlethal'];
         let color, status, image;
-        if(nextCurrent >= nextHP && !nextNonlethal) {color = "green"; status="Full HP"}
-        if(nextCurrent < nextHP && nextCurrent >= (nextHP/2)) {color = "yellowgreen"; status = "Some Damage"}
-        if(nextCurrent < (nextHP/2) && nextCurrent > 0) {color = "gold"; status = "Heavy Damage"}
+        if(minusNonlethal >= nextHP) {color = "green"; status="Full HP"}
+        else if(minusNonlethal < nextHP && minusNonlethal >= (nextHP/2)) {color = "yellowgreen"; status = "Some Damage"}
+        else if(minusNonlethal < (nextHP/2) && minusNonlethal > 0) {color = "gold"; status = "Heavy Damage"}
+        else if(nextStatus['Nonlethal'] && minusNonlethal == 0 ) {color = "orange"; status = "Staggered"}
+        else if((minusNonlethal < 0 || nextCurrent <= 0) && nextCurrent > -this.props.conScore)
+        {color = "orangered"; status = "Unconscious"}
+        else {color = "darkred"; status = "Dead"}
         return({color: color, status: status});
     },
     update(e) {
@@ -52,46 +57,51 @@ const Status = React.createClass({
         let dr = this.props.status['DR'];
         let hp = this.props.status['HP'];
         let current = this.props.status['Current'];
+        let conBonus = this.props.conMod * this.props.characterLevel;
         let tmp = this.props.status['Temp'];
         let nonlethal = this.props.status['Nonlethal'];
         return (
             <div className="bordered col-xs-12" title={this.state.status} style={{backgroundColor: this.state.color}}>
                 {/*<h2 style={{textAlign: "center"}}>Status</h2>*/}
                 <div className="flex-container-col">
-                    <div className="flex-item flex-container flex-wrap">
-                        <span className="field-block" aria-describedby="HP">
+                    <div className="flex-item flex-container">
+                        <span className="field-block flex-item" aria-describedby="HP">
                             <ul className="list-unstyled">
                                 <li>HP</li>
                                 <li><sup>Hit Points</sup></li>
                             </ul>
                         </span>
-                        &nbsp;&nbsp;
                         <div className="flex-item">
-                            <span id="Total" className="help-block" style={{textAlign: "left"}}><sub>Total</sub></span>
-                            <input type="number" name="HP" value={hp} onChange={this.update}
-                                disabled={this.state.static_HP} style={{width: 60}} aria-describedby="Total"/>
-                            <button onClick={()=>{this.setState({static_HP: !this.state.static_HP})}}
-                                title={this.state.static_HP? "Edit HP": "Save HP"}>
-                                {this.state.static_HP
-                                    ? <span className="glyphicon glyphicon-pencil"/>
-                                    :<span className="glyphicon glyphicon-floppy-save"/>}
+                            <span id="Total" className="help-block" style={{textAlign: "left"}}>
+                                <sub>{this.state.edit_HP? "Base HP": "Total HP"}</sub>
+                            </span>
+                            <input type="number" name="HP" value={this.state.edit_HP? hp: hp + conBonus}
+                                onChange={this.update} disabled={!this.state.edit_HP} style={{width: 60}}
+                                aria-describedby="Total" className={this.state.edit_HP? "": "add-static"}/>
+                            <button onClick={()=>{this.setState({edit_HP: !this.state.edit_HP})}}
+                                title={this.state.edit_HP? "Save HP": "Edit HP"}>
+                                {this.state.edit_HP
+                                    ? <span className="glyphicon glyphicon-floppy-save"/>
+                                    :<span className="glyphicon glyphicon-pencil"/>}
                             </button>
                         </div>
+                        &nbsp;&nbsp;
                         {/*TODO:  DR section needs work. Maybe launch a Manager for DR*/}
                         <div className="flex-item" aria-describedby="DR">
                             <span id="DR" className="help-block" style={{textAlign: "left"}}><sub>DR</sub></span>
-                            <input type="text" name="DR" value={dr} onChange={this.update}/>
+                            <input type="text" name="DR" value={dr} onChange={this.update} className="medium flex-item"/>
                         </div>
                     </div>
                     <div className="flex-item flex-container justify-center flex-wrap">
-                        <div className="flex-item">
+                        <div className="">
                             <span id="Current" className="help-block" style={{textAlign: "left"}}>
                                 <sub>Current HP</sub>
                             </span>
                             <input type="number" name="Current" value={current} aria-describedby="Current"
                                 onChange={this.update} style={{width: 60}}/>
                         </div>
-                        <div className="flex-item">
+                        &nbsp;&nbsp;
+                        <div className="">
                             <span id="Adjustment" className="help-block" style={{textAlign: "left"}}>
                                 <sub>Adjustment</sub>
                             </span>
@@ -106,12 +116,12 @@ const Status = React.createClass({
                                 <span className="glyphicon glyphicon-minus" style={{fontSize: "x-small"}}/>
                             </button>
                         </div>
-                        <div className="flex-item">
-                            <span id="Nonlethal" className="help-block" style={{textAlign: "left"}}><sub>Nonlethal</sub></span>
-                            <input type="number" name="Nonlethal" value={nonlethal} onChange={this.update}/>
-                        </div>
                     </div>
-
+                    <div className="">
+                        <span id="Nonlethal" className="help-block" style={{textAlign: "left"}}><sub>Nonlethal</sub></span>
+                        <input type="number" name="Nonlethal" value={nonlethal} onChange={this.update}
+                            style={{width: 60}}/>
+                    </div>
                 </div>
             </div>
         );

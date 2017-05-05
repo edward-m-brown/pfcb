@@ -113,6 +113,7 @@ const Skills = React.createClass({
         let skillTable = this.props.skills['Skill_Table'];
         let skillNames = Object.keys(skillTable).sort();
         let filterNames = ['All', 'Class', 'Trained', 'Favorites'];
+        let totalRanks = this.props.skills['Class Ranks'] + (this.props.characterLevel * this.props.intMod)
         return(
             <div className="col-xs-12 col-md-6 bordered">
                 <h1 className="field-block">Skills</h1>
@@ -129,12 +130,12 @@ const Skills = React.createClass({
                     <div className="col-xs-1"></div>
                 </div>
                 <div className="row">
-                    <text className="col-xs-3">Total Ranks: {this.props.skills['Total Ranks']}</text>
-                    <text className="col-xs-3">Ranks Used: {this.props.skills['Ranks Used']}</text>
+                    <text className="col-xs-3">Total: {totalRanks}</text>
+                    <text className="col-xs-3">Used: {this.props.skills['Ranks Used']}</text>
                     <text className="col-xs-3">
-                        Ranks Available: {this.props.skills['Total Ranks'] - this.props.skills['Ranks Used']}
+                        Available: {totalRanks - this.props.skills['Ranks Used']}
                     </text>
-                    <text className="col-xs-3">Max. Ranks: {"Put character level here"}</text>
+                    <text className="col-xs-3">Max.: {this.props.characterLevel}</text>
 
                 </div>
                 <hr/>

@@ -55,7 +55,7 @@ var Abilities = React.createClass({
                                    {/* Ability Mod */}
                                    <td style={{alignContent: "center"}}>
                                        <input type="text" value={mods[key] >= 0? "+" + mods[key]: "" + mods[key]}
-                                           disabled={true} className="abilities-input"/>
+                                           disabled={true} className="add-static abilities-input"/>
                                    </td>
                                    {/* Temp. Adj */}
                                    <td style={{alignContent: "center"}}>
@@ -64,8 +64,8 @@ var Abilities = React.createClass({
                                        />
                                    </td>
                                    {/* Temp. Mod */}
-                                   <td style={{alignContent: "center"}}>
-                                       <input type="text" disabled={true} className="abilities-input"
+                                   <td>
+                                       <input type="text" disabled={true} className="add-static abilities-input"
                                            value={ temp_mods[key] >= 0? "+" + temp_mods[key]:"" + temp_mods[key]}/>
                                    </td>
                                </tr>

@@ -126,6 +126,23 @@
             border-left: 5px solid black;
             border-bottom: 5px solid transparent;
         }
+        input, select {
+            border-top: none;
+            border-right: none;
+            border-left: none;
+            border-bottom-color: black;
+            text-align: center;
+            outline: none;
+            background-color: transparent;
+            font-family: inherit;
+            font-size: inherit;
+        }
+        input:disabled {
+            border-bottom-color: silver;
+        }
+        .range-select {
+            width: 60px;
+        }
 
         p {
             width: inherit;
