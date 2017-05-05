@@ -35,10 +35,10 @@ def load_user(username):
 @app.route('/')
 def index():
     user = get_current_user()
+
     if user and not isinstance(user, Response):
         print(type(user))
         return render_template('characters.html', characters=user['characters'])
-    form = LoginForm()
     return render_template('index.html')
 
 @app.route('/login', methods = ['GET', 'POST'])
