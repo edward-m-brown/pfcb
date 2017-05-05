@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from forms import LoginForm, SignupForm
 from user import User
 from json import dumps, loads
+from werkzeug.wrappers import Response
 
 app = Flask(__name__)
 app.debug = True
@@ -34,8 +35,10 @@ def load_user(username):
 @app.route('/')
 def index():
     user = get_current_user()
-    if user:
+    if user and not isinstance(user, Response):
+        print(type(user))
         return render_template('characters.html', characters=user['characters'])
+    form = LoginForm()
     return render_template('index.html')
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -178,7 +181,6 @@ def get_current_user():
             flash("User does not exist! You need to <a href='/signup'> signup</a>!", category='error')
             return redirect(url_for('signup'))
     else:
-        flash("No active user! You need to <a href='/login'> login</a>!", category='error')
         return redirect(url_for('login'))
 
 
