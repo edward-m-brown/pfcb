@@ -34,8 +34,8 @@ def load_user(username):
 @app.route('/')
 def index():
     user = get_current_user()
-    if user:
-        return render_template('characters.html', characters=user['characters'])
+    #if user:
+    #    return render_template('characters.html', characters=user['characters'])
     return render_template('index.html')
 
 @app.route('/login', methods = ['GET', 'POST'])
