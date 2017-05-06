@@ -61,7 +61,7 @@ const Status = React.createClass({
         let tmp = this.props.status['Temp'];
         let nonlethal = this.props.status['Nonlethal'];
         return (
-            <div className="bordered col-xs-12" title={this.state.status} style={{backgroundColor: this.state.color}}>
+            <div className="bordered col-xs-12 status" title={this.state.status} style={{backgroundColor: this.state.color}}>
                 {/*<h2 style={{textAlign: "center"}}>Status</h2>*/}
                 <div className="flex-container-col">
                     <div className="flex-item flex-container">

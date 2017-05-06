@@ -59,7 +59,7 @@ const Offense = React.createClass({
         };
 
         return (
-            <div className="col-xs-12 bordered flex-container-col flex-wrap">
+            <div className="col-xs-12 bordered flex-container-col flex-wrap offense">
                 {/*<h2 className="col-xs-12" style={{textAlign: "center"}}>Offense</h2>*/}
                 <div className="flex-container flex-wrap flex-item">
                     <ul className="list-unstyled field-block small-item">

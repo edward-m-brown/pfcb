@@ -15,7 +15,8 @@ var Levels = React.createClass({
         return (
             <div className={className} aria-describedby={this.props.describedBy}>
                 <Classes classes={this.props.classes} classLevels={this.props.levels['Class_Levels']}
-                    update={this.updateClassLevels} remove={this.removeClass}/>
+                    update={this.updateClassLevels} remove={this.removeClass}
+                    updateCharacter={this.props.updateCharacter}/>
                 <div>
                     <input type="number" value={this.props.levels['Exp']} onChange={this.updateExp}
                         aria-describedby="experience"/>

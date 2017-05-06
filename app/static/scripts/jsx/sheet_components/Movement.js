@@ -30,7 +30,7 @@ const Movement = React.createClass({
     },
     render(){
         return (
-            <div className="flex-container-col col-xs-12 bordered">
+            <div className="flex-container-col col-xs-12 bordered movement">
                 {/*<h2 className="col-md-12" style={{textAlign: "center"}}>Movement</h2>*/}
                 <div className="flex-container">
                     <ul className="list-unstyled field-block small-item">

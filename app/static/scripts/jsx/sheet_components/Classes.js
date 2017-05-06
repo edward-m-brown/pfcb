@@ -23,27 +23,36 @@ var Classes = React.createClass({
             + "\n\nClick OK to continue."
         if(!confirm(conf_msg))
             return;
-        let hd = 0;
-        let bab = 0;
-        let skillRanks = 0;
-        let classSkills = [];
+        let updates = {
+            hd : 0, fort : 0, ref : 0, will : 0, bab : 0, skillRanks : 0, skills: []
+        };
         let classNames = Object.keys(this.props.classes);
         Object.keys(this.props.classLevels).map((className)=>{
             let numLevels = this.props.classLevels[className];
             if(classNames.includes(className)) { // we can use this class to update the character
-                let levels = this.props.classes[className]['Levels'];
-                skillRanks += numLevels * this.props.classes[className]['Ranks'];
-                let curLevel = levels[numLevels - 1];
+                let classLevels = this.props.classes[className]['Levels'];
+                updates.skillRanks += numLevels * this.props.classes[className]['Ranks'];
+                this.props.classes[className]['Skills'].map((skillName)=>{
+                    if(!updates.skills.includes(skillName)) updates.skills.push(skillName);
+                });
+                let curLevel = classLevels[numLevels - 1];
                 if(curLevel) { // level is defined, so we can make calculations
-                    bab += curLevel['BAB'];
+                    updates.bab += curLevel['BAB']; updates.fort += curLevel['Fort'];
+                    updates.ref += curLevel['Ref']; updates.will += curLevel['Will'];
                 } else{ // level is not defined. Possibly greater than the amount of levels we have for the class?
                     console.log("Failed to check undefined level "+ numLevels + " for class " + className);
                 }
             } else { // we can't use this class to update the character. Maybe send an alert?
                 console.log("No class information for " + className)
             }
-            hd += numLevels; // increment hd
+            updates.hd += numLevels; // increment hd
         });
+        this.props.updateCharacter('multiple', updates);
+        
+        
+        
+        
+       
     },
     remove(e) {
         let className = e.target.name? e.target.name : e.target.dataset.name;
@@ -76,16 +85,16 @@ var Classes = React.createClass({
                 {classNames.length
                     ?   <div>
                             <button data-toggle="modal" data-target="#classManager" title="Edit Classes">
-                                <span className="glyphicon glyphicon-pencil"></span>
+                                <span className="glyphicon glyphicon-pencil"/>
                             </button>
                             <button onClick={this.updateStats} title="Update Character">
-                                <span className="glyphicon glyphicon-user"></span>
-                                <span className="glyphicon glyphicon-refresh"></span>
+                                <span className="glyphicon glyphicon-user"/>
+                                <span className="glyphicon glyphicon-refresh"/>
                             </button>
                         </div>
                     :   <div>
                             <button data-toggle="modal" data-target="#classManager" title="Add Classes">
-                                <span className="glyphicon glyphicon-plus-sign"></span>
+                                <span className="glyphicon glyphicon-plus-sign"/>
                             </button>
                         </div>
                 }

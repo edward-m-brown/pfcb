@@ -117,6 +117,33 @@ const CharacterSheet = React.createClass({
                 character['Movement'][objectKey] = value;
                 break;
             }
+            case 'multiple': {
+                // if I ever need this outide of updateStats, should consider iterating thru object.
+                character['Defense']['Saves']['Fortitude']['Base Save'] = value.fort;
+                character['Defense']['Saves']['Reflex']['Base Save'] = value.ref;
+                character['Defense']['Saves']['Will']['Base Save'] = value.will;
+                character['Offense']['BAB'] = value.bab;
+                character['Skills']['Class Ranks'] = value.skillRanks;
+                value.skills.map((skillName)=>{
+                    let skill, subSkill, skillParts = skillName.split('(');
+                    if(skillParts.length > 1) {
+                        skill = skillParts[0].trim(); subSkill = skillParts[1].split(')')[0];
+                    } else skill = skillName;
+                    if(subSkill) {
+                        console.log("'"+skill+"'", "'"+subSkill+"'")
+                        if(subSkill == "all"){
+                            Object.keys(character['Skills']['Skill_Table'][skill]).map((subSkillName)=>{
+                                character['Skills']['Skill_Table'][skill][subSkillName]['class'] = true;
+                            });
+                        } else {
+                            character['Skills']['Skill_Table'][skill][subSkill]['class'] = true;
+                        }
+                    } else {
+                        character['Skills']['Skill_Table'][skill]['class'] = true;
+                    }
+                });
+                break;
+            }
             case 'name': {
                 character["Name"] = value;
                 break;
@@ -133,6 +160,9 @@ const CharacterSheet = React.createClass({
             case 'save': {
                 if(nestedKey) character['Defense']['Saves'][objectKey][nestedKey] = value;
                 else character['Defense']['Saves'][objectKey] = value;
+                break;
+            }
+            case 'skill_class_ranks': {
                 break;
             }
             case 'skill_show': {
@@ -190,7 +220,6 @@ const CharacterSheet = React.createClass({
             }
         }
         this.setState({character: character});
-
     },
     updateAbilityScores(name, score) {
         let character = $.extend(true, {}, this.state.character);
