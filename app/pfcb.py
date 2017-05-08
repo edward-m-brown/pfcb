@@ -35,9 +35,7 @@ def load_user(username):
 @app.route('/')
 def index():
     user = get_current_user()
-
     if user and not isinstance(user, Response):
-        print(type(user))
         return render_template('characters.html', characters=user['characters'])
     return render_template('index.html')
 
@@ -80,6 +78,10 @@ def signup():
         flash('Username ' + request.form['username'] + ' already exists!', category = 'error')
     return render_template('signup.html', form = form)
 
+@app.route('/licenses')
+def licenses():
+    return render_template('licenses.html', title="Licenses")
+
 
 @app.route('/<collection_name>')
 def show_collection(collection_name):
@@ -89,6 +91,17 @@ def show_collection(collection_name):
         return render_template('show_collection.html', cursor = cursor)
     return render_template('index.html')
 
+@app.route('/<collection_name>/<document_name>')
+def show_document(collection_name, document_name):
+    if collection_in_db(collection_name):
+        collection = db[collection_name]
+        document = collection.find_one({"Name": document_name})
+        if document:
+            return render_template('show_document.html', html = document['Html'])
+        else:
+            flash("Could not find %s in %s!" % (document_name, collection_name), category = 'error')
+    flash("Error! Could not find collection %s." % collection_name, category = 'error')
+    return render_template('index.html')
 
 @app.route('/character_builder')
 @login_required
@@ -96,19 +109,6 @@ def start_builder():
     user = get_current_user()
     if user:
         return render_template('characters.html', characters = user['characters'])
-
-
-@app.route('/<collection_name>/<document_name>')
-def show_document(collection_name, document_name):
-    if collection_in_db(collection_name):
-        collection = db[collection_name]
-        document = collection.find_one({"Name": document_name})
-        if document:
-            return render_template('show_document.html', document = document)
-        else:
-            flash("Could not find %s in %s!" % (document_name, collection_name), category = 'error')
-    flash("Error! Could not find collection %s." % collection_name, category = 'error')
-    return render_template('index.html')
 
 # routes used by React app
 @app.route('/get-user-characters')

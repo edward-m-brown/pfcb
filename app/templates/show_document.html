@@ -1,9 +1,4 @@
 {% extends "base.html" %}
 {% block content %}
-    {% for item in document %}
-        <h1> {{ item }} </h1>
-        {{ document[item] | safe }}
-    {% endfor %}
-
-
+    {{ html | safe }}
 {% endblock %}

@@ -129,6 +129,7 @@ const Skills = React.createClass({
                         placeholder="Search skill names" className="col-xs-5"/>
                     <div className="col-xs-1"></div>
                 </div>
+                <div className="row col-xs-12"><h4><b>Skill Ranks:</b></h4></div>
                 <div className="row">
                     <text className="col-xs-3">Total: {totalRanks}</text>
                     <text className="col-xs-3">Used: {this.props.skills['Ranks Used']}</text>

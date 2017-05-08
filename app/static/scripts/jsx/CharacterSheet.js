@@ -187,11 +187,7 @@ const CharacterSheet = React.createClass({
                 break;
             }
             case 'status': {
-                if(nestedKey){
-                    character['Status'][objectKey][nestedKey] = value;
-                } else {
-                    character['Status'][objectKey] = value;
-                }
+                character['Status'][objectKey] = value;
                 break;
             }
             case 'temp_score': {
@@ -324,6 +320,8 @@ const CharacterSheet = React.createClass({
                             updateCharacter={this.updateCharacter} inherentInt={inherentMods["INT"]}
                             characterLevel={characterLevel}/>
                     </div>
+                    <Feats dbFeats={this.props.feats} characterFeats={this.state.character['Feats']}
+                           updateCharacter={this.updateCharacter} />
                     <div className="flex-item">
                         <div className="col-md-12">
                             <button type="button" className="btn btn-info btn-md" onClick={ this.deselectCharacter }>
