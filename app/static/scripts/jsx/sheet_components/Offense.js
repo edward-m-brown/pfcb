@@ -66,7 +66,7 @@ const Offense = React.createClass({
                         <li>Base Attack</li>
                         <li><sup>Bonus</sup></li>
                     </ul>
-                    <div className="flex-item">
+                    <div className="flex-item" style={{paddingTop: 10}}>
                         &nbsp;+
                         <input type="number" value={baseAttack} style={{width: 40}}
                                data-name="BAB" onChange={this.update}/>
@@ -104,8 +104,7 @@ const Offense = React.createClass({
                     </div>
                     <div className="flex-item">
                         <textarea value={cmbMod} onChange={this.update} data-name="cmb_mod"
-                                  className="flex-item" aria-describedby="CMB Mod"
-                                  style={{resize: "horizontal", maxWidth: 300}}/>
+                                  className="flex-item" aria-describedby="CMB Mod"/>
                         <span id="CMB Mod" className="help-block">
                             <sup>Modifiers</sup>
                         </span>

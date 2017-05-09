@@ -29,7 +29,6 @@
         }
 
         .small-item {
-            flex-grow: 1;
             flex-shrink: 2;
         }
 
@@ -166,6 +165,11 @@
         input.large {
             width: 90%
         }
+        textarea {
+            width: 90%;
+            font-size: small;
+            resize: none
+        }
         <!-- /*xs screen*/ -->
         @media screen and (max-width: 414px) {
             .abilities-input {
@@ -210,11 +214,9 @@
             body {
                 font-size: 3.0vw;
             }
-
             textarea {
-                resize: none;
+                font-size: x-small;
             }
-
 
         }
         <!-- /*med+ screen*/ -->
@@ -242,8 +244,6 @@
                 width: 35px;
             }
             .dr-field {
-                width: 75%;
-                height: 60%;
                 font-size: xx-small;
             }
             .front-middle {
@@ -258,15 +258,13 @@
             .weapon-field {
                 justify-content: center;
             }
-            textarea {
-                resize: none;
-            }
             th {
                 font-size: x-small;
             }
         }
 
     </style>
+    <link href="/static/bower_components/bootstrap-side-navbar/source/assets/stylesheets/navbar-fixed-side.css" rel="stylesheet" />
 
     <div id="character-builder"></div>
     <script src="{{ url_for('static', filename='bower_components/react/react.min.js') }}"></script>

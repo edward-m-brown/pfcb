@@ -11,7 +11,7 @@ var longNames = {
 var Abilities = React.createClass({
     handleChange(event) {
         let name = event.target.name;
-        let value = parseInt(event.target.value);
+        let value = parseInt(event.target.value) >= 0? parseInt(event.target.value): 0;
         event.target.alt == "temp"
             ? this.props.updateTemp(name, value)
             : this.props.updateBase(name, value)

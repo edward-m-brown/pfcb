@@ -65,13 +65,14 @@ const Skills = React.createClass({
         else console.log("makeRow:: weird ability name: " + abilityName)
         let boxes = this.makeBoxes(name, skill, abilityMod, abilityName);
         return (
-            <div className="row">
-                <div className="col-xs-6">
+            <div className="flex-container" style={{justifyContent: "space-between"}}>
+                <div className="flex-item">
                     <input type="checkbox" checked={skill['class']} onClick={this.toggleClassSkill}
                            data-checked={skill['class']} data-name={skillName} data-child={subSkill}/>
-                    {name}&nbsp;{dbSkill['TO']? '*': ''}<br/>
+                    {subSkill? <span>{name.split('(')[0]}<small>({subSkill})</small></span>: name}
+                    &nbsp;{dbSkill['TO']? '*': ''}<br/>
                     <button data-name={skillName} onClick={this.setInfo}
-                            data-toggle="modal" data-target="#skillReference" className="col-xs-2 col-sm-1 col-md-1"
+                            data-toggle="modal" data-target="#skillReference" className=""
                             title="Show Skill Reference">
                         <span className="glyphicon glyphicon-book" style={{textAlign: "center"}} data-name={skillName}/>
                     </button>
@@ -83,7 +84,7 @@ const Skills = React.createClass({
                     </button>
 
                 </div>
-                <div className="flex-item col-xs-6"> <AddBoxes boxes={boxes} className="no-wrap"/> </div>
+                <div className="small-item"> <AddBoxes boxes={boxes} className="no-wrap"/> </div>
             </div>
         );
     },
@@ -115,9 +116,9 @@ const Skills = React.createClass({
         let filterNames = ['All', 'Class', 'Trained', 'Favorites'];
         let totalRanks = this.props.skills['Class Ranks'] + (this.props.characterLevel * this.props.intMod)
         return(
-            <div className="col-xs-12 col-md-6 bordered">
-                <h1 className="field-block">Skills</h1>
-                <div className="row">
+            <div className="col-xs-12 col-md-6 flex-container-col bordered">
+                <h3 className="field-block">Skills</h3>
+                <div className="">
                     <label className="col-xs-6">
                         Show:&nbsp;
                         <select onChange={this.setFilter} value={this.state.filter}>
@@ -129,15 +130,14 @@ const Skills = React.createClass({
                         placeholder="Search skill names" className="col-xs-5"/>
                     <div className="col-xs-1"></div>
                 </div>
-                <div className="row col-xs-12"><h4><b>Skill Ranks:</b></h4></div>
-                <div className="row">
-                    <text className="col-xs-3">Total: {totalRanks}</text>
-                    <text className="col-xs-3">Used: {this.props.skills['Ranks Used']}</text>
-                    <text className="col-xs-3">
+                <div className=""><h5><b>Skill Ranks:</b></h5></div>
+                <div className="flex-container" style={{justifyContent: "space-between"}}>
+                    <text>Total: {totalRanks}</text>
+                    <text>Used: {this.props.skills['Ranks Used']}</text>
+                    <text>
                         Available: {totalRanks - this.props.skills['Ranks Used']}
                     </text>
-                    <text className="col-xs-3">Max.: {this.props.characterLevel}</text>
-
+                    <text>Max.: {this.props.characterLevel}</text>
                 </div>
                 <hr/>
                 {skillNames.map((skillName)=>{

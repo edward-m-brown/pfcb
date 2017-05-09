@@ -107,7 +107,7 @@ const Weapons = React.createClass({
         }
         else
             return(
-                <div className="col-xs-12 col-md-6 bordered">
+                <div className="col-xs-12 col-md-6 bordered" style={{padding: 2, backgroundColor: "silver"}}>
                     {/*<h2>Weapons</h2>*/}
                     {this.props.weapons.map((weapon, index)=>{
                        return(

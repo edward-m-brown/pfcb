@@ -131,17 +131,15 @@ const Weapon = React.createClass({
         let editTitle = this.state.edit? "Save Weapon": "Edit Weapon";
         let editIcon = this.state.edit? "glyphicon glyphicon-floppy-save": "glyphicon glyphicon-pencil";
         return(
-            <div className="flex-container-col bordered">
+            <div className="flex-container-col bordered" style={{marginTop: 4}}>
                 <div className="flex-container flex-wrap" style={{textAlign: "center"}}>
                     {/* name, attack, critical, critMultiplier*/}
                     <div className="weapon-field">
                         <span id={"weapon-"+index+"-name"} className="help-block flex-item">
                             <h4 className="field-block">
-                                <button title={editTitle} onClick={this.toggleEdit}
-                                    style={{color: "black", fontSize: "smaller"}}>
+                                <button title={editTitle} onClick={this.toggleEdit} className="btn btn-xs btn-primary">
                                     <span className={editIcon}/>
                                 </button>
-                                &nbsp;&nbsp;
                                 Weapon
                             </h4>
                         </span>
@@ -220,14 +218,14 @@ const Weapon = React.createClass({
                 </div>
                 <div className="flex-container flex-wrap" style={{textAlign: "center"}}>
                      */}
-                    <div className="weapon-field">
+                    <div className="weapon-field small-item">
                             <span id={"weapon-"+index+"-type"} className="help-block" style={{marginTop: 15}}>
                                 <h6 className="field-block">Type</h6>
                             </span>
                         <input type="text" value={weapon.type} data-name="type" data-index={index}
                                onChange={this.props.update} className="small"/>
                     </div>
-                    <div className="weapon-field">
+                    <div className="weapon-field small-item">
                             <span id={"weapon-"+index+"-range"} className="help-block" style={{marginTop: 15}}>
                                <h6 className="field-block">Range</h6>
                             </span>
@@ -249,24 +247,21 @@ const Weapon = React.createClass({
                             : ''
                         }
                     </div>
-                    <div className="weapon-field">
+                    <div className="weapon-field flex-item">
                             <span id={"weapon-"+index+"-ammunition"} className="help-block" style={{marginTop: 15}}>
                                <h6 className="field-block">Ammunition</h6>
                             </span>
-                        <div aria-describedby={"weapon-"+index+"-ammunition"}
-                             style={{textAlign: "center"}}>
                             <input type="number" value={weapon.ammunition} data-index={index} data-name="ammunition"
-                                   onChange={this.props.update} className="small"/>
-                        </div>
-
+                                   onChange={this.props.update} className="small" style={{textAlign: "center"}}
+                                   aria-describedby={"weapon-"+index+"-ammunition"}/>
                     </div>
-                </div>
-                <div className="weapon-field">
+                    <div className="weapon-field weapon-notes-field flex-item">
                         <span id={"weapon-"+index+"-damage"} className="help-block" style={{marginTop: 15}}>
                             <h6 className="field-block">Notes</h6>
                         </span>
-                    <textarea value={weapon.notes} onChange={this.props.update} data-name="notes" data-index={index}
-                        className="weapon-notes"/>
+                        <textarea value={weapon.notes} onChange={this.props.update} data-name="notes" data-index={index}
+                            className="weapon-notes" style={{fontSize: "x-small"}}/>
+                    </div>
                 </div>
             </div>
         )

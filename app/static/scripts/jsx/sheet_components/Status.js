@@ -7,7 +7,7 @@ const Status = React.createClass({
         let initialStatus = this.computeStatus(this.props.status);
         return {
             edit_HP: false,
-            adjustment: 0,
+            adjustment: 1,
             total_HP: this.props.status['HP'] + (this.props.conMod * this.props.characterLevel),
             color: initialStatus.color,
             status: initialStatus.status
@@ -44,7 +44,7 @@ const Status = React.createClass({
     },
     updateAdjustment(e) {
         let value = parseInt(e.target.value);
-        this.setState({adjustment: value || value >= 1? value: 1});
+        this.setState({adjustment: value >= 1? value: 1});
     },
     heal() {
         let adj = this.state.adjustment? this.state.adjustment : 0;
@@ -65,7 +65,7 @@ const Status = React.createClass({
             <div className="bordered col-xs-12 status" title={this.state.status} style={{backgroundColor: this.state.color}}>
                 {/*<h2 style={{textAlign: "center"}}>Status</h2>*/}
                 <div className="flex-container-col">
-                    <div className="flex-item flex-container">
+                    <div className="flex-item flex-container flex-wrap justify-center">
                         <span className="field-block flex-item" style={{margin: 5}}>
                             <ul className="list-unstyled">
                                 <li>HP</li>
@@ -80,7 +80,7 @@ const Status = React.createClass({
                                 onChange={this.update} disabled={!this.state.edit_HP} style={{width: 60}}
                                 aria-describedby="Total" className={this.state.edit_HP? "": "add-static"}/>
                             <button onClick={()=>{this.setState({edit_HP: !this.state.edit_HP})}}
-                                title={this.state.edit_HP? "Save HP": "Edit HP"}>
+                                title={this.state.edit_HP? "Save HP": "Edit HP"} className="btn btn-xs btn-primary">
                                 {this.state.edit_HP
                                     ? <span className="glyphicon glyphicon-floppy-save"/>
                                     :<span className="glyphicon glyphicon-pencil"/>}
@@ -88,7 +88,7 @@ const Status = React.createClass({
                         </div>
                         &nbsp;&nbsp;
                         {/*TODO:  DR section needs work. Maybe launch a Manager for DR*/}
-                        <div className="flex-item" aria-describedby="DR">
+                        <div className="" aria-describedby="DR">
                             <span id="DR" className="help-block" style={{textAlign: "left"}}><sub>DR</sub></span>
                             <textarea type="text" data-name="DR" value={dr} onChange={this.update}
                                 className="flex-item dr-field"/>
@@ -110,10 +110,10 @@ const Status = React.createClass({
                             <input type="number" value={this.state.adjustment} aria-describedby="Adjustment"
                                 onChange={this.updateAdjustment} style={{width: 60}}/>
                             <div className="">
-                                <button onClick={this.heal} title="Heal">
+                                <button onClick={this.heal} title="Heal" className="btn btn-xs btn-success">
                                     <span className="glyphicon glyphicon-plus" style={{fontSize: "x-small"}}/>
                                 </button>
-                                <button onClick={this.damage} title="Damage">
+                                <button onClick={this.damage} title="Damage" className="btn btn-xs btn-danger">
                                     <span className="glyphicon glyphicon-minus" style={{fontSize: "x-small"}}/>
                                 </button>
                             </div>

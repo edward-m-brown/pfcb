@@ -28,7 +28,7 @@ var Description = React.createClass({
     render(){
         return(
             <div className="flex-container col-xs-12 bordered">
-                <button onClick={this.toggleShow} title={this.state.show
+                <button onClick={this.toggleShow} style={{marginLeft: -15}}title={this.state.show
                     ? "Hide Description": "Show Description"}>
                         <span className={this.state.show
                             ? "glyphicon glyphicon-eye-close"
@@ -36,9 +36,9 @@ var Description = React.createClass({
                 </button>
                 <div style={{textAlign: "center", display: this.state.show? '': 'none'}}>{/*Image here*/}</div>
                 <div className="flex-container-col">
-                    <h2 className="col-md-12" style={{textAlign: "center", display: this.state.show? '': 'none'}}>
+                    {/*<h2 className="col-md-12" style={{textAlign: "center", display: this.state.show? '': 'none'}}>
                         Description
-                    </h2>
+                    </h2>*/}
                     <div className="flex-container flex-wrap" style={{display: this.state.show? '': 'none'}}>
                         <div className="flex-item">
                             <input className="" aria-describedby="name"
@@ -140,11 +140,11 @@ var Description = React.createClass({
 
                             <span id="eyes" className="help-block">Eyes</span>
                         </div>
-                        <div className="flex-item">
-                            <Levels levels={this.props.levels} classes={this.props.classes} modifiers={this.props.modifiers}
-                                    updateCharacter={this.props.updateCharacter} describedBy="levels"/>
-                            <span id="levels" className="help-block">Class Levels</span>
-                        </div>
+                    </div>
+                    <div className="">
+                        <Levels levels={this.props.levels} classes={this.props.classes} modifiers={this.props.modifiers}
+                                updateCharacter={this.props.updateCharacter} describedBy="levels" className="flex-wrap"/>
+                        <span id="levels" className="help-block">Class Levels</span>
                     </div>
                 </div>
             </div>

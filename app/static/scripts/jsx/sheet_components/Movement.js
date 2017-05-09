@@ -33,11 +33,10 @@ const Movement = React.createClass({
             <div className="flex-container-col col-xs-12 bordered movement">
                 {/*<h2 className="col-md-12" style={{textAlign: "center"}}>Movement</h2>*/}
                 <div className="flex-container">
-                    <ul className="list-unstyled field-block small-item">
+                    <ul className="list-unstyled field-block flex-item" style={{marginTop: 5, marginRight: 10}}>
                         <li>Speed</li>
                         <li><sup>Land</sup></li>
                     </ul>
-                    &nbsp;&nbsp;
                     {["Base Speed", "With Armor"].map((moveType)=>{
                         return this.movementField(moveType);
                     }, this)}

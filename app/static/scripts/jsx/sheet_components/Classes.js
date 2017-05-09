@@ -71,34 +71,37 @@ var Classes = React.createClass({
         let classLevels = this.props.classLevels;
         let classNames = Object.keys(classLevels);
         return (
-            <div className="col-xs-6">
+            <div className="">
                 <div className="flex-container flex-wrap">
                     {classNames.map((className, index)=>{
                         return (
                             <div className="flex-item">
-                                {className}: {classLevels[className]}
-                                {classNames[index+1]? ";":""}
+                                <b>{className}</b>: {classLevels[className]}
+                                {classNames[index+1]? <span>;&nbsp;</span>:""}
                             </div>
                         )
                     }, this)}
+                    &nbsp;&nbsp;
+                    {classNames.length
+                        ?   <div>
+                                <button data-toggle="modal" data-target="#classManager" title="Edit Classes"
+                                    className="btn btn-xs btn-primary">
+                                    <span className="glyphicon glyphicon-pencil"/>
+                                </button>
+                                <button onClick={this.updateStats} title="Update Character"
+                                    className="btn btn-xs btn-success">
+                                    <span className="glyphicon glyphicon-user"/>
+                                    <span className="glyphicon glyphicon-refresh"/>
+                                </button>
+                            </div>
+                        :   <div>
+                                <button data-toggle="modal" data-target="#classManager" title="Add Classes"
+                                    className="btn btn-xs btn-success">
+                                    <span className="glyphicon glyphicon-plus-sign"/>
+                                </button>
+                            </div>
+                    }
                 </div>
-                {classNames.length
-                    ?   <div>
-                            <button data-toggle="modal" data-target="#classManager" title="Edit Classes">
-                                <span className="glyphicon glyphicon-pencil"/>
-                            </button>
-                            <button onClick={this.updateStats} title="Update Character">
-                                <span className="glyphicon glyphicon-user"/>
-                                <span className="glyphicon glyphicon-refresh"/>
-                            </button>
-                        </div>
-                    :   <div>
-                            <button data-toggle="modal" data-target="#classManager" title="Add Classes">
-                                <span className="glyphicon glyphicon-plus-sign"/>
-                            </button>
-                        </div>
-                }
-
                 <Manager managerName="classManager" labelName="Class" dbObjects={this.props.classes}
                      objects={this.props.classLevels} update={this.update} remove={this.remove} add={this.addClass}/>
                  <Reference referenceName="classReference" labelName="Class" dbObjects={this.props.classes}

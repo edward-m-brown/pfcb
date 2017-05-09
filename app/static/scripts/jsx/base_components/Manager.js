@@ -34,15 +34,15 @@ var Manager = React.createClass({
             : Object.keys(this.props.objects);
         let objects = this.props.objects;
         let that = this;
-        let listObjects = (managerName, objName, objs)=>{
+        let listObject = (managerName, objName, objs)=>{
             switch(managerName) {
                 case 'classManager':
                     return (
-                        <div>
-                            <div className="col-xs-5 col-sm-4 col-md-2">
+                        <div className="flex-container">
+                            <div className="">
                                 <b>{objName}:</b>
                             </div>
-                            <div className="col-xs-3 col-sm-1 col-md-1">
+                            <div className="">
                                 <input type="number" value={objs[objName]} name={objName} className=""
                                     onChange={that.props.update} style={{width: 40}}/>
                             </div>
@@ -74,21 +74,20 @@ var Manager = React.createClass({
                                         ? <Info objects={this.props.dbObjects} infoFor={this.state.info}
                                               setInfo={this.setInfo} setHide={this.setHide}
                                               labelName={this.props.labelName}/>
-                                        : <ul className="list-unstyled">
+                                        : <ul className="list-inline">
                                             {names.map((name, index) => {
                                                 return (
-                                                    <li className="row">
+                                                    <li>
                                                         {/* Probably want to re-think how this little section is populated. */}
-                                                        {listObjects(this.props.managerName, name, objects)}
+                                                        {listObject(this.props.managerName, name, objects)}
                                                         <button onClick={this.props.remove} data-name={name}
-                                                                data-index={index}
-                                                                className="col-xs-2 col-sm-1 col-md-1"
+                                                                data-index={index} className="btn btn-xs btn-danger"
                                                                 title={"Remove " + this.props.labelName}>
                                                             <span className="glyphicon glyphicon-remove-sign"
                                                                 data-name={name} data-index={index}/>
                                                         </button>
                                                         <button data-name={name} onClick={this.setInfo}
-                                                            className="col-xs-2 col-sm-1 col-md-1"
+                                                            className="btn btn-xs btn-info"
                                                             title={"Show " + this.props.labelName + " Reference"}>
                                                             <span className="glyphicon glyphicon-book" data-name={name}/>
                                                         </button>
@@ -100,7 +99,7 @@ var Manager = React.createClass({
                             </div>
                             <br/>
                             <hr style={{border: "double"}}/>
-                            <button onClick={this.toggleSearch}>
+                            <button onClick={this.toggleSearch} className="btn btn-sm btn-primary">
                                 {this.state.hideSearch? "Show searchbar": "Hide searchbar"}
                             </button>
                             <Search objects={this.props.dbObjects} setInfo={this.setInfo} add={this.props.add}
@@ -108,7 +107,7 @@ var Manager = React.createClass({
                         </div>
                         <div className="modal-footer">
                             {this.state.info
-                                ? <button type="button" className="btn btn-default"
+                                ? <button type="button" className="btn btn-primary"
                                     onClick={this.resetState}>
                                     Back to {this.props.labelName} Manager
                                   </button>
