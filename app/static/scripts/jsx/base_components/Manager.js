@@ -24,9 +24,7 @@ var Manager = React.createClass({
         this.setState({hideSearch: hideSearch})
     },
     componentDidUpdate(prevProps, prevState) {
-        let info = this.state.info;
-        if(prevState && (prevState.info != info) && (info != '') && !this.state.hideSearch)
-            this.toggleSearch()
+
     },
     render() {
         let names = Array.isArray(this.props.objects)
@@ -39,9 +37,9 @@ var Manager = React.createClass({
                 case 'classManager':
                     return (
                         <div className="flex-container">
-                            <div className="">
-                                <b>{objName}:</b>
-                            </div>
+                            <a data-name={objName} onClick={this.setInfo}>
+                                <b data-name={objName}>{objName}:</b>
+                            </a>
                             <div className="">
                                 <input type="number" value={objs[objName]} name={objName} className=""
                                     onChange={that.props.update} style={{width: 40}}/>
@@ -51,8 +49,9 @@ var Manager = React.createClass({
                     );
                 case 'featManager':
                     return (
-                        <div className="col-xs-6 col-sm-5 col-md-3">
-                            <b>{objName}</b>
+                        <div className="flex-container">
+                            <a data-name={objName} onClick={this.setInfo}>{objName}</a>
+                            <textarea />
                         </div>
                     );
             }
@@ -68,34 +67,29 @@ var Manager = React.createClass({
                             </button>
                             <h4 className="modal-title" id={this.props.labelName}>PFCB {this.props.labelName} Manager</h4>
                         </div>
-                        <div className="modal-body">
+                        <div className="modal-body" id={this.props.managerName + "-body"}>
                             <div className="container col-xs-12" style={{padding: "10px"}}>
-                                {this.state.info
-                                        ? <Info objects={this.props.dbObjects} infoFor={this.state.info}
-                                              setInfo={this.setInfo} setHide={this.setHide}
-                                              labelName={this.props.labelName}/>
-                                        : <ul className="list-inline">
-                                            {names.map((name, index) => {
-                                                return (
-                                                    <li>
-                                                        {/* Probably want to re-think how this little section is populated. */}
-                                                        {listObject(this.props.managerName, name, objects)}
-                                                        <button onClick={this.props.remove} data-name={name}
-                                                                data-index={index} className="btn btn-xs btn-danger"
-                                                                title={"Remove " + this.props.labelName}>
-                                                            <span className="glyphicon glyphicon-remove-sign"
-                                                                data-name={name} data-index={index}/>
-                                                        </button>
-                                                        <button data-name={name} onClick={this.setInfo}
-                                                            className="btn btn-xs btn-info"
-                                                            title={"Show " + this.props.labelName + " Reference"}>
-                                                            <span className="glyphicon glyphicon-book" data-name={name}/>
-                                                        </button>
-                                                    </li>
-                                                )
-                                            }, this)}
-                                        </ul>
-                                    }
+                                <div style={this.state.info? {}: {display: "none"}}>
+                                    <Info objects={this.props.dbObjects} infoFor={this.state.info}
+                                          setInfo={this.setInfo} labelName={this.props.labelName}
+                                          idName={this.props.managerName + "-body"}/>
+                                </div>
+                                <div className="flex-container-col" style={this.state.info? {display: "none"}: {}}>
+                                    {names.map((name, index) => {
+                                        return (
+                                            <div className="flex-container flex-wrap">
+                                                {/* Probably want to re-think how this little section is populated. */}
+                                                {listObject(this.props.managerName, name, objects)}
+                                                <button onClick={this.props.remove} data-name={name}
+                                                        data-index={index} className="btn btn-xs btn-danger"
+                                                        title={"Remove " + this.props.labelName}>
+                                                    <span className="glyphicon glyphicon-remove-sign"
+                                                        data-name={name} data-index={index}/>
+                                                </button>
+                                            </div>
+                                        )
+                                    }, this)}
+                                </div>
                             </div>
                             <br/>
                             <hr style={{border: "double"}}/>

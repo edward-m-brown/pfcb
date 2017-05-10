@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
     <style>
+        .description-field {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
         .flex-container {
             display: flex;
             background-color: #ffffff;
@@ -264,8 +268,6 @@
         }
 
     </style>
-    <link href="/static/bower_components/bootstrap-side-navbar/source/assets/stylesheets/navbar-fixed-side.css" rel="stylesheet" />
-
     <div id="character-builder"></div>
     <script src="{{ url_for('static', filename='bower_components/react/react.min.js') }}"></script>
     <script src="{{ url_for('static', filename='bower_components/react/react-dom.min.js') }}"></script>

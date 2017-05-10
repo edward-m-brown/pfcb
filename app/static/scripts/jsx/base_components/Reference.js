@@ -16,9 +16,11 @@ var Reference = React.createClass({
                             </button>
                             <h4 className="modal-title" id={this.props.labelName}>PFCB {this.props.labelName} Reference</h4>
                         </div>
-                        <div className="modal-body">
+                        <div className="modal-body" id={this.props.referenceName + "-body"}>
                             <div className="container col-xs-12" style={{padding: "10px"}}>
-                                <Info objects={this.props.dbObjects} infoFor={this.props.info}/>
+                                <span id={this.props.referenceName + "-top"}/>
+                                <Info objects={this.props.dbObjects} infoFor={this.props.info}
+                                    idName={this.props.referenceName + "-body"}/>
                             </div>
                         </div>
                         <div className="modal-footer">

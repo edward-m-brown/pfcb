@@ -47,9 +47,8 @@ const Search = React.createClass({
                             + name.split(' ').join('-').replace('(','').replace(')','').replace(',','') + "-" + index;
                         if(this.state.search == '' || name.toLowerCase().match(this.state.search.toLowerCase())) {
                             return (
-                                <div className="flex-container" style={{justifyContent: "space-between"}}
-                                    id={idName}>
-                                    <div className=""> {name} </div>
+                                <div className="flex-container" style={{justifyContent: "space-between"}} id={idName}>
+                                    <a onClick={this.props.setInfo}> {name} </a>
                                     <div>
                                         <button className="btn-sm btn-success" onClick={this.props.add}
                                             onMouseOver={this.highlightField} onMouseOut={this.unHighlight}

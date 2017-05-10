@@ -140,38 +140,35 @@ const Defense = React.createClass({
                         </span>
                     </div>
                 </div>
-                <div className="flex-item flex-container flex-wrap justify-end">
-                    <table className="flex-item table-responsive">
-                        <tr className="table-header">
-                            <th colSpan="2">Saving Throws</th>
-                        </tr>
-                        {["Fortitude", "Reflex", "Will"].map((saveName)=>{
-                            let mod, modName;
-                            if(saveName == "Fortitude"){ mod = this.props.conMod; modName = "Constitution"; }
-                            else if(saveName == "Reflex") { mod = this.props.dexMod; modName = "Dexterity"; }
-                            else { mod = this.props.wisMod; modName = "Wisdom"; }
-                            return (
-                                <tr>
-                                    <td>
-                                        <ul className="list-unstyled field-block small-item">
-                                            <li>{saveName}</li>
-                                            <li><sup>({modName})</sup></li>
-                                        </ul>
-                                    </td>
-                                    <td><AddBoxes boxes={this.makeSaveBox(saveName, mod)}/></td>
-                                </tr>
-                            )
-                        })}
-                    </table>
-                    <div className="flex-item">
+                <table className="table-responsive">
+                    <tr className="table-header">
+                        <th colSpan="2">Saving Throws</th>
+                    </tr>
+                    {["Fortitude", "Reflex", "Will"].map((saveName)=>{
+                        let mod, modName;
+                        if(saveName == "Fortitude"){ mod = this.props.conMod; modName = "Constitution"; }
+                        else if(saveName == "Reflex") { mod = this.props.dexMod; modName = "Dexterity"; }
+                        else { mod = this.props.wisMod; modName = "Wisdom"; }
+                        return (
+                            <tr>
+                                <td>
+                                    <ul className="list-unstyled field-block small-item">
+                                        <li>{saveName}</li>
+                                        <li><sup>({modName})</sup></li>
+                                    </ul>
+                                </td>
+                                <td><AddBoxes boxes={this.makeSaveBox(saveName, mod)}/></td>
+                            </tr>
+                        )
+                    })}
+                </table>
+                <div className="">
                         <textarea value={this.props.defense['Saves']['Modifiers']} onChange={this.updateSave}
-                            data-name="Modifiers" aria-describedby="Save Mods" className="save-modifiers"/>
-                        <span id="Save Mods" className="help-block" style={{textAlign: "right"}}>
+                                  data-name="Modifiers" aria-describedby="Save Mods" className=""/>
+                    <span id="Save Mods" className="help-block">
                             <sup>Modifiers</sup>
                         </span>
-                    </div>
                 </div>
-
             </div>
         );
     }

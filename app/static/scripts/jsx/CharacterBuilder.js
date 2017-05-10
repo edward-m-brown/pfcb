@@ -1,4 +1,4 @@
-var $ = require('../../bower_components/jquery/dist/jquery');
+const $ = require('../../bower_components/jquery/dist/jquery');
 import CharacterSheet from './CharacterSheet'
 import character_template from './base_components/helpers'
 
@@ -20,7 +20,7 @@ var CharacterBuilder = React.createClass({
         let that = this;
         $.get("/get-user-characters", function(user_chars){
             characters = JSON.parse(user_chars);
-            console.log("Data Loaded: " + user_chars);
+            // console.log("Data Loaded: " + user_chars);
             that.setState({
                 cur_char: null,
                 char_index: -1,
@@ -29,21 +29,21 @@ var CharacterBuilder = React.createClass({
         });
         $.get("/get-base-classes", function(base_classes){
             classes = JSON.parse(base_classes);
-            console.log("Data Loaded: " + classes)
+            // console.log("Data Loaded: " + classes)
             that.setState({
                base_classes: classes
             });
         });
         $.get("/get-feats", function(feats){
             feats = JSON.parse(feats);
-            console.log("Data Loaded: " + feats);
+            // console.log("Data Loaded: " + feats);
             that.setState({
                 feats: feats
             });
         });
         $.get("/get-skills", function(skills){
             skills = JSON.parse(skills);
-            console.log("Data Loaded: " + skills);
+            // console.log("Data Loaded: " + skills);
             that.setState({
                 skills: skills
             });
@@ -72,7 +72,7 @@ var CharacterBuilder = React.createClass({
     deleteCharacter(event){
         // launch confirm dialog here
         if(!confirm("Do you really want to delete the character " + event.target.name + "?"))
-            return
+            return;
         let index = parseInt(event.target.value);
         let characters = $.extend(true, [], this.state.characters);
         if(index != 0 && index != characters.length - 1){
@@ -87,7 +87,6 @@ var CharacterBuilder = React.createClass({
     },
     addCharacter: function(event) {
         // function for starting a new character sheet
-        console.log(event.target)
         let characters = $.extend(true, [], this.state.characters);
         let index = characters.push($.extend(true, {}, character_template)) - 1;
         this.saveCharacters(characters[index], index)

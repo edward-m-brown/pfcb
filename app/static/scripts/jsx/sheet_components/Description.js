@@ -40,13 +40,13 @@ var Description = React.createClass({
                         Description
                     </h2>*/}
                     <div className="flex-container flex-wrap" style={{display: this.state.show? '': 'none'}}>
-                        <div className="flex-item">
+                        <div className="description-field">
                             <input className="" aria-describedby="name"
                                 type="text" value={this.props.characterName}
                                 onChange={this.updateName} />
                             {/**/}<span id="name" className="help-block">Character Name</span>
                         </div>
-                        <div className="flex-item">
+                        <div className="description-field">
                             <select className="" aria-describedby="alignment" name="Alignment"
                                 value={this.props.description["Alignment"]} onChange={this.updateDescription}>
                                 {
@@ -59,7 +59,7 @@ var Description = React.createClass({
                         </div>
                         {/*Change this to incorporate some actual data for Races. Either from backend or simple
                             structures made in the frontend, doesn't matter.*/}
-                        <div className="flex-item">
+                        <div className="description-field">
                             <select aria-describedby="race" className=""
                                 name="Race" value={this.props.description["Race"]} onChange={this.updateDescription}>
                                 {
@@ -70,7 +70,7 @@ var Description = React.createClass({
                             </select>
                             {/**/} <span id="race" className="help-block">Race</span>
                         </div>
-                        <div className="flex-item">
+                        <div className="description-field">
                             <select className="" aria-describedby="size"
                                     name="Size"
                                     value={this.props.description["Size"]}
@@ -83,56 +83,56 @@ var Description = React.createClass({
                             </select>
                             <span id="size" className="help-block">Size</span>
                         </div>
-                        <div className="flex-item">
+                        <div className="description-field">
                             <input className="" aria-describedby="deity"
                                     type="text" value={this.props.description["Deity"]}
                                     name="Deity"
                                     onChange={this.updateDescription} />
                             <span id="deity" className="help-block">Deity</span>
                         </div>
-                        <div className="flex-item">
+                        <div className="description-field">
                             <input className="" aria-describedby="homeland"
                                     type="text" value={this.props.description["Homeland"]}
                                     name="Homeland"
                                     onChange={this.updateDescription} />
                             <span id="homeland" className="help-block">Homeland</span>
                         </div>
-                        <div className="flex-item">
+                        <div className="description-field">
                             <input className="" aria-describedby="gender"
                                     type="text" value={this.props.description["Gender"]}
                                     name="Gender"
                                     onChange={this.updateDescription} />
                             <span id="gender" className="help-block">Gender</span>
                         </div>
-                        <div className="flex-item">
+                        <div className="description-field">
                             <input className="" aria-describedby="age"
                                      type="number" value={this.props.description["Age"]}
                                      name="Age"
                                      onChange={this.updateDescription} />
                             <span id="age" className="help-block">Age</span>
                         </div>
-                        <div className="flex-item">
+                        <div className="description-field">
                             <input className="" aria-describedby="height"
                                     type="text" value={this.props.description["Height"]}
                                     name="Height"
                                     onChange={this.updateDescription} />
                             <span id="height" className="help-block">Height</span>
                         </div>
-                        <div className="flex-item">
+                        <div className="description-field">
                             <input className="" aria-describedby="weight"
                                     type="text" value={this.props.description["Weight"]}
                                     name="Weight"
                                     onChange={this.updateDescription} />
                             <span id="weight" className="help-block">Weight</span>
                         </div>
-                        <div className="flex-item">
+                        <div className="description-field">
                             <input className="" aria-describedby="hair"
                                     type="text" value={this.props.description["Hair"]}
                                     name="Hair"
                                     onChange={this.updateDescription} />
                             <span id="hair" className="help-block">Hair</span>
                         </div>
-                        <div className="flex-item">
+                        <div className="description-field">
                             <input className="" aria-describedby="eyes"
                                     type="text" value={this.props.description["Eyes"]}
                                     name="Eyes"
@@ -141,10 +141,17 @@ var Description = React.createClass({
                             <span id="eyes" className="help-block">Eyes</span>
                         </div>
                     </div>
-                    <div className="">
+                    <div className="flex-container">
+                        {this.state.show
+                            ? ''
+                            : <div className="description-field">
+                                <input className="" aria-describedby="name"
+                                       type="text" value={this.props.characterName}
+                                       onChange={this.updateName} />
+                                {/**/}<span id="name" className="help-block">Character Name</span>
+                              </div>}
                         <Levels levels={this.props.levels} classes={this.props.classes} modifiers={this.props.modifiers}
-                                updateCharacter={this.props.updateCharacter} describedBy="levels" className="flex-wrap"/>
-                        <span id="levels" className="help-block">Class Levels</span>
+                                updateCharacter={this.props.updateCharacter} className="flex-wrap"/>
                     </div>
                 </div>
             </div>

@@ -65,24 +65,30 @@ const Skills = React.createClass({
         else console.log("makeRow:: weird ability name: " + abilityName)
         let boxes = this.makeBoxes(name, skill, abilityMod, abilityName);
         return (
-            <div className="flex-container" style={{justifyContent: "space-between"}}>
+            <div className="flex-container bordered"
+                style={{justifyContent: "space-between", borderColor: "silver", borderRadius: 2}}>
                 <div className="flex-item">
                     <input type="checkbox" checked={skill['class']} onClick={this.toggleClassSkill}
-                           data-checked={skill['class']} data-name={skillName} data-child={subSkill}/>
-                    {subSkill? <span>{name.split('(')[0]}<small>({subSkill})</small></span>: name}
-                    &nbsp;{dbSkill['TO']? '*': ''}<br/>
-                    <button data-name={skillName} onClick={this.setInfo}
-                            data-toggle="modal" data-target="#skillReference" className=""
-                            title="Show Skill Reference">
-                        <span className="glyphicon glyphicon-book" style={{textAlign: "center"}} data-name={skillName}/>
-                    </button>
+                        data-checked={skill['class']} data-name={skillName} data-child={subSkill}
+                        title={skill['class'] ? "Remove from Class Skills" : "Add to Class Skills"}/>
+                    <a data-name={skillName} onClick={this.setInfo} title="Show Skill Reference"
+                       data-toggle="modal" data-target="#skillReference">
+                        {subSkill
+                            ? <span data-name={skillName}>{name.split('(')[0]}
+                                 <small data-name={skillName}>({subSkill})</small>
+                              </span>
+                            : name}
+                    </a>
+                    &nbsp;
+                    {dbSkill['TO']? <sup title="Trained Only">*</sup>: ''}
+                    {dbSkill['ACP']? <sup title="Armor Check Penalty">&#123;ACP&#125;</sup>: ''}<br/>
                     <button data-name={skillName} data-child={subSkill} data-favorite={skill['show']}
-                        onClick={this.toggleShow} style={skill['show']? {backgroundColor: "black"}: {}}>
+                        onClick={this.toggleShow} style={skill['show']? {backgroundColor: "black"}: {}}
+                        className="btn btn-xs" title={skill["show"]? "Unfavorite " + name: "Favorite " + name}>
                         <span className={skill['show']? "glyphicon glyphicon-star": "glyphicon glyphicon-star-empty"}
                            data-name={skillName} data-child={subSkill} data-favorite={skill['show']}
                            style={skill['show']? {color: "gold"}: {}}/>
                     </button>
-
                 </div>
                 <div className="small-item"> <AddBoxes boxes={boxes} className="no-wrap"/> </div>
             </div>
@@ -108,6 +114,11 @@ const Skills = React.createClass({
     updateSkill(e) {
         let data = e.target.dataset; let intValue = parseInt(e.target.value);
         let value = intValue && intValue >= 0 ? intValue: 0;
+        if(data.name == "Ranks" && value > this.props.characterLevel) {
+            alert("The maximum Ranks this character can have in a skill is: " + this.props.characterLevel
+                + ".\nYou tried to increase " + data.parent + " to " + value + ".\n Do you need to Level Up?")
+            return
+        }
         this.props.updateCharacter('skill_table', value, data.parent, data.name);
     },
     render() {

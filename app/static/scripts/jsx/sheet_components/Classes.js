@@ -3,7 +3,8 @@
  */
 import Manager from '../base_components/Manager'
 import Reference from '../base_components/Reference'
-var Classes = React.createClass({
+const $ = require('../../../bower_components/jquery/dist/jquery.min')
+const Classes = React.createClass({
     getInitialState() {
         return {info: ''}
     },
@@ -48,11 +49,6 @@ var Classes = React.createClass({
             updates.hd += numLevels; // increment hd
         });
         this.props.updateCharacter('multiple', updates);
-        
-        
-        
-        
-       
     },
     remove(e) {
         let className = e.target.name? e.target.name : e.target.dataset.name;
@@ -60,30 +56,35 @@ var Classes = React.createClass({
             this.props.remove(className)
     },
     setInfo(e) {
-        this.setState({info: e.target.dataset.name})
+        this.setState({info: e.target.dataset.name});
     },
     addClass(e) {
         let className = e.target.name? e.target.name : e.target.dataset.name;
-        if(!className) return;
+        if(!className || this.props.classLevels[className]) return;
         this.props.update(className, 1);
     },
     render() {
         let classLevels = this.props.classLevels;
         let classNames = Object.keys(classLevels);
         return (
-            <div className="">
-                <div className="flex-container flex-wrap">
+            <span className="" style={{marginLeft: 10}}>
+                <div className="flex-container flex-wrap" style={{borderBottomWidth: 2, borderBottomStyle: "solid"}}>
                     {classNames.map((className, index)=>{
                         return (
                             <div className="flex-item">
-                                <b>{className}</b>: {classLevels[className]}
+                                <a onClick={this.setInfo} data-name={className}
+                                          title={"Show " + className + " Reference"} data-toggle="modal"
+                                          data-target="#classReference">
+                                    <b data-name={className}>{className}:</b>
+                                </a>
+                                {classLevels[className]}
                                 {classNames[index+1]? <span>;&nbsp;</span>:""}
                             </div>
                         )
                     }, this)}
                     &nbsp;&nbsp;
                     {classNames.length
-                        ?   <div>
+                        ?   <div aria-described-by="class-levels">
                                 <button data-toggle="modal" data-target="#classManager" title="Edit Classes"
                                     className="btn btn-xs btn-primary">
                                     <span className="glyphicon glyphicon-pencil"/>
@@ -94,19 +95,20 @@ var Classes = React.createClass({
                                     <span className="glyphicon glyphicon-refresh"/>
                                 </button>
                             </div>
-                        :   <div>
+                        :   <div aria-described-by="class-levels">
                                 <button data-toggle="modal" data-target="#classManager" title="Add Classes"
                                     className="btn btn-xs btn-success">
-                                    <span className="glyphicon glyphicon-plus-sign"/>
+                                    Add Classes
                                 </button>
                             </div>
                     }
                 </div>
+                <span id="class-levels" className="help-block">Class Levels</span>
                 <Manager managerName="classManager" labelName="Class" dbObjects={this.props.classes}
-                     objects={this.props.classLevels} update={this.update} remove={this.remove} add={this.addClass}/>
-                 <Reference referenceName="classReference" labelName="Class" dbObjects={this.props.classes}
+                    objects={this.props.classLevels} update={this.update} remove={this.remove} add={this.addClass}/>
+                <Reference referenceName="classReference" labelName="Class" dbObjects={this.props.classes}
                     info={this.state.info}/>
-            </div>
+            </span>
         );
     }
 

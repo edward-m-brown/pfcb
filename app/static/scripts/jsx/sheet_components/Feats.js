@@ -32,7 +32,13 @@ const Feats = React.createClass({
         let featNames = this.props.characterFeats.map((feat)=>{ return feat["Name"] });
         return (
             <div className="col-md-6 bordered">
-                <h2 style={{textAlign: "center"}}> Feats </h2>
+                <h3 className="field-block">
+                    Feats
+                    <button data-toggle="modal" data-target="#featManager" title="Edit Feats"
+                        className="btn btn-xs btn-primary">
+                        <span className="glyphicon glyphicon-pencil"/>
+                    </button>
+                </h3>
                 {featNames.length
                     ?   <div>
                             {featNames.map((featName, index)=>{
@@ -54,9 +60,6 @@ const Feats = React.createClass({
                                     </div>
                                 )
                             })}
-                            <button data-toggle="modal" data-target="#featManager" title="Edit Feats">
-                                <span className="glyphicon glyphicon-pencil"></span>
-                            </button>
                             {/*
                              <button onClick={this.updateStats} title="Update Character">
                                  <span className="glyphicon glyphicon-user"></span>
@@ -65,9 +68,9 @@ const Feats = React.createClass({
                             */}
                         </div>
                     :   <div>
-                            Click the button to add feats
-                            <button data-toggle="modal" data-target="#featManager" title="Add Feats">
-                                <span className="glyphicon glyphicon-plus-sign"></span>
+                            <button data-toggle="modal" data-target="#featManager" title="Add Feats"
+                                className="btn btn-sm btn-success">
+                                Add Feats
                             </button>
                         </div>
                 }

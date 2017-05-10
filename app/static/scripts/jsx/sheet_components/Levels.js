@@ -13,7 +13,7 @@ var Levels = React.createClass({
     render(){
         let className = "flex-container " + this.props.className;
         return (
-            <div className={className} aria-describedby={this.props.describedBy} style={{borderBottom: 2}}>
+            <div className={className} style={{borderBottom: 2}}>
                 <Classes classes={this.props.classes} classLevels={this.props.levels['Class_Levels']}
                     update={this.updateClassLevels} remove={this.removeClass}
                     updateCharacter={this.props.updateCharacter}/>
