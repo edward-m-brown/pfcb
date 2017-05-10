@@ -23,6 +23,17 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
+# pre-query database and cache values so it doesn't need to be done via the AJAX call
+b_classes = {}
+for doc in db.classes.find(fields={"_id": False}):
+    b_classes[doc["Name"]] = doc
+feats = {}
+for doc in db.feats.find(fields={"_id": False}):
+    feats[doc["Name"]] = doc
+skills = {}
+for doc in db.skills.find(fields={"_id": False}):
+    skills[doc["Name"]] = doc
+
 
 @login_manager.user_loader
 def load_user(username):
@@ -124,25 +135,16 @@ def characters():
 @app.route('/get-base-classes')
 @login_required
 def get_base_classes():
-    b_classes = {}
-    for doc in db.classes.find(fields={"_id": False}):
-        b_classes[doc["Name"]] = doc;
     return dumps(b_classes)
 
 @app.route('/get-feats')
 @login_required
 def get_feats():
-    feats = {}
-    for doc in db.feats.find(fields={"_id": False}):
-        feats[doc["Name"]] = doc;
     return dumps(feats)
 
 @app.route('/get-skills')
 @login_required
 def get_skills():
-    skills = {}
-    for doc in db.skills.find(fields={"_id": False}):
-        skills[doc["Name"]] = doc;
     return dumps(skills)
 
 @app.route('/save-characters', methods=['PUT'])
