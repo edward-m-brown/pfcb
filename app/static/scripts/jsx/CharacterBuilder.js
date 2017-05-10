@@ -107,7 +107,7 @@ var CharacterBuilder = React.createClass({
             data: JSON.stringify(characters),
             success: function (user_chars) {
                 characters = JSON.parse(user_chars);
-                console.log("Data Loaded: " + user_chars);
+                // console.log("Data Loaded: " + user_chars);
                 that.setState({
                     characters: characters
                 })
