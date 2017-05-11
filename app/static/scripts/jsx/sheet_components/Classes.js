@@ -25,14 +25,21 @@ const Classes = React.createClass({
         if(!confirm(conf_msg))
             return;
         let updates = {
-            hd : 0, fort : 0, ref : 0, will : 0, bab : 0, skillRanks : 0, skills: []
+            hd : 0, fort : 0, ref : 0, will : 0, bab : 0, skillRanks : [], skills: []
         };
         let classNames = Object.keys(this.props.classes);
         Object.keys(this.props.classLevels).map((className)=>{
             let numLevels = this.props.classLevels[className];
             if(classNames.includes(className)) { // we can use this class to update the character
                 let classLevels = this.props.classes[className]['Levels'];
-                updates.skillRanks += numLevels * this.props.classes[className]['Ranks'];
+                if(numLevels > classLevels.length
+                    && confirm(className + " only has data up to level " + classLevels.length
+                        + "\nClick OK to update the character to level " + classLevels.length + " " + className
+                        + "(You will have to adjust for subsequent " + className + " levels manually)") ){
+                    numLevels = classLevels.length;
+                } else { return }
+                for(let i = 0; i < numLevels; i++)
+                    updates.skillRanks.push(this.props.classes[className]['Ranks']);
                 this.props.classes[className]['Skills'].map((skillName)=>{
                     if(!updates.skills.includes(skillName)) updates.skills.push(skillName);
                 });
@@ -40,11 +47,9 @@ const Classes = React.createClass({
                 if(curLevel) { // level is defined, so we can make calculations
                     updates.bab += curLevel['BAB']; updates.fort += curLevel['Fort'];
                     updates.ref += curLevel['Ref']; updates.will += curLevel['Will'];
-                } else{ // level is not defined. Possibly greater than the amount of levels we have for the class?
-                    console.log("Failed to check undefined level "+ numLevels + " for class " + className);
                 }
             } else { // we can't use this class to update the character. Maybe send an alert?
-                console.log("No class information for " + className)
+                alert("No class information for " + className + ". This class will not be used to update the character.")
             }
             updates.hd += numLevels; // increment hd
         });

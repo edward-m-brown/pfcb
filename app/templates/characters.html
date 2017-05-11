@@ -1,6 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
     <style>
+        .app-wrapper {
+            display: flex;
+            background-color: #f8efc0;
+            flex-direction: column;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+        .bordered {
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
+        }
         .description-field {
             padding-left: 5px;
             padding-right: 5px;
@@ -11,41 +24,24 @@
             flex-direction: row;
             justify-content: flex-start;
         }
-
-        .flex-item {
-            flex-shrink: 0;
-            flex-grow: 2;
-        }
-
         .flex-container-col {
             display: flex;
             background-color: #ffffff;
             flex-direction: column;
             justify-content: flex-start;
         }
-
-        .app-wrapper {
-            display: flex;
-            background-color: #f8efc0;
-            flex-direction: column;
-            justify-content: flex-start;
-            flex-wrap: wrap;
+        .flex-item {
+            flex-shrink: 0;
+            flex-grow: 2;
         }
-
-        .small-item {
-            flex-shrink: 2;
-        }
-
         .flex-wrap {
             flex-wrap: wrap;
         }
-
         .help-block {
             text-align: left;
             margin-top: 0px;
             margin-bottom: 0px;
         }
-
         .justify-start {
             justify-content: flex-start;
         }
@@ -53,22 +49,19 @@
         .justify-end {
             justify-content: flex-end;
         }
-
         .justify-center {
             justify-content: center;
         }
-
-        .bordered {
-            border-top: 1px solid black;
-            border-left: 1px solid black;
-            border-right: 1px solid black;
-            border-bottom: 1px solid black;
+        .small-item {
+            flex-shrink: 2;
         }
-
         .modal-body {
             max-height: calc(100vh - 210px);
             overflow-y: auto;
             display: block;
+        }
+        .no-padding {
+            padding: 0px;
         }
 
         .field-block {
@@ -174,6 +167,15 @@
             font-size: small;
             resize: none
         }
+        <!--/* super small screen sizes screw up skills displays unless the favorite button's size is adjusted. */-->
+        @media screen and (max-width: 359px) {
+            .skill-favorite {
+                padding-top: 0px;
+                padding-bottom: 0px;
+                padding-left: 2px;
+                padding-right: 2px;
+            }
+        }
         <!-- /*xs screen*/ -->
         @media screen and (max-width: 414px) {
             .abilities-input {
@@ -195,10 +197,6 @@
             }
             .critical {
                 width: 20px;
-            }
-            .dr-field {
-                width: 95%;
-                font-size: x-small;
             }
             .front-middle {
                 width: 100%
@@ -246,9 +244,6 @@
             }
             .critical {
                 width: 35px;
-            }
-            .dr-field {
-                font-size: xx-small;
             }
             .front-middle {
                 width: 25%

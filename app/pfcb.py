@@ -80,7 +80,6 @@ def signup():
             saved = users.insert({'username': form.username.data,
                                   'password': generate_password_hash(form.password.data),
                                   'characters': []})
-            print(saved)
             if saved:
                 flash("User " + form.username.data + " created successfully!", category = 'success')
             else:

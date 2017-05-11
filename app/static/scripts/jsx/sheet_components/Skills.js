@@ -67,28 +67,34 @@ const Skills = React.createClass({
         return (
             <div className="flex-container bordered"
                 style={{justifyContent: "space-between", borderColor: "silver", borderRadius: 2}}>
-                <div className="flex-item">
-                    <input type="checkbox" checked={skill['class']} onClick={this.toggleClassSkill}
-                        data-checked={skill['class']} data-name={skillName} data-child={subSkill}
-                        title={skill['class'] ? "Remove from Class Skills" : "Add to Class Skills"}/>
-                    <a data-name={skillName} onClick={this.setInfo} title="Show Skill Reference"
-                       data-toggle="modal" data-target="#skillReference">
-                        {subSkill
-                            ? <span data-name={skillName}>{name.split('(')[0]}
-                                 <small data-name={skillName}>({subSkill})</small>
-                              </span>
-                            : name}
-                    </a>
-                    &nbsp;
-                    {dbSkill['TO']? <sup title="Trained Only">*</sup>: ''}
-                    {dbSkill['ACP']? <sup title="Armor Check Penalty">&#123;ACP&#125;</sup>: ''}<br/>
-                    <button data-name={skillName} data-child={subSkill} data-favorite={skill['show']}
-                        onClick={this.toggleShow} style={skill['show']? {backgroundColor: "black"}: {}}
-                        className="btn btn-xs" title={skill["show"]? "Unfavorite " + name: "Favorite " + name}>
-                        <span className={skill['show']? "glyphicon glyphicon-star": "glyphicon glyphicon-star-empty"}
-                           data-name={skillName} data-child={subSkill} data-favorite={skill['show']}
-                           style={skill['show']? {color: "gold"}: {}}/>
-                    </button>
+                <div className="flex-item flex-container">
+                    <div className="flex-container-col">
+                        <input type="checkbox" checked={skill['class']} onClick={this.toggleClassSkill}
+                            data-checked={skill['class']} data-name={skillName} data-child={subSkill}
+                            title={skill['class'] ? "Remove from Class Skills" : "Add to Class Skills"}/>
+                        <button data-name={skillName} data-child={subSkill} data-favorite={skill['show']}
+                                onClick={this.toggleShow} style={skill['show']? {backgroundColor: "black"}: {}}
+                                className="btn btn-xs skill-favorite"
+                                title={skill["show"]? "Unfavorite " + name: "Favorite " + name}>
+                            <span className={skill['show']? "glyphicon glyphicon-star": "glyphicon glyphicon-star-empty"}
+                                  data-name={skillName} data-child={subSkill} data-favorite={skill['show']}
+                                  style={skill['show']? {color: "gold"}: {}}/>
+                        </button>
+                    </div>
+                    <div className="flex-container">
+                        <a data-name={skillName} onClick={this.setInfo} title="Show Skill Reference"
+                           data-toggle="modal" data-target="#skillReference">
+                            {subSkill
+                                ? <ul className="list-unstyled">
+                                      <li data-name={skillName}>{name.split('(')[0]}</li>
+                                      <li data-name={skillName}><small>({subSkill})</small></li>
+                                  </ul>
+                                : name}
+                        </a>
+                        &nbsp;
+                        {dbSkill['TO']? <span title="Trained Only">*</span>: ''}
+                        {dbSkill['ACP']? <small title="Armor Check Penalty">&#123;CP&#125;</small>: ''}
+                    </div>
                 </div>
                 <div className="small-item"> <AddBoxes boxes={boxes} className="no-wrap"/> </div>
             </div>
@@ -125,7 +131,11 @@ const Skills = React.createClass({
         let skillTable = this.props.skills['Skill_Table'];
         let skillNames = Object.keys(skillTable).sort();
         let filterNames = ['All', 'Class', 'Trained', 'Favorites'];
-        let totalRanks = this.props.skills['Class Ranks'] + (this.props.characterLevel * this.props.intMod)
+        let totalRanks = 0;
+        if(this.props.skills['Class Ranks'].length)
+            this.props.skills['Class Ranks'].map((ranks)=>{
+                totalRanks += (ranks + this.props.intMod >= 1? ranks + this.props.intMod: 1);
+            });
         return(
             <div className="col-xs-12 col-md-6 flex-container-col bordered">
                 <h3 className="field-block">Skills</h3>

@@ -30,17 +30,13 @@ const Search = React.createClass({
                             name="search-bar"
                             onChange={this.handleChange} />
                     <button className="btn btn-xs btn-success" onClick={this.props.add}
-                            name={this.state.search} title={"Add " + this.props.labelName}>
+                        data-name={this.state.search} title={"Add " + this.props.labelName + " " + this.state.search}>
                         <span className="glyphicon glyphicon-plus-sign" data-name={this.state.search}/>
-                    </button>
-                    <button className="btn btn-xs btn-info" onClick={this.props.setInfo}
-                            name={this.state.search} title={"Show " + this.props.labelName + " Reference"}>
-                        <span className="glyphicon glyphicon-book" data-name={this.state.search}/>
                     </button>
                 </div>
                 <br/>
                 <div className="">
-                    {/*With filters, this would change to if this.filter() and this.filter() would call
+                    {/*With filters, this would change to if this.filter and this.filter() would call
                         a filter function passed as props.*/}
                     { objectNames.map((name, index)=>{
                         let idName = this.props.labelName + "-"
@@ -48,20 +44,14 @@ const Search = React.createClass({
                         if(this.state.search == '' || name.toLowerCase().match(this.state.search.toLowerCase())) {
                             return (
                                 <div className="flex-container" style={{justifyContent: "space-between"}} id={idName}>
-                                    <a onClick={this.props.setInfo}> {name} </a>
+                                    <a onClick={this.props.setInfo} data-name={name} data-id={idName}> {name} </a>
                                     <div>
                                         <button className="btn-sm btn-success" onClick={this.props.add}
                                             onMouseOver={this.highlightField} onMouseOut={this.unHighlight}
-                                            data-name={name} data-id={idName} title={"Add " + this.props.labelName}>
+                                            data-name={name} data-id={idName}
+                                            title={"Add " + this.props.labelName + " " + name}>
                                             <span className="glyphicon glyphicon-plus-sign" data-name={name}
                                                data-id={idName}/>
-                                        </button>
-                                        <button className="btn-sm btn-info" onClick={this.props.setInfo}
-                                            onMouseOver={this.highlightField} onMouseOut={this.unHighlight}
-                                            data-name={name} data-id={idName}
-                                            title={"Show " + this.props.labelName + " Reference"}>
-                                            <span className="glyphicon glyphicon-book" data-name={name}
-                                                  data-id={idName}/>
                                         </button>
                                     </div>
                                 </div>

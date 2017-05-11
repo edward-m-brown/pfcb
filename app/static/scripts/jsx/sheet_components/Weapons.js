@@ -96,7 +96,7 @@ const Weapons = React.createClass({
         }
         else
             this.props.updateCharacter('weapon', value, index, name, parseInt(e.target.dataset.nested));
-        console.log(e.target.dataset.name, e.target.dataset.index, e.target.dataset.nested, e.target.value)
+        // console.log(e.target.dataset.name, e.target.dataset.index, e.target.dataset.nested, e.target.value)
     },
     render() {
         {/*let tableOrder = ['name', 'attack', 'critical', 'critMultiplier', 'type', 'range',

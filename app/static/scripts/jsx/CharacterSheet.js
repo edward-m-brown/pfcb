@@ -105,8 +105,10 @@ const CharacterSheet = React.createClass({
             case 'feats': {
                 let feat = Object.assign({}, featTemplate);
                 feat['Name'] = value;
-                feat['Index'] = character['Feats'].length;
-                character['Feats'].push(feat);
+                feat['Index'] = character['Feats'].push(feat);
+                break;
+            }
+            case 'feat_note': {
                 break;
             }
             case 'initiative': {
@@ -130,7 +132,7 @@ const CharacterSheet = React.createClass({
                         skill = skillParts[0].trim(); subSkill = skillParts[1].split(')')[0];
                     } else skill = skillName;
                     if(subSkill) {
-                        console.log("'"+skill+"'", "'"+subSkill+"'")
+                        // console.log("'"+skill+"'", "'"+subSkill+"'")
                         if(subSkill == "all"){
                             Object.keys(character['Skills']['Skill_Table'][skill]).map((subSkillName)=>{
                                 character['Skills']['Skill_Table'][skill][subSkillName]['class'] = true;
@@ -211,7 +213,7 @@ const CharacterSheet = React.createClass({
                 break;
             }
             default: {
-                console.log('updateCharacter(' + updateType + ')')
+                // console.log('updateCharacter(' + updateType + ')')
                 break;
             }
         }
@@ -221,7 +223,7 @@ const CharacterSheet = React.createClass({
         let character = $.extend(true, {}, this.state.character);
         let scores = character["Ability_Scores"]["base"];
         scores[name] = score;
-        console.log("updateAbilityScores: ", name, score);
+        // console.log("updateAbilityScores: ", name, score);
         this.setState({character: character});
         this.setAbilityModifiers(scores);
         this.setTempModifiers(this.state.character["Ability_Scores"]["temp"], scores); // always update temp mods
@@ -230,7 +232,7 @@ const CharacterSheet = React.createClass({
         let character = $.extend(true, {}, this.state.character);
         let adjustments = character["Ability_Scores"]["temp"];
         adjustments[name] = adjustment;
-        console.log("updateTempAdjustments: ", name, adjustment);
+        // console.log("updateTempAdjustments: ", name, adjustment);
         this.setState({character: character});
         this.setTempModifiers(adjustments, this.state.character["Ability_Scores"]["base"]);
     },

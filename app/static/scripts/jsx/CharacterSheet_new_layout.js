@@ -170,7 +170,7 @@ const CharacterSheet = React.createClass({
         let character = $.extend(true, {}, this.state.character);
         let scores = character["Ability_Scores"]["base"];
         scores[name] = score;
-        console.log("updateAbilityScores: ", name, score);
+        // console.log("updateAbilityScores: ", name, score);
         this.setState({character: character});
         this.setAbilityModifiers(scores);
         this.setTempModifiers(this.state.character["Ability_Scores"]["temp"], scores); // always update temp mods
@@ -179,7 +179,7 @@ const CharacterSheet = React.createClass({
         let character = $.extend(true, {}, this.state.character);
         let adjustments = character["Ability_Scores"]["temp"];
         adjustments[name] = adjustment;
-        console.log("updateTempAdjustments: ", name, adjustment);
+        // console.log("updateTempAdjustments: ", name, adjustment);
         this.setState({character: character});
         this.setTempModifiers(adjustments, this.state.character["Ability_Scores"]["base"]);
     },

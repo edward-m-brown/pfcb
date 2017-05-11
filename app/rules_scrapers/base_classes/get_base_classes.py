@@ -95,8 +95,8 @@ def process_class_table(table, class_dict, soup):
             header_fields.extend(spell_level_fields)
         level_rows = table.find_all('tr')
         # print("HEAD ROWS:" + repr(header_fields))
-        for level_row in (level_rows[0], level_rows[1]): # get rid of header rows
-            if level_row.find('th'):
+        for level_row in (level_rows[0], level_rows[1], level_rows[-1]): # get rid of header/footer rows
+            if level_row.find('th') or level_row.parent.name == "thead" or level_row.parent.name == "tfoot":
                 level_rows.remove(level_row)
         for level_row in level_rows:
             level = {}

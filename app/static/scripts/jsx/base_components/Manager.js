@@ -1,30 +1,40 @@
 import Search from './Search'
 import Info from './Info'
-
-var Manager = React.createClass({
+const $ = require('../../../bower_components/jquery/dist/jquery.min');
+const Manager = React.createClass({
     getInitialState() {
         return {
             info: '',
-            hideSearch: false
+            hide_search: false,
+            jump_id: ''
         }
     },
     componentWillMount(){
         // ajax here, if needed
     },
     resetState() {
-        this.setState({info: '', hideSearch: false});
+        this.setState({info: '', hide_search: false, jump_id: ''});
     },
     setInfo(e) {
-        this.setState({info: e.target.name? e.target.name : e.target.dataset.name});
+        let info = e.target.dataset.name;
+        let jumpID = e.target.dataset.id? e.target.dataset.id: this.state.jump_id;
+        // console.log("setting jump_id: " + jumpID)
+        this.setState({info: info, jump_id: jumpID});
     },
     toggleSearch() {
-        this.setState({hideSearch: !this.state.hideSearch});
+        this.setState({hide_search: !this.state.hide_search, jump_id: ''}); // if you hide the search, you wipe out jump_id!!!
     },
-    setHide(hideSearch) {
-        this.setState({hideSearch: hideSearch})
+    setHide(hide_search) {
+        this.setState({hide_search: hide_search})
     },
     componentDidUpdate(prevProps, prevState) {
-
+        if(this.state.info == "" && this.state.jump_id) {
+            let jqJump = $('#'+this.state.jump_id);
+            let scrollTop = $('#'+this.props.managerName+"-body").scrollTop();
+            let jumpPosition = jqJump.position().top + scrollTop
+            // console.log("jumping to position: " + jumpPosition);
+            $("#"+this.props.managerName+"-body").animate({ scrollTop: jumpPosition }, 'fast');
+        }
     },
     render() {
         let names = Array.isArray(this.props.objects)
@@ -32,26 +42,42 @@ var Manager = React.createClass({
             : Object.keys(this.props.objects);
         let objects = this.props.objects;
         let that = this;
-        let listObject = (managerName, objName, objs)=>{
+        let listObject = (managerName, objName, objs, index)=>{
+            let id=[managerName, objName, index].join("-");
             switch(managerName) {
                 case 'classManager':
                     return (
-                        <div className="flex-container">
-                            <a data-name={objName} onClick={this.setInfo}>
-                                <b data-name={objName}>{objName}:</b>
+                        <div className="" id={id}>
+                            <a data-name={objName} onClick={this.setInfo} data-id={id} className="col-xs-3 no-padding">
+                                <b data-name={objName} data-id={id}>{objName}:</b>
                             </a>
-                            <div className="">
-                                <input type="number" value={objs[objName]} name={objName} className=""
-                                    onChange={that.props.update} style={{width: 40}}/>
-                            </div>
+                            <input type="number" value={objs[objName]} name={objName} className="col-xs-3 no-padding"
+                                onChange={that.props.update} style={{width: 40}}/>
+                            <button onClick={that.props.remove} data-name={objName}
+                                    onMouseOver={console.log('mouseOver '+objName)} onMouseOut={console.log('mouseOut '+objName)}
+                                    data-index={index} className="btn btn-xs btn-danger col-xs-1 no-padding"
+                                    title={"Remove " + objName}>
+                                <span className="glyphicon glyphicon-remove-sign" data-name={objName}/>
+                            </button>
                         </div>
 
                     );
                 case 'featManager':
                     return (
-                        <div className="flex-container">
-                            <a data-name={objName} onClick={this.setInfo}>{objName}</a>
-                            <textarea />
+                        <div className="" id={id}>
+                            <a className="col-xs-5 no-padding" data-name={objName} onClick={this.setInfo}>{objName}</a>
+                            <div className="col-xs-6 no-padding">
+                                <textarea value={objs[index]["Notes"]} onChange={that.props.update}
+                                    aria-describedby={id + "-notes"}/>
+                                <span className="help-block" id={id + "-notes"}> Notes </span>
+                            </div>
+                            <button onClick={that.props.remove} data-name={objName}
+                                    onMouseOver={console.log('mouseOver '+objName)} onMouseOut={console.log('mouseOut '+objName)}
+                                    data-index={index} className="btn btn-xs btn-danger col-xs-1 no-padding"
+                                    title={"Remove " + objName}>
+                                <span className="glyphicon glyphicon-remove-sign"
+                                    data-name={objName} data-index={index}/>
+                            </button>
                         </div>
                     );
             }
@@ -74,18 +100,12 @@ var Manager = React.createClass({
                                           setInfo={this.setInfo} labelName={this.props.labelName}
                                           idName={this.props.managerName + "-body"}/>
                                 </div>
-                                <div className="flex-container-col" style={this.state.info? {display: "none"}: {}}>
+                                <div className="" style={this.state.info? {display: "none"}: {}}>
                                     {names.map((name, index) => {
                                         return (
-                                            <div className="flex-container flex-wrap">
+                                            <div className="flex-container-col">
                                                 {/* Probably want to re-think how this little section is populated. */}
-                                                {listObject(this.props.managerName, name, objects)}
-                                                <button onClick={this.props.remove} data-name={name}
-                                                        data-index={index} className="btn btn-xs btn-danger"
-                                                        title={"Remove " + this.props.labelName}>
-                                                    <span className="glyphicon glyphicon-remove-sign"
-                                                        data-name={name} data-index={index}/>
-                                                </button>
+                                                {listObject(this.props.managerName, name, objects, index)}
                                             </div>
                                         )
                                     }, this)}
@@ -94,15 +114,15 @@ var Manager = React.createClass({
                             <br/>
                             <hr style={{border: "double"}}/>
                             <button onClick={this.toggleSearch} className="btn btn-sm btn-primary">
-                                {this.state.hideSearch? "Show searchbar": "Hide searchbar"}
+                                {this.state.hide_search? "Show searchbar": "Hide searchbar"}
                             </button>
                             <Search objects={this.props.dbObjects} setInfo={this.setInfo} add={this.props.add}
-                                labelName={this.props.labelName} hideSearch={this.state.hideSearch}/>
+                                labelName={this.props.labelName} hideSearch={this.state.hide_search}/>
                         </div>
                         <div className="modal-footer">
                             {this.state.info
                                 ? <button type="button" className="btn btn-primary"
-                                    onClick={this.resetState}>
+                                    data-name="" onClick={this.setInfo}>
                                     Back to {this.props.labelName} Manager
                                   </button>
                                 : ''

@@ -15,15 +15,13 @@ var CharacterBuilder = React.createClass({
             char_index: -1
         });
     },
-    componentWillMount: function(){
-        let characters, classes;
+    componentDidMount: function(){
+        let characters, classes, feats, skills;
         let that = this;
         $.get("/get-user-characters", function(user_chars){
             characters = JSON.parse(user_chars);
             // console.log("Data Loaded: " + user_chars);
             that.setState({
-                cur_char: null,
-                char_index: -1,
                 characters: characters? characters: []
             });
         });
@@ -55,7 +53,7 @@ var CharacterBuilder = React.createClass({
     selectCharacter: function(event) {
         // function for setting the cur_char state
         let char_index = parseInt(event.target.value);
-        console.log("Setting cur_char to index " + char_index)
+        // console.log("Setting cur_char to index " + char_index)
         this.setState({
             cur_char: this.state.characters[char_index],
             char_index: char_index
@@ -63,7 +61,7 @@ var CharacterBuilder = React.createClass({
     },
     deselectCharacter: function() {
         // function for unsetting cur_char state(getting back to characters menu)
-        console.log("Unsetting character " + this.state.cur_char["Name"] + "!")
+        // console.log("Unsetting character " + this.state.cur_char["Name"] + "!")
         this.setState({
             cur_char: null,
             char_index: -1
@@ -162,31 +160,33 @@ var CharacterBuilder = React.createClass({
         );
     },
     render: function() {
-        if(this.state.cur_char){
+        if(/*this.state.loaded*/true) {
             return(
                 <div>
-                    <CharacterSheet character={this.state.cur_char}
-                        saveCharacter={this.saveCharacters}
-                        deselectCharacter={this.deselectCharacter}
-                        baseClasses={this.state.base_classes}
-                        feats={this.state.feats}
-                        skills={this.state.skills}/>
-                </div>
-            )
-        } else {
-            return(
-                <div id="character-select">
-                    Select a character<br/>
-                    {
-                        this.state.characters.length
+                    <div id="character-select" style={this.state.cur_char? {display: "none"}: {}}>
+                        Select a character<br/>
+                        {this.state.characters.length
                             ? this.makeTable()
-
-                            : <h6>No Characters Loaded</h6>
+                            : <h6>No Characters Loaded</h6>}
+                        <button onClick={this.addCharacter}>New Character</button>
+                    </div>
+                    {this.state.cur_char
+                        ? <div>
+                            <CharacterSheet character={this.state.cur_char}
+                                            saveCharacter={this.saveCharacters}
+                                            deselectCharacter={this.deselectCharacter}
+                                            baseClasses={this.state.base_classes}
+                                            feats={this.state.feats}
+                                            skills={this.state.skills}/>
+                        </div>
+                        : ''
                     }
-                    <button onClick={this.addCharacter}>New Character</button>
                 </div>
-            )
+            );
+        } else {
+            return <h1>THIS IS TOTALLY A SPINNER!</h1>
         }
+
     }
 });
 

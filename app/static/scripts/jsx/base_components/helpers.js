@@ -99,7 +99,7 @@ const character_template = {
     'Abilities': [],
     'Class_Features': [],
     'Skills': {
-        'Class Ranks': 0,
+        'Class Ranks': [],
         'Ranks Used': 0,
         'Skill_Table': {
             'Acrobatics' : {

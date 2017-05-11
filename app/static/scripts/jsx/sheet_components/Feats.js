@@ -77,7 +77,7 @@ const Feats = React.createClass({
                 <Reference referenceName="featReference" labelName="Feat" dbObjects={this.props.dbFeats}
                     info={this.state.info}/>
                 <Manager managerName="featManager" labelName="Feat" objects={this.props.characterFeats}
-                    dbObjects={this.props.dbFeats} add={this.addFeat} remove={this.removeFeat}/>
+                    dbObjects={this.props.dbFeats} add={this.addFeat} remove={this.removeFeat} update={this.updateNote}/>
             </div>
         );
     }
