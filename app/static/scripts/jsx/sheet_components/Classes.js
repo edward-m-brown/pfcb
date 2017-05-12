@@ -3,7 +3,6 @@
  */
 import Manager from '../base_components/Manager'
 import Reference from '../base_components/Reference'
-const $ = require('../../../bower_components/jquery/dist/jquery.min')
 const Classes = React.createClass({
     getInitialState() {
         return {info: ''}
@@ -32,12 +31,13 @@ const Classes = React.createClass({
             let numLevels = this.props.classLevels[className];
             if(classNames.includes(className)) { // we can use this class to update the character
                 let classLevels = this.props.classes[className]['Levels'];
-                if(numLevels > classLevels.length
-                    && confirm(className + " only has data up to level " + classLevels.length
-                        + "\nClick OK to update the character to level " + classLevels.length + " " + className
-                        + "(You will have to adjust for subsequent " + className + " levels manually)") ){
-                    numLevels = classLevels.length;
-                } else { return }
+                if(numLevels > classLevels.length){
+                    if(confirm(className + " only has data up to level " + classLevels.length
+                            + "\nClick OK to update the character to level " + classLevels.length + " " + className
+                            + "(You will have to adjust for subsequent " + className + " levels manually)") ){
+                        numLevels = classLevels.length;
+                    } else { return }
+                }
                 for(let i = 0; i < numLevels; i++)
                     updates.skillRanks.push(this.props.classes[className]['Ranks']);
                 this.props.classes[className]['Skills'].map((skillName)=>{

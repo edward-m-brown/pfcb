@@ -1,4 +1,3 @@
-const $ = require('../../bower_components/jquery/dist/jquery');
 import CharacterSheet from './CharacterSheet'
 import character_template from './base_components/helpers'
 

@@ -2,15 +2,15 @@
  * Created by edward on 4/29/17.
  */
 import AddBoxes from '../base_components/AddBoxes'
-const $=require('../../../bower_components/jquery/dist/jquery.min')
-
 const Weapon = React.createClass({
     getInitialState() {
         return {
             increment: 0,
             edit: false,
-            add: '',
-            remove: ''
+            add_attack: '',
+            remove_attack: '',
+            add_damageBonus: '',
+            remove_damageBonus: ''
         }
     },
     addRemove(e) {
@@ -24,12 +24,14 @@ const Weapon = React.createClass({
             else
                 able.add.push(mod);
         });
+        let add = this.state["add_"+bonusType];
+        let remove = this.state["remove_"+bonusType];
         return (
             <span>
                 {able.add.length
                     ?<span>
-                        <select onChange={this.addRemove} data-name="add"
-                            value={able.add.includes(this.state.add)? this.state.add: ""}>
+                        <select onChange={this.addRemove} data-name={"add_"+bonusType}
+                            value={able.add.includes(add)? add: ""}>
                             <option value="">Select...</option>
                             {able.add.map((modName)=>{
                                 return <option value={modName}>
@@ -37,8 +39,8 @@ const Weapon = React.createClass({
                                 </option>
                             })}
                         </select>
-                        <button value={this.state.add} data-name={bonusType} data-index={index} onClick={this.props.update}
-                                data-action="add">
+                        <button value={add} data-name={bonusType} data-index={index}
+                            onClick={this.props.update} data-action="add" className="btn btn-xs btn-primary">
                             Add
                         </button>
                      </span>
@@ -47,8 +49,8 @@ const Weapon = React.createClass({
                 &nbsp;
                 {able.sub.length
                     ? <span>
-                        <select onChange={this.addRemove} data-name="remove"
-                                value={able.sub.includes(this.state.remove) ? this.state.remove: ""}>
+                        <select onChange={this.addRemove} data-name={"remove_"+bonusType}
+                                value={able.sub.includes(remove) ? remove: ""}>
                             <option value="">Select...</option>
                             {able.sub.map((modName)=>{
                                 return <option value={modName}>
@@ -56,8 +58,8 @@ const Weapon = React.createClass({
                                 </option>
                             })}
                         </select>
-                        <button value={this.state.remove} data-name={bonusType} data-index={index} onClick={this.props.update}
-                                data-action="remove">
+                        <button value={remove} data-name={bonusType} data-index={index}
+                            onClick={this.props.update} data-action="remove" className="btn btn-xs btn-primary">
                             Remove
                         </button>
                       </span>

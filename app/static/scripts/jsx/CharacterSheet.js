@@ -1,4 +1,3 @@
-var $=require('../../bower_components/jquery/dist/jquery');
 import Abilities from './sheet_components/Abilities'
 import Description from './sheet_components/Description'
 import Levels from './sheet_components/Levels'
@@ -109,6 +108,7 @@ const CharacterSheet = React.createClass({
                 break;
             }
             case 'feat_note': {
+                character['Feats'][objectKey]['Notes'] = value;
                 break;
             }
             case 'initiative': {
@@ -256,6 +256,16 @@ const CharacterSheet = React.createClass({
     componentWillUnmount(){
 
     },
+    componentDidUpdate(){
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover();
+        });
+    },
+    componentDidMount() {
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover();
+        });
+    },
     render(){
         let strMod = this.state.character['Ability_Scores']['temp']['STR']
             ? this.state.temp_mods['STR']
@@ -288,8 +298,7 @@ const CharacterSheet = React.createClass({
                     <div className="flex-container flex-wrap" id="description">
                         <Description characterName={this.state.character["Name"]} classes={this.props.baseClasses}
                             description={this.state.character["Description"]} levels={this.state.character['Levels']}
-                            updateCharacter={this.updateCharacter}
-                        />
+                            updateCharacter={this.updateCharacter} characterLevel={characterLevel}/>
                     </div>
                     <div className="flex-container flex-wrap" id="abilities-combat">
                         <Abilities abilityScores={this.state.character["Ability_Scores"]["base"]}
@@ -323,7 +332,7 @@ const CharacterSheet = React.createClass({
                             characterLevel={characterLevel}/>
                     </div>
                     <Feats dbFeats={this.props.feats} characterFeats={this.state.character['Feats']}
-                           updateCharacter={this.updateCharacter} />
+                           updateCharacter={this.updateCharacter}/>
                     <div className="flex-item">
                         <div className="col-md-12">
                             <button type="button" className="btn btn-info btn-md" onClick={ this.deselectCharacter }>

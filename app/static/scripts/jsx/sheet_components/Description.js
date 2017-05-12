@@ -151,7 +151,8 @@ var Description = React.createClass({
                                 {/**/}<span id="name" className="help-block">Character Name</span>
                               </div>}
                         <Levels levels={this.props.levels} classes={this.props.classes} modifiers={this.props.modifiers}
-                                updateCharacter={this.props.updateCharacter} className="flex-wrap"/>
+                                updateCharacter={this.props.updateCharacter} className="flex-wrap"
+                                characterLevel={this.props.characterLevel}/>
                     </div>
                 </div>
             </div>

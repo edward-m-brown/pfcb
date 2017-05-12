@@ -2,7 +2,6 @@
  * Created by edward on 4/8/17.
  */
 import AddBoxes from '../base_components/AddBoxes';
-var $=require('../../../bower_components/jquery/dist/jquery.min.js');
 
 const Defense = React.createClass({
     updateAC(e) {

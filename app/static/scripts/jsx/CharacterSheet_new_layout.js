@@ -1,4 +1,3 @@
-var $=require('../../bower_components/jquery/dist/jquery');
 import Abilities from './sheet_components/Abilities'
 import Description from './sheet_components/Description'
 import Levels from './sheet_components/Levels'

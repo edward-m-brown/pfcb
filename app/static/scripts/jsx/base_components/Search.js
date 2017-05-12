@@ -1,7 +1,6 @@
 /**
  * Created by edward on 4/4/17.
  */
-const $ = require('../../../bower_components/jquery/dist/jquery.min')
 const Search = React.createClass({
     getInitialState(){
         return { search: ''};

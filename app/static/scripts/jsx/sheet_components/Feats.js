@@ -24,8 +24,8 @@ const Feats = React.createClass({
         this.setState({info: e.target.dataset.name, noSearch: true});
     },
     updateNote(e) {
-        let note = event.target.value;
-        let belongsTo = parseInt(event.target.dataset.index);
+        let note = e.target.value;
+        let belongsTo = parseInt(e.target.dataset.index);
         this.props.updateCharacter('feat_note', note, belongsTo)
     },
     render() {
@@ -43,20 +43,25 @@ const Feats = React.createClass({
                     ?   <div>
                             {featNames.map((featName, index)=>{
                                 return (
-                                    <div className="row">
-                                        <text className="col-md-4">{featName}</text>
+                                    <div className="col-xs-6 col-md-4">
+                                        <div className="flex-container">
+                                            <a data-toggle="modal" data-target="#featReference"
+                                                data-name={featName} onClick={this.setInfo}
+                                                title={"Show " + {featName} + " Reference"}>
+                                                {featName}
+                                            </a>
+                                            {this.props.characterFeats[index]['Notes']
+                                                ? <span className="glyphicon glyphicon-info-sign" data-toggle="popover"
+                                                      title="Notes"
+                                                      data-content={this.props.characterFeats[index]['Notes']}/>
+                                                : ''}
+                                        </div>
                                         {/*
                                          <div className="col-md-4">
                                              <Note note={this.props.characterFeats[index]['Note']}
                                                  update={this.updateNote} index={index}/>
                                          </div>
                                         */}
-                                        <button data-name={featName} onClick={this.setInfo}
-                                            data-toggle="modal" data-target="#featReference"
-                                            className="col-xs-2 col-sm-1 col-md-1"
-                                            title="Show Feat Reference">
-                                            <span className="glyphicon glyphicon-book" data-name={featName}/>
-                                        </button>
                                     </div>
                                 )
                             })}

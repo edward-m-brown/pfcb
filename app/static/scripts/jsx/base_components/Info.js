@@ -1,7 +1,6 @@
 /**
  * Created by edward on 4/4/17.
  */
-const $ = require('../../../bower_components/jquery/dist/jquery.min');
 const Info = React.createClass({
     showHtml(html){
         return {__html: html}
@@ -13,10 +12,11 @@ const Info = React.createClass({
         return this.props.infoFor != nextProps.infoFor
     },
     componentDidUpdate() {
-        if(this.props.infoFor) {
-            let id = "#"+this.props.idName;
-            $(id).animate({ scrollTop: 0 }, 'fast');
-        }
+        if(this.props.infoFor) $("#"+this.props.idName).animate({ scrollTop: 0 }, 'fast');
+    },
+    add(e) {
+        this.props.add(e);
+        this.props.setInfo({target:{dataset: {name: ""}}});
     },
     render() {
         return (
@@ -30,6 +30,12 @@ const Info = React.createClass({
                           title={"Back to " + this.props.labelName + " Manager"} className="btn btn-sm btn-primary">
                           <span data-name="" className="glyphicon glyphicon-circle-arrow-left"/>
                       </button>
+                    : ''}
+                {this.props.add
+                    ? <button className="btn-sm btn-success" onClick={this.add} data-name={this.props.infoFor}
+                          title={"Add " + this.props.labelName + " " + this.props.infoFor}>
+                          <span className="glyphicon glyphicon-plus-sign" data-name={this.props.infoFor}/>
+                    </button>
                     : ''}
 
             </div>

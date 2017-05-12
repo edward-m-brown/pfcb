@@ -1,6 +1,5 @@
 import Search from './Search'
 import Info from './Info'
-const $ = require('../../../bower_components/jquery/dist/jquery.min');
 const Manager = React.createClass({
     getInitialState() {
         return {
@@ -28,7 +27,7 @@ const Manager = React.createClass({
         this.setState({hide_search: hide_search})
     },
     componentDidUpdate(prevProps, prevState) {
-        if(this.state.info == "" && this.state.jump_id) {
+        if(this.state.info == "" && prevState.info != "" && this.state.jump_id) {
             let jqJump = $('#'+this.state.jump_id);
             let scrollTop = $('#'+this.props.managerName+"-body").scrollTop();
             let jumpPosition = jqJump.position().top + scrollTop
@@ -54,7 +53,6 @@ const Manager = React.createClass({
                             <input type="number" value={objs[objName]} name={objName} className="col-xs-3 no-padding"
                                 onChange={that.props.update} style={{width: 40}}/>
                             <button onClick={that.props.remove} data-name={objName}
-                                    onMouseOver={console.log('mouseOver '+objName)} onMouseOut={console.log('mouseOut '+objName)}
                                     data-index={index} className="btn btn-xs btn-danger col-xs-1 no-padding"
                                     title={"Remove " + objName}>
                                 <span className="glyphicon glyphicon-remove-sign" data-name={objName}/>
@@ -68,11 +66,10 @@ const Manager = React.createClass({
                             <a className="col-xs-5 no-padding" data-name={objName} onClick={this.setInfo}>{objName}</a>
                             <div className="col-xs-6 no-padding">
                                 <textarea value={objs[index]["Notes"]} onChange={that.props.update}
-                                    aria-describedby={id + "-notes"}/>
+                                    aria-describedby={id + "-notes"} data-index={index}/>
                                 <span className="help-block" id={id + "-notes"}> Notes </span>
                             </div>
                             <button onClick={that.props.remove} data-name={objName}
-                                    onMouseOver={console.log('mouseOver '+objName)} onMouseOut={console.log('mouseOut '+objName)}
                                     data-index={index} className="btn btn-xs btn-danger col-xs-1 no-padding"
                                     title={"Remove " + objName}>
                                 <span className="glyphicon glyphicon-remove-sign"
@@ -98,7 +95,7 @@ const Manager = React.createClass({
                                 <div style={this.state.info? {}: {display: "none"}}>
                                     <Info objects={this.props.dbObjects} infoFor={this.state.info}
                                           setInfo={this.setInfo} labelName={this.props.labelName}
-                                          idName={this.props.managerName + "-body"}/>
+                                          idName={this.props.managerName + "-body"} add={this.props.add}/>
                                 </div>
                                 <div className="" style={this.state.info? {display: "none"}: {}}>
                                     {names.map((name, index) => {
