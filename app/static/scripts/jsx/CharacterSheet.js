@@ -130,7 +130,10 @@ const CharacterSheet = React.createClass({
                     let skill, subSkill, skillParts = skillName.split('(');
                     if(skillParts.length > 1) {
                         skill = skillParts[0].trim(); subSkill = skillParts[1].split(')')[0];
-                    } else skill = skillName;
+                    } else { skill = skillName; }
+                    if (skill == "Craft" || skill == "Perform" || skill == "Profession") {
+                        subSkill = "all"
+                    }
                     if(subSkill) {
                         // console.log("'"+skill+"'", "'"+subSkill+"'")
                         if(subSkill == "all"){

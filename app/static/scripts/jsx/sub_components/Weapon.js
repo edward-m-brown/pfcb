@@ -171,29 +171,32 @@ const Weapon = React.createClass({
                             <h6 className="field-block">Damage</h6>
                         </span>
                         <span className="flex-container justify-center">
-                                {this.state.edit
-                                    ? <span>
-                                          <input type="number" value={weapon.damage[0]} className="small"
-                                              data-index={index} data-name="damage" data-nested="0"
-                                              onChange={this.props.update} style={{width: 35}}/>
-                                          D
-                                          <input type="number" value={weapon.damage[1]} className="small"
-                                              data-index={index} data-name="damage" data-nested="1"
-                                              onChange={this.props.update} style={{width: 35}}/>
-                                      </span>
-                                    : <span>{weapon.damage[0]}d{weapon.damage[1]} + </span>
-                                }
-                            <span className="flex-container-col">
-                                    <AddBoxes boxes={damageBonus} index={index}
-                                              totalOnly={!this.state.edit} describedBy={"weapon-"+index+"-damage"}/>
-                                {this.state.edit
-                                    ? <span className="flex-container">
-                                            {this.addSubFields("damageBonus", weapon, index)}
-                                      </span>
-                                    : ''}
-                                </span>
-                            </span>
+                            {this.state.edit
+                                ? <span>
+                                      <input type="number" value={weapon.damage[0]} className="small"
+                                          data-index={index} data-name="damage" data-nested="0"
+                                          onChange={this.props.update} style={{width: 35}}/>
+                                      d
+                                      <input type="number" value={weapon.damage[1]} className="small"
+                                          data-index={index} data-name="damage" data-nested="1"
+                                          onChange={this.props.update} style={{width: 35}}/>
+                                  </span>
+                                : <span>{weapon.damage[0]}d{weapon.damage[1]}</span>}
+                            &nbsp;+ <AddBoxes boxes={damageBonus} index={index} totalOnly={true}
+                                      describedBy={"weapon-"+index+"-damage"}/>
+                        </span>
                     </div>
+                    {this.state.edit
+                        ? <div className="weapon-field flex-item">
+                            <span id={"weapon-"+index+"-damage-bonus"} className="help-block" style={{marginTop: 15}}>
+                                <h6 className="field-block">Damage Bonus</h6>
+                            </span>
+                            <AddBoxes boxes={damageBonus} index={index} describedBy={"weapon-"+index+"-damage-bonus"}/>
+                            <span className="flex-container">
+                                {this.addSubFields("damageBonus", weapon, index)}
+                            </span>
+                          </div>
+                        : ''}
                     <div className="weapon-field">
                        <span id={"weapon-"+index+"-critical"} className="help-block"
                              style={{marginTop: 15}}>

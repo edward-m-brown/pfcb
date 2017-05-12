@@ -162,8 +162,6 @@ const Skills = React.createClass({
                 </div>
                 <hr/>
                 {skillNames.map((skillName)=>{
-                    let lowerSkill = skillName.toLowerCase();
-                    let lowerSearch = this.state.search.toLowerCase();
                     if(skillTable[skillName]['Ranks'] >= 0){
                         if(this.filterSkill(skillName))
                             return (this.makeRow(skillName, ''))
