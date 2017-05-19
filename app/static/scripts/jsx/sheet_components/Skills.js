@@ -65,7 +65,7 @@ const Skills = React.createClass({
         else console.log("makeRow:: weird ability name: " + abilityName)
         let boxes = this.makeBoxes(name, skill, abilityMod, abilityName);
         return (
-            <div className="flex-container bordered"
+            <div className="flex-container bordered no-shrink"
                 style={{justifyContent: "space-between", borderColor: "silver", borderRadius: 2}}>
                 <div className="flex-item flex-container">
                     <div className="flex-container-col">
@@ -137,7 +137,7 @@ const Skills = React.createClass({
                 totalRanks += (ranks + this.props.intMod >= 1? ranks + this.props.intMod: 1);
             });
         return(
-            <div className="col-xs-12 col-md-6 flex-container-col bordered">
+            <div className="col-xs-12 col-md-6 flex-container-col bordered" style={{overflowY: "auto", height: 900}}>
                 <h3 className="field-block">Skills</h3>
                 <div className="">
                     <label className="col-xs-6">

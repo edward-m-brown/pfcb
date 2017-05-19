@@ -33,6 +33,9 @@ for doc in db.feats.find(fields={"_id": False}):
 skills = {}
 for doc in db.skills.find(fields={"_id": False}):
     skills[doc["Name"]] = doc
+spells = {}
+for doc in db.spells.find(fields={"_id": False}):
+    spells[doc["Name"]] = doc
 
 
 @login_manager.user_loader
@@ -146,9 +149,14 @@ def get_feats():
 def get_skills():
     return dumps(skills)
 
+@app.route('/get-spells')
+@login_required
+def get_spells():
+    return dumps(spells)
+
 @app.route('/save-characters', methods=['PUT'])
 @login_required
-def save_character():
+def save_characters():
     user = get_current_user()
     data = request.get_json()
     if type(user) is dict:
@@ -159,11 +167,11 @@ def save_character():
             full_response = True,
             new=True
         )
-        print(repr(response))
         if response["ok"] > 0:
             return dumps(response["value"]["characters"])
+
     else:
-        return user
+        return user['characters']
 
 
 # helpers

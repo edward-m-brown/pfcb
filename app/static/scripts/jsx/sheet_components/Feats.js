@@ -56,21 +56,9 @@ const Feats = React.createClass({
                                                       data-content={this.props.characterFeats[index]['Notes']}/>
                                                 : ''}
                                         </div>
-                                        {/*
-                                         <div className="col-md-4">
-                                             <Note note={this.props.characterFeats[index]['Note']}
-                                                 update={this.updateNote} index={index}/>
-                                         </div>
-                                        */}
                                     </div>
                                 )
                             })}
-                            {/*
-                             <button onClick={this.updateStats} title="Update Character">
-                                 <span className="glyphicon glyphicon-user"></span>
-                                 <span className="glyphicon glyphicon-refresh"></span>
-                             </button>
-                            */}
                         </div>
                     :   <div>
                             <button data-toggle="modal" data-target="#featManager" title="Add Feats"

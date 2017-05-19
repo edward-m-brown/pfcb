@@ -249,8 +249,9 @@ const CharacterSheet = React.createClass({
            temp_mods: calculateTempModifiers(adjustments, base_scores)
         });
     },
-    saveCharacter(){
+    saveCharacter(e = null) {
         this.props.saveCharacter(this.state.character);
+        if(e && e.target.dataset.alert) alert(this.state.character["Name"] + " was saved!");
     },
     componentWillMount(){
         // use this function for AJAX
@@ -337,8 +338,14 @@ const CharacterSheet = React.createClass({
                     <Feats dbFeats={this.props.feats} characterFeats={this.state.character['Feats']}
                            updateCharacter={this.updateCharacter}/>
                     <div className="flex-item">
-                        <div className="col-md-12">
-                            <button type="button" className="btn btn-info btn-md" onClick={ this.deselectCharacter }>
+                        <div className="col-md-6">
+                            <button type="button" className="btn btn-success btn-md" onClick={ this.saveCharacter }
+                                data-alert={true}>
+                                <span className="glyphicon glyphicon-floppy-save"/> Save {this.state.character['Name']}
+                            </button>
+                        </div>
+                        <div className="col-md-6">
+                            <button type="button" className="btn btn-primary btn-md" onClick={ this.deselectCharacter }>
                                 <span className="glyphicon glyphicon-transfer"/> Switch Characters
                             </button>
                         </div>

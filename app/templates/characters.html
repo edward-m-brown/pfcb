@@ -52,6 +52,9 @@
         .justify-center {
             justify-content: center;
         }
+        .no-shrink {
+            flex-shrink: 0;
+        }
         .small-item {
             flex-shrink: 2;
         }
@@ -263,6 +266,7 @@
         }
 
     </style>
+    <div class="react-flash"></div>
     <div id="character-builder"></div>
     <script src="{{ url_for('static', filename='bower_components/react/react.min.js') }}"></script>
     <script src="{{ url_for('static', filename='bower_components/react/react-dom.min.js') }}"></script>

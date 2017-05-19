@@ -1,10 +1,17 @@
-/**
- * Created by edward on 5/11/17.
- */
+import Manager from '../base_components/Manager'
+import Reference from '../base_components/Reference'
 const Spells = React.createClass({
     render(){
         return (
-            <h1>Hello from Spells!</h1>
+            <div className="col-md-6 bordered">
+                <h3 className="field-block">
+                    Spells
+                    <button data-toggle="modal" data-target="#spellsManager" title="Edit Spells"
+                            className="btn btn-xs btn-primary">
+                        <span className="glyphicon glyphicon-pencil"/>
+                    </button>
+                </h3>
+            </div>
         )
     }
 });

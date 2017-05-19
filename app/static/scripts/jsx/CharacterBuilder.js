@@ -11,38 +11,34 @@ var CharacterBuilder = React.createClass({
         return({
             cur_char: null,
             characters: [],
-            char_index: -1
+            char_index: -1,
         });
     },
     componentDidMount: function(){
-        let characters, classes, feats, skills;
-        let that = this;
-        $.get("/get-user-characters", function(user_chars){
-            characters = JSON.parse(user_chars);
-            // console.log("Data Loaded: " + user_chars);
+        let that = this
+        $.get("/get-user-characters", function(userChars){
             that.setState({
-                characters: characters? characters: []
+                characters: JSON.parse(userChars)
             });
         });
-        $.get("/get-base-classes", function(base_classes){
-            classes = JSON.parse(base_classes);
-            // console.log("Data Loaded: " + classes)
+        $.get("/get-base-classes", function(dbClasses){
             that.setState({
-               base_classes: classes
+               base_classes: JSON.parse(dbClasses)
             });
         });
-        $.get("/get-feats", function(feats){
-            feats = JSON.parse(feats);
-            // console.log("Data Loaded: " + feats);
+        $.get("/get-feats", function(dbFeats){
             that.setState({
-                feats: feats
+                feats: JSON.parse(dbFeats)
             });
         });
-        $.get("/get-skills", function(skills){
-            skills = JSON.parse(skills);
-            // console.log("Data Loaded: " + skills);
+        $.get("/get-skills", function(dbSkills){
             that.setState({
-                skills: skills
+                skills: JSON.parse(dbSkills)
+            });
+        });
+        $.get("/get-spells", function(dbSpells){
+            that.setState({
+                spells: JSON.parse(dbSpells)
             });
         });
     },
@@ -103,10 +99,8 @@ var CharacterBuilder = React.createClass({
             contentType: 'application/json',
             data: JSON.stringify(characters),
             success: function (user_chars) {
-                characters = JSON.parse(user_chars);
-                // console.log("Data Loaded: " + user_chars);
                 that.setState({
-                    characters: characters
+                    characters: JSON.parse(user_chars)
                 })
             }
         });
@@ -159,7 +153,7 @@ var CharacterBuilder = React.createClass({
         );
     },
     render: function() {
-        if(/*this.state.loaded*/true) {
+        if(/* replace this when you figure out how to display a spinner while content loads */true) {
             return(
                 <div>
                     <div id="character-select" style={this.state.cur_char? {display: "none"}: {}}>
@@ -176,8 +170,9 @@ var CharacterBuilder = React.createClass({
                                             deselectCharacter={this.deselectCharacter}
                                             baseClasses={this.state.base_classes}
                                             feats={this.state.feats}
-                                            skills={this.state.skills}/>
-                        </div>
+                                            skills={this.state.skills}
+                                            spells={this.state.spells}/>
+                          </div>
                         : ''
                     }
                 </div>
