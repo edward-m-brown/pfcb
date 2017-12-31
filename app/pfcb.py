@@ -18,7 +18,7 @@ app.config["DB_NAME"] = 'pfcb'
 
 app.config["CHARACTERS_COLLECTION"] = db.characters
 app.config["SETTINGS_COLLECTION"] = db.settings
-app.config["DEBUG"] = True
+app.config["DEBUG"] = False 
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
